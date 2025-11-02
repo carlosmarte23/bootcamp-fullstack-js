@@ -102,6 +102,12 @@ nav {
       cursor: pointer;
       outline: none;
     }
+    &.active {
+      color: var(--primary);
+      font-weight: 700;
+      cursor: default;
+      pointer-events: none;
+    }
   }
 }
 
