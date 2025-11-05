@@ -78,7 +78,6 @@ header {
   justify-content: space-between;
   align-items: center;
   border: none;
-  border-bottom: 1px solid var(--border);
 
   h1 {
     margin-bottom: 0;
