@@ -78,6 +78,7 @@ header {
   justify-content: space-between;
   align-items: center;
   border: none;
+  border-bottom: 1px solid var(--border);
 
   h1 {
     margin-bottom: 0;
@@ -115,7 +116,7 @@ nav {
 }
 
 /* Header button styles */
-header div a {
+header div a, .button {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   display: inline-block;
@@ -124,7 +125,20 @@ header div a {
   font-size: 0.875rem;
   text-decoration: none;
   font-weight: 700;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+
+  &:hover, &:focus {
+    background-color: var(--primary-hover);
+    cursor: pointer;
+    outline: none;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.button {
+  background-color: var(--primary-light);
 
   &:hover, &:focus {
     background-color: var(--primary-hover);
@@ -171,7 +185,7 @@ main {
 
   form {
     width: 100%;
-    max-width: 42rem;
+    max-width: 56rem;
     margin: 0  auto;
     padding-inline: 1rem;
     
@@ -294,9 +308,10 @@ footer {
   }
 }
 
-/* Jobs Search Section Styles */
+/* Jobs Search Page and Section Styles */
 .jobs-search {
   margin: 0;
+  margin-top: 3rem;
   padding: 0;
   height: auto !important;
   display: flex;
@@ -317,7 +332,7 @@ footer {
   /* Jobs Search Form Styles */
   form {
       width: 100%;
-      max-width: 56rem;
+      max-width: 80rem;
   
   /* Jobs Search Bar Styles */
   .search-bar {
@@ -330,6 +345,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     margin-top: 0.5rem;
+    padding-inline: 0;
     background-color: var(--background);
     box-shadow: none;
     border: none;
@@ -361,7 +377,7 @@ footer {
 
 .search-results {
   width: 100%;
-  max-width: 56rem;
+  max-width: 80rem;
   margin: 2rem auto;
   padding: 0 1rem;
   .pagination {
@@ -385,6 +401,51 @@ footer {
         background-color: var(--text-primary);
         cursor: pointer;
         outline: none;
+      }
+    }
+  }
+
+  .job-listings {
+    
+    gap: 1rem;
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+
+    /* Individual Job Listing Styles */
+    .job-listing {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr max-content;     
+
+      .job-listing-title {
+        grid-column: 1;
+
+        h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+        }
+        
+        small {
+        grid-column: 1 / -1;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        }
+      }
+
+      .button {
+        grid-column: 2;
+        align-self: center;
+      }
+
+      p {
+        grid-column: 1;
+        margin-top: 0.5rem;
+        color: var(--text-secondary);
+      }
+      &:last-child {
+      border-bottom: none;
       }
     }
   }
