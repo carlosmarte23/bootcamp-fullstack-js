@@ -128,22 +128,13 @@ header div a, .button {
   transition: all 0.3s;
 
   &:hover, &:focus {
-    background-color: var(--primary-hover);
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
     cursor: pointer;
     outline: none;
   }
   &:active {
     transform: scale(0.95);
-  }
-}
-
-.button {
-  background-color: var(--primary-light);
-
-  &:hover, &:focus {
-    background-color: var(--primary-hover);
-    cursor: pointer;
-    outline: none;
   }
 }
 
