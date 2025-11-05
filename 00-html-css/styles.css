@@ -78,6 +78,7 @@ header {
   justify-content: space-between;
   align-items: center;
   border: none;
+  border-bottom: 1px solid var(--border);
 
   h1 {
     margin-bottom: 0;
@@ -98,15 +99,24 @@ nav {
 
     &:hover, &:focus {
       color: var(--primary-light);
-      text-decoration: underline;
       cursor: pointer;
       outline: none;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.active {
+      background-color: var(--primary-light);
+      pointer-events: none;
+      cursor: default;
     }
   }
 }
 
 /* Header button styles */
-header div a {
+header div a, .button {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   display: inline-block;
@@ -115,13 +125,16 @@ header div a {
   font-size: 0.875rem;
   text-decoration: none;
   font-weight: 700;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
 
   &:hover, &:focus {
     background-color: var(--primary-dark);
     color: var(--primary-light);
     cursor: pointer;
     outline: none;
+  }
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -158,9 +171,12 @@ main {
       color: var(--text-secondary);
     }
 
-    form {
+    
+  }
+
+  form {
     width: 100%;
-    max-width: 42rem;
+    max-width: 56rem;
     margin: 0  auto;
     padding-inline: 1rem;
     
@@ -212,7 +228,6 @@ main {
         }
       }
     }
-  }
 
   /* Features Section Styles */
   .features {
@@ -269,6 +284,7 @@ main {
   }
 }
 
+/* Footer Styles */
 footer {
   background-color: var(--background);
   display: flex;
@@ -280,5 +296,148 @@ footer {
 
   small {
     color: var(--text-muted);
+  }
+}
+
+/* Jobs Search Page and Section Styles */
+.jobs-search {
+  margin: 0;
+  margin-top: 3rem;
+  padding: 0;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Jobs Search Form Styles */
+  form {
+      width: 100%;
+      max-width: 80rem;
+  
+  /* Jobs Search Bar Styles */
+  .search-bar {
+    padding: .25rem .5rem;
+  }
+
+  
+  /* Jobs Search Filters Styles */
+  .jobs-search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    padding-inline: 0;
+    background-color: var(--background);
+    box-shadow: none;
+    border: none;
+    }
+
+    
+    /* Select Input Styles */
+    select {
+      /* TODO: Fix left alignment of the selects with the text input above */
+      padding: 0.75rem 1rem;
+      padding-right: 2.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: var(--primary);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: inherit;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+      background-size: 1em;
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+    }
+  }
+}
+
+/* TODO: style .search-results and .job-listings*/
+
+.search-results {
+  width: 100%;
+  max-width: 80rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-block: 2rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s;
+      
+      &:hover, &:focus {
+        background-color: var(--text-primary);
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+
+  .job-listings {
+    
+    gap: 1rem;
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+
+    /* Individual Job Listing Styles */
+    .job-listing {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr max-content;     
+
+      .job-listing-title {
+        grid-column: 1;
+
+        h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+        }
+        
+        small {
+        grid-column: 1 / -1;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        }
+      }
+
+      .button {
+        grid-column: 2;
+        align-self: center;
+      }
+
+      p {
+        grid-column: 1;
+        margin-top: 0.5rem;
+        color: var(--text-secondary);
+      }
+      &:last-child {
+      border-bottom: none;
+      }
+    }
   }
 }
