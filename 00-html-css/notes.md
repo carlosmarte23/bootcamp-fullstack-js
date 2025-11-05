@@ -16,8 +16,10 @@ I finished the styles for the index page, it took a while because I only have im
 
 ### Jobs search page
 
+#### 🟢 Completed on November 4th 2025.
 ![](./Design/job%20search.png)
 
-#### 🟡 In progress - Last update November 2nd 2025.
 
-I started copying the basic structure of the home page, since the header and footer are the same and only the main content is changing.
+I started copying the basic structure of the home page, since the header and footer are the same and only the main content is changing. I created a new branch on github to test the workflow of a real development team.
+
+After I finished the style of the page i did a test merging the changes of the feature branch and main, since i only did a small change it autoresolved, it was a little confusing because it was my first time doing it, but i fixed the duplicated lines and merged with main. Lastly to test PRs Im writting these notes, making a commit, and creating a PR.
