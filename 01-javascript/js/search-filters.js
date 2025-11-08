@@ -24,22 +24,59 @@ const jobListings = document.querySelectorAll(".job-listing");
 
 //Consolidate filters in one function
 function applyJobFilters() {
+  //Get selected filter values
   const selectedTechnology = filterTechnology.value.toLowerCase();
-  //TODO: get other filter values
+  const selectedLocation = filterLocation.value.toLowerCase();
+  const selectedContractType = filterContractyType.value.toLowerCase();
+  const selectedExperienceLevel = filterExperienceLevel.value.toLowerCase();
 
   //Loop through job listings and apply filters
   jobListings.forEach((job) => {
     const jobText = job.textContent.toLowerCase();
 
     //if no filter is selected, show all jobs
-    if (selectedTechnology === "") {
+    if (
+      selectedTechnology === "" &&
+      selectedLocation === "" &&
+      selectedContractType === "" &&
+      selectedExperienceLevel === ""
+    ) {
       job.style.display = "";
+      console.log("No filters selected, showing all jobs");
       return;
     }
 
-    //TODO: apply other filters logic
+    //check if job matches selected filters
+    let matchesTechnology = false;
+    let matchesLocation = false;
+    let matchesContractType = false;
+    let matchesExperienceLevel = false;
 
+    //Apply filters logic
     if (jobText.includes(selectedTechnology)) {
+      matchesTechnology = true;
+    }
+
+    if (jobText.includes(selectedLocation)) {
+      matchesLocation = true;
+      console.log("Location match found");
+    }
+
+    if (jobText.includes(selectedContractType)) {
+      matchesContractType = true;
+    }
+
+    if (jobText.includes(selectedExperienceLevel)) {
+      matchesExperienceLevel = true;
+    }
+
+    //Determine if job should be displayed based on filter matches
+    if (
+      matchesTechnology &&
+      matchesLocation &&
+      matchesContractType &&
+      matchesExperienceLevel
+    ) {
       job.style.display = "";
     } else {
       job.style.display = "none";
@@ -48,3 +85,6 @@ function applyJobFilters() {
 }
 
 filterTechnology.addEventListener("change", applyJobFilters);
+filterLocation.addEventListener("change", applyJobFilters);
+filterContractyType.addEventListener("change", applyJobFilters);
+filterExperienceLevel.addEventListener("change", applyJobFilters);

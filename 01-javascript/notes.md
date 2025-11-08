@@ -4,8 +4,10 @@ The first exercise is to create the first two pages of the design for [DevJobs](
 
 ## Design
 
-### Home page 
+### Home page
+
 #### 🟢 Completed on November 2nd 2025.
+
 ![](/00-html-css/Design/index.png)
 
 First I looked at the design and divided the page in 3 sections, the header, the main part and the footer.
@@ -17,8 +19,8 @@ I finished the styles for the index page, it took a while because I only have im
 ### Jobs search page
 
 #### 🟢 Completed on November 4th 2025.
-![](./Design/job%20search.png)
 
+![](./Design/job%20search.png)
 
 I started copying the basic structure of the home page, since the header and footer are the same and only the main content is changing. I created a new branch on github to test the workflow of a real development team.
 
@@ -26,6 +28,11 @@ After I finished the style of the page i did a test merging the changes of the f
 
 # Module 01 - JAVASCRIPT
 
-The second excersice is to add javascript to the Jobs search page, the first one is to add an event to filter the jobs using the selects.
+The second exercise is to add JavaScript to the job search page.
+The first task is to add an event that filters the job listings using the select elements.
 
-First we start with the "#filter-technology".
+I started with the "filter-technology" select, then refactored the code into a single function to incorporate the other filters later on.
+
+I feel that the current implementation isn’t very solid, to be honest, but since we don’t have a database yet and are simply filtering based on the text in the HTML, there isn’t much else I can do for now.
+
+#### 🟢 Completed on November 8th 2025.
