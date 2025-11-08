@@ -15,11 +15,13 @@
   --text-primary: #ffffff;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
+  --text-applied: #f8fafc;
   --border: rgba(255, 255, 255, 0.1);
   --card-bg: #1e293b;
   --shadow: rgba(0, 0, 0, 0.3);
   --input-bg: #1e293b;
   --button-bg: #334155;
+  --button-bg-applied: #22c55e;
 }
 
 /* Font Face */
@@ -435,9 +437,16 @@ footer {
         }
       }
 
-      .button {
+      .btn-apply {
         grid-column: 2;
         align-self: center;
+
+        &.applied {
+          background-color: var(--button-bg-applied);
+          color: var(--text-applied);
+          pointer-events: none;
+          cursor: default;
+        }
       }
 
       p {
@@ -445,6 +454,7 @@ footer {
         margin-top: 0.5rem;
         color: var(--text-secondary);
       }
+
       &:last-child {
         border-bottom: none;
       }
