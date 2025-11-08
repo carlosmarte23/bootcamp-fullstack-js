@@ -13,17 +13,21 @@ jobsListingsSection.addEventListener("click", (event) => {
   }
 });
 
-// Filter Jobs by Select Inputs
-
+// Filter Jobs Functionality
 const filterTechnology = document.getElementById("filter-technology");
-// const filterLocation = document.getElementById("filter-location");
-// const filterContractyType = document.getElementById("filter-contract-type");
-// const filterExperienceLevel = document.getElementById("filter-experience");
+const filterLocation = document.getElementById("filter-location");
+const filterContractyType = document.getElementById("filter-contract-type");
+const filterExperienceLevel = document.getElementById("filter-experience");
 
-filterTechnology.addEventListener("change", () => {
+//Get all job listings
+const jobListings = document.querySelectorAll(".job-listing");
+
+//Consolidate filters in one function
+function applyJobFilters() {
   const selectedTechnology = filterTechnology.value.toLowerCase();
-  const jobListings = document.querySelectorAll(".job-listing");
+  //TODO: get other filter values
 
+  //Loop through job listings and apply filters
   jobListings.forEach((job) => {
     const jobText = job.textContent.toLowerCase();
 
@@ -33,10 +37,14 @@ filterTechnology.addEventListener("change", () => {
       return;
     }
 
+    //TODO: apply other filters logic
+
     if (jobText.includes(selectedTechnology)) {
       job.style.display = "";
     } else {
       job.style.display = "none";
     }
   });
-});
+}
+
+filterTechnology.addEventListener("change", applyJobFilters);
