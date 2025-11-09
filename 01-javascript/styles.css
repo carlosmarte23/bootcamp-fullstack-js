@@ -82,11 +82,12 @@ h1 + p {
 
 /*Header Styles*/
 header {
+  margin: 1rem 0;
   padding: 1rem 2rem;
   border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 
   h1 {
     margin-bottom: 0;
@@ -465,7 +466,7 @@ footer {
 main.job-details-page {
   width: 100%;
   max-width: 80rem;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 0 1rem;
   background-color: var(--background);
 }
@@ -473,10 +474,10 @@ main.job-details-page {
 .job-breadcrumb {
   display: block;
   width: 100%;
-  max-width: 56rem;
+  max-width: 62rem;
   font-size: 0.875rem;
   color: var(--text-muted);
-  margin: 2rem auto 1rem;
+  margin: 1rem auto;
 
   a {
     color: var(--text-muted);
@@ -496,17 +497,22 @@ main.job-details-page {
 }
 
 header.job-header {
+  padding: 0;
   border: none;
+  margin: 0;
+
+  p {
+    color: var(--text-muted);
+  }
 }
 
 /* job details section styles */
 .job-details {
   width: 100%;
-  max-width: 56rem;
-  margin: 1rem auto;
+  max-width: 60rem;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 
   .job-meta {
     h1 {
