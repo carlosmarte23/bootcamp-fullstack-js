@@ -22,20 +22,21 @@ Inside each one I include exercises, small projects, and a `notes.md` file where
 
 ## 🧩 Module progress
 
-| Module | Topic | Status | Last update |
-|:-------|:------|:-------|:------------|
-| 00 | HTML & CSS Fundamentals | 🟡 In progress | November 1, 2025 |
+| Module | Topic                   | Status         | Last update        |
+| :----- | :---------------------- | :------------- | :----------------- |
+| 00     | HTML & CSS Fundamentals | 🟢 Completed   | November 1st, 2025 |
+| 01     | Javascript              | 🟡 In progress | November 9th, 2025 |
 
 ---
 
 ## ⚙️ Stack & tools
 
-| Area | Tool |
-|:-----|:-----|
-| **Frontend** | HTML, CSS |
-| **Backend** |  |
-| **Version control** | Git + GitHub |
-| **Environment and tools** | Visual Studio Code + Warp terminal|
+| Area                      | Tool                               |
+| :------------------------ | :--------------------------------- |
+| **Frontend**              | HTML, CSS. Javascript              |
+| **Backend**               |                                    |
+| **Version control**       | Git + GitHub                       |
+| **Environment and tools** | Visual Studio Code + Warp terminal |
 
 ---
 
@@ -54,5 +55,5 @@ You’re welcome to review the content to learn or get inspired, but please avoi
 
 ---
 
-📅 **Last updated:** _November 1, 2025_  
+📅 **Last updated:** _November 9th, 2025_  
 👨‍💻 **Author:** [Carlos Marte](https://github.com/carlosmarte23)
