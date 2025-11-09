@@ -36,3 +36,18 @@ I started with the "filter-technology" select, then refactored the code into a s
 I feel that the current implementation isn’t very solid, to be honest, but since we don’t have a database yet and are simply filtering based on the text in the HTML, there isn’t much else I can do for now.
 
 #### 🟢 Completed on November 8th 2025.
+
+### Jobs details page
+
+#### 🟢 Completed on November 9th 2025.
+
+![](./Design/job%20details.png)
+
+The next task is to create the markup and styles for the Job Details page.
+This page will be displayed when the user clicks the Apply button on any job listing from the Job Search page.
+
+As with the Job Search page, I’ll start by copying the header and footer from the Home page and then building the markup for the main section of the page.
+
+After the markup and styles are done, and since this is a front-end exercise for now without a database or routing logic, the goal is to simulate the user flow from the job listings page to a detailed job view.
+
+In a real application, each job listing would have its own unique page or dynamic route (e.g., /jobs/:id) that loads the correct data from an API or database.
