@@ -2,9 +2,7 @@
 
 The first exercise is to create the first two pages of the design for [DevJobs](https://stitch.withgoogle.com/projects/7508115667617706440?pli=1).
 
-## Design
-
-### Home page
+## Home page
 
 #### 🟢 Completed on November 2nd 2025.
 
@@ -16,7 +14,7 @@ I then added the basic structure of the page in index.html using HTML semantic t
 
 I finished the styles for the index page, it took a while because I only have images so adjusting the exact sizes was a bit difficult. For the articles, I had to take a peek at the original code from miduDev because it wasn't aligning well for me, but everything else I did myself.
 
-### Jobs search page
+## Jobs search page
 
 #### 🟢 Completed on November 4th 2025.
 
@@ -37,7 +35,7 @@ I feel that the current implementation isn’t very solid, to be honest, but sin
 
 #### 🟢 Completed on November 8th 2025.
 
-### Jobs details page
+## Add jobs details page
 
 #### 🟢 Completed on November 9th 2025.
 
@@ -51,3 +49,21 @@ As with the Job Search page, I’ll start by copying the header and footer from 
 After the markup and styles are done, and since this is a front-end exercise for now without a database or routing logic, the goal is to simulate the user flow from the job listings page to a detailed job view.
 
 In a real application, each job listing would have its own unique page or dynamic route (e.g., /jobs/:id) that loads the correct data from an API or database.
+
+## Modifications to the jobs search page
+
+### Step 0 — JSON Data Implementation (Preparation for exercises)
+
+Before starting the next JavaScript exercises, I’m refactoring the project to load all job listings dynamically from a JSON file instead of hardcoded HTML.
+
+This change will make the data easier to manage and allow me to work with filtering, searching, and pagination features just like in a real application that consumes an API.
+
+**Next steps:**
+
+- Create a jobs.json or jobs-data.js file containing all job listings.
+
+- Render job cards dynamically in the jobs.html page using JavaScript.
+
+- Keep the design and functionality identical while replacing the static HTML.
+
+🟡 In progress — Started on November 9th 2025.
