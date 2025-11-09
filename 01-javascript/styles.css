@@ -512,11 +512,47 @@ header.job-header {
     h1 {
       font-size: 2rem;
       margin-bottom: 0.25rem;
-    }
 
-    p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
+      p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+.job-section {
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    /* list-style: none; */
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      position: relative;
+      list-style: none;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -1.75rem;
+        color: var(--primary-light);
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%230d5ba8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg>');
+        width: 1.25rem;
+        height: 1.25rem;
+        top: 0.25rem;
+      }
     }
   }
 }
