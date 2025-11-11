@@ -1,12 +1,23 @@
 // Button Apply State Change
 
-const jobsListingsSection = document.querySelector(".job-listings");
+const jobsDetailsSection = document.querySelector(".job-details");
 
-jobsListingsSection.addEventListener("click", (event) => {
-  const element = event.target;
+if (jobsDetailsSection) {
+  jobsDetailsSection.addEventListener("click", (event) => {
+    const element = event.target;
 
-  if (element.classList.contains("btn-apply")) {
-    element.textContent = "¡Aplicado!";
-    element.classList.add("applied");
-  }
-});
+    if (element.classList.contains("btn-apply")) {
+      // event.preventDefault();
+      console.log("Apply button clicked");
+
+      // toggle all buttons
+      const applyButtons = jobsDetailsSection.querySelectorAll(".btn-apply");
+      console.log(applyButtons);
+
+      applyButtons.forEach((button) => {
+        button.textContent = "¡Aplicado!";
+        button.classList.add("applied");
+      });
+    }
+  });
+}
