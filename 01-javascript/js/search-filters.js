@@ -1,5 +1,14 @@
 // search-filters.js
 
+// Dictionary for job locations and their corresponding cities
+const locationMap = {
+  cdmx: "Ciudad de México",
+  bsas: "Buenos Aires",
+  bogota: "Bogotá",
+  santiago: "Santiago de Chile",
+  // Add more locations as needed
+};
+
 // Get filters container
 const filtersContainer = document.querySelector(".jobs-search-filters");
 
@@ -28,9 +37,19 @@ if (filtersContainer) {
 function applyJobFilters() {
   //Get selected filter values
   const selectedTechnology = filterTechnology.value.toLowerCase();
-  const selectedLocation = filterLocation.value.toLowerCase();
+  let selectedLocation = filterLocation.value.toLowerCase();
   const selectedContractType = filterContractType.value.toLowerCase();
   const selectedExperienceLevel = filterExperienceLevel.value.toLowerCase();
+
+  // Map location abbreviations to full city names if necessary
+  if (locationMap[selectedLocation]) {
+    selectedLocation = locationMap[selectedLocation].toLowerCase();
+  }
+
+  console.log("Selected Technology:", selectedTechnology);
+  console.log("Selected Contract Type:", selectedContractType);
+  console.log("Selected Experience Level:", selectedExperienceLevel);
+  console.log("Selected Location:", selectedLocation);
 
   //Get all job listings
   const jobListings = document.querySelectorAll(".job-listing");
