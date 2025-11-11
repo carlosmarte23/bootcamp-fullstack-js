@@ -58,12 +58,11 @@ Before starting the next JavaScript exercises, I’m refactoring the project to 
 
 This change will make the data easier to manage and allow me to work with filtering, searching, and pagination features just like in a real application that consumes an API.
 
-**Next steps:**
+🟢 Completed on November 9th 2025.
 
-- Create a jobs.json or jobs-data.js file containing all job listings.
+### Exercise 1 — Search by job title
 
-- Render job cards dynamically in the jobs.html page using JavaScript.
-
-- Keep the design and functionality identical while replacing the static HTML.
+The first exercise is adding real-time search functionality to the job listings page.
+The goal is to allow users to filter jobs dynamically as they type in the search input.
 
 🟡 In progress — Started on November 9th 2025.
