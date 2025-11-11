@@ -1,22 +1,39 @@
 // search-filters.js
 
-// Filter Jobs Functionality
-const filterTechnology = document.getElementById("filter-technology");
-const filterLocation = document.getElementById("filter-location");
-const filterContractyType = document.getElementById("filter-contract-type");
-const filterExperienceLevel = document.getElementById("filter-experience");
+// Get filters container
+const filtersContainer = document.querySelector(".jobs-search-filters");
 
-//Get all job listings
-const jobListings = document.querySelectorAll(".job-listing");
+// Declare filter variables
+let filterTechnology;
+let filterLocation;
+let filterContractType;
+let filterExperienceLevel;
 
-//Consolidate filters in one function
+// Ensure filters container exists
+if (filtersContainer) {
+  // Get filter input elements
+  filterTechnology = document.getElementById("filter-technology");
+  filterLocation = document.getElementById("filter-location");
+  filterContractType = document.getElementById("filter-contract-type");
+  filterExperienceLevel = document.getElementById("filter-experience");
+
+  // Add event listeners to filter inputs
+  filterTechnology.addEventListener("change", applyJobFilters);
+  filterLocation.addEventListener("change", applyJobFilters);
+  filterContractType.addEventListener("change", applyJobFilters);
+  filterExperienceLevel.addEventListener("change", applyJobFilters);
+}
+
+// Function to apply filters to job listings
 function applyJobFilters() {
   //Get selected filter values
   const selectedTechnology = filterTechnology.value.toLowerCase();
   const selectedLocation = filterLocation.value.toLowerCase();
-  const selectedContractType = filterContractyType.value.toLowerCase();
+  const selectedContractType = filterContractType.value.toLowerCase();
   const selectedExperienceLevel = filterExperienceLevel.value.toLowerCase();
 
+  //Get all job listings
+  const jobListings = document.querySelectorAll(".job-listing");
   //Loop through job listings and apply filters
   jobListings.forEach((job) => {
     const jobText = job.textContent.toLowerCase();
@@ -29,7 +46,6 @@ function applyJobFilters() {
       selectedExperienceLevel === ""
     ) {
       job.style.display = "";
-      console.log("No filters selected, showing all jobs");
       return;
     }
 
@@ -46,7 +62,6 @@ function applyJobFilters() {
 
     if (jobText.includes(selectedLocation)) {
       matchesLocation = true;
-      console.log("Location match found");
     }
 
     if (jobText.includes(selectedContractType)) {
@@ -70,8 +85,3 @@ function applyJobFilters() {
     }
   });
 }
-
-filterTechnology.addEventListener("change", applyJobFilters);
-filterLocation.addEventListener("change", applyJobFilters);
-filterContractyType.addEventListener("change", applyJobFilters);
-filterExperienceLevel.addEventListener("change", applyJobFilters);
