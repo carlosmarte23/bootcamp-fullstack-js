@@ -148,6 +148,19 @@ header div a,
   &:active {
     transform: scale(0.95);
   }
+
+  /* Apply Button Styles */
+  &.btn-apply {
+    grid-column: 2;
+    align-self: center;
+
+    &.applied {
+      background-color: var(--button-bg-applied);
+      color: var(--text-applied);
+      pointer-events: none;
+      cursor: default;
+    }
+  }
 }
 
 /* Main Content Styles */
@@ -376,8 +389,6 @@ footer {
   }
 }
 
-/* TODO: style .search-results and .job-listings*/
-
 .search-results {
   width: 100%;
   max-width: 80rem;
@@ -434,18 +445,6 @@ footer {
           grid-column: 1 / -1;
           color: var(--text-muted);
           margin-top: 0.5rem;
-        }
-      }
-
-      .btn-apply {
-        grid-column: 2;
-        align-self: center;
-
-        &.applied {
-          background-color: var(--button-bg-applied);
-          color: var(--text-applied);
-          pointer-events: none;
-          cursor: default;
         }
       }
 

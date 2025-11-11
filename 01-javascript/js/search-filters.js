@@ -1,18 +1,5 @@
 // search-filters.js
 
-// Button Apply State Change
-
-const jobsListingsSection = document.querySelector(".job-listings");
-
-jobsListingsSection.addEventListener("click", (event) => {
-  const element = event.target;
-
-  if (element.classList.contains("btn-apply")) {
-    element.textContent = "¡Aplicado!";
-    element.classList.add("applied");
-  }
-});
-
 // Filter Jobs Functionality
 const filterTechnology = document.getElementById("filter-technology");
 const filterLocation = document.getElementById("filter-location");
