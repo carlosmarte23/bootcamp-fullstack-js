@@ -1,21 +1,29 @@
-fetch("./js/data/jobs.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((jobs) => {
-    const jobsContainer = document.getElementById("jobs-container");
+// job-listings.js
 
-    jobs.forEach((job) => {
-      // Create job article element
-      const jobElement = document.createElement("article");
-      jobElement.classList.add("job-listing");
+// Get jobs container
+const jobsContainer = document.getElementById("jobs-container");
 
-      // Add data atributes and inner HTML
-      jobElement.setAttribute("data-technology", job.data.technology);
-      jobElement.setAttribute("data-location", job.data.modalidad);
-      jobElement.setAttribute("data-level", job.data.nivel);
+// Ensure jobs container exists
+if (jobsContainer) {
+  // Fetch job data from JSON file
+  fetch("./js/data/jobs.json")
+    .then((response) => {
+      return response.json();
+    })
+    .then((jobs) => {
+      const jobsContainer = document.getElementById("jobs-container");
 
-      jobElement.innerHTML = ` 
+      jobs.forEach((job) => {
+        // Create job article element
+        const jobElement = document.createElement("article");
+        jobElement.classList.add("job-listing");
+
+        // Add data atributes and inner HTML
+        jobElement.setAttribute("data-technology", job.data.technology);
+        jobElement.setAttribute("data-location", job.data.modalidad);
+        jobElement.setAttribute("data-level", job.data.nivel);
+
+        jobElement.innerHTML = ` 
       <div class="job-listing-title">
         <h3>${job.titulo}</h3>
         <small>${job.empresa} | ${job.ubicacion}</small>
@@ -27,6 +35,7 @@ fetch("./js/data/jobs.json")
       </p>
       `;
 
-      jobsContainer.appendChild(jobElement);
+        jobsContainer.appendChild(jobElement);
+      });
     });
-  });
+}
