@@ -9,28 +9,31 @@ const locationMap = {
   // Add more locations as needed
 };
 
-// Get filters container
-const filtersContainer = document.querySelector(".jobs-search-filters");
-
 // Declare filter variables
 let filterTechnology;
 let filterLocation;
 let filterContractType;
 let filterExperienceLevel;
+let searchBar;
+
+// Get filters container
+const filtersContainer = document.querySelector(".jobs-search-filters");
 
 // Ensure filters container exists
 if (filtersContainer) {
-  // Get filter input elements
+  // Get filter input elements and search bar
   filterTechnology = document.getElementById("filter-technology");
   filterLocation = document.getElementById("filter-location");
   filterContractType = document.getElementById("filter-contract-type");
   filterExperienceLevel = document.getElementById("filter-experience");
+  searchBar = document.getElementById("jobs-search-input");
 
   // Add event listeners to filter inputs
   filterTechnology.addEventListener("change", applyJobFilters);
   filterLocation.addEventListener("change", applyJobFilters);
   filterContractType.addEventListener("change", applyJobFilters);
   filterExperienceLevel.addEventListener("change", applyJobFilters);
+  searchBar.addEventListener("input", applyJobFilters);
 }
 
 // Function to apply filters to job listings
@@ -40,6 +43,7 @@ function applyJobFilters() {
   let selectedLocation = filterLocation.value.toLowerCase();
   const selectedContractType = filterContractType.value.toLowerCase();
   const selectedExperienceLevel = filterExperienceLevel.value.toLowerCase();
+  const searchQuery = searchBar.value.toLowerCase();
 
   // Map location abbreviations to full city names if necessary
   if (locationMap[selectedLocation]) {
@@ -48,54 +52,58 @@ function applyJobFilters() {
 
   //Get all job listings
   const jobListings = document.querySelectorAll(".job-listing");
+
   //Loop through job listings and apply filters
   jobListings.forEach((job) => {
     const jobText = job.textContent.toLowerCase();
 
-    //if no filter is selected, show all jobs
-    if (
-      selectedTechnology === "" &&
-      selectedLocation === "" &&
-      selectedContractType === "" &&
-      selectedExperienceLevel === ""
-    ) {
-      job.style.display = "";
-      return;
-    }
+    // Get job title for search bar filtering
+    const titleElement = job.querySelector(".job-listing-title h3");
+
+    const jobTitle = titleElement ? titleElement.textContent.toLowerCase() : "";
 
     //check if job matches selected filters
-    let matchesTechnology = false;
-    let matchesLocation = false;
-    let matchesContractType = false;
-    let matchesExperienceLevel = false;
+    let matchesTechnology = true;
+    let matchesLocation = true;
+    let matchesContractType = true;
+    let matchesExperienceLevel = true;
+    let matchesSearchQuery = true;
 
     //Apply filters logic
-    if (jobText.includes(selectedTechnology)) {
-      matchesTechnology = true;
+    if (selectedTechnology !== "") {
+      matchesTechnology = jobText.includes(selectedTechnology);
     }
 
-    if (jobText.includes(selectedLocation)) {
-      matchesLocation = true;
+    if (selectedLocation !== "") {
+      matchesLocation = jobText.includes(selectedLocation);
     }
 
-    if (jobText.includes(selectedContractType)) {
-      matchesContractType = true;
+    if (selectedContractType !== "") {
+      matchesContractType = jobText.includes(selectedContractType);
     }
 
-    if (jobText.includes(selectedExperienceLevel)) {
-      matchesExperienceLevel = true;
+    if (selectedExperienceLevel !== "") {
+      matchesExperienceLevel = jobText.includes(selectedExperienceLevel);
+    }
+
+    if (searchQuery !== "") {
+      matchesSearchQuery = jobTitle.includes(searchQuery);
     }
 
     //Determine if job should be displayed based on filter matches
-    if (
+    const matchFilters =
       matchesTechnology &&
       matchesLocation &&
       matchesContractType &&
-      matchesExperienceLevel
-    ) {
-      job.style.display = "";
-    } else {
-      job.style.display = "none";
-    }
+      matchesExperienceLevel &&
+      matchesSearchQuery;
+
+    job.style.display = matchFilters ? "" : "none";
+
+    //   job.style.display = "";
+    //   console.log("Showing job:", jobTitle);
+    // } else {
+    //   job.style.display = "none";
+    // }
   });
 }
