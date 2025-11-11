@@ -46,11 +46,6 @@ function applyJobFilters() {
     selectedLocation = locationMap[selectedLocation].toLowerCase();
   }
 
-  console.log("Selected Technology:", selectedTechnology);
-  console.log("Selected Contract Type:", selectedContractType);
-  console.log("Selected Experience Level:", selectedExperienceLevel);
-  console.log("Selected Location:", selectedLocation);
-
   //Get all job listings
   const jobListings = document.querySelectorAll(".job-listing");
   //Loop through job listings and apply filters
