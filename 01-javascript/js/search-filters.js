@@ -57,22 +57,34 @@ function applyJobFilters() {
   jobListings.forEach((job) => {
     const jobText = job.textContent.toLowerCase();
 
-    // Get job title for search bar filtering
-    const titleElement = job.querySelector(".job-listing-title h3");
+    // TITLE FILTER
+    let matchesSearchQuery = true;
 
+    const titleElement = job.querySelector(".job-listing-title h3");
     const jobTitle = titleElement ? titleElement.textContent.toLowerCase() : "";
 
-    //check if job matches selected filters
+    if (searchQuery !== "") {
+      matchesSearchQuery = jobTitle.includes(searchQuery);
+    }
+    // TECHNOLOGY FILTER
     let matchesTechnology = true;
+
+    const techDataset = (job.dataset.technology || "").toLowerCase().trim();
+    // const techAttribute = techDataset.split(",").map((t) => t.trim());
+    const techAttr = techDataset
+      ? techDataset.split(",").map((t) => t.trim())
+      : [];
+
+    if (selectedTechnology !== "") {
+      matchesTechnology = techAttr.includes(selectedTechnology);
+    }
+
+    //check if job matches selected filters
     let matchesLocation = true;
     let matchesContractType = true;
     let matchesExperienceLevel = true;
-    let matchesSearchQuery = true;
 
     //Apply filters logic
-    if (selectedTechnology !== "") {
-      matchesTechnology = jobText.includes(selectedTechnology);
-    }
 
     if (selectedLocation !== "") {
       matchesLocation = jobText.includes(selectedLocation);
@@ -86,10 +98,6 @@ function applyJobFilters() {
       matchesExperienceLevel = jobText.includes(selectedExperienceLevel);
     }
 
-    if (searchQuery !== "") {
-      matchesSearchQuery = jobTitle.includes(searchQuery);
-    }
-
     //Determine if job should be displayed based on filter matches
     const matchFilters =
       matchesTechnology &&
@@ -99,11 +107,5 @@ function applyJobFilters() {
       matchesSearchQuery;
 
     job.style.display = matchFilters ? "" : "none";
-
-    //   job.style.display = "";
-    //   console.log("Showing job:", jobTitle);
-    // } else {
-    //   job.style.display = "none";
-    // }
   });
 }
