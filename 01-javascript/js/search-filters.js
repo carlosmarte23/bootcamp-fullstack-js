@@ -79,10 +79,17 @@ function applyJobFilters() {
       matchesTechnology = techAttr.includes(selectedTechnology);
     }
 
+    // EXPERIENCE FILTER
+    let matchesExperienceLevel = true;
+    const expDataset = (job.dataset.level || "").toLowerCase().trim();
+
+    if (selectedExperienceLevel !== "") {
+      matchesExperienceLevel = expDataset.includes(selectedExperienceLevel);
+    }
+
     //check if job matches selected filters
     let matchesLocation = true;
     let matchesContractType = true;
-    let matchesExperienceLevel = true;
 
     //Apply filters logic
 
@@ -92,10 +99,6 @@ function applyJobFilters() {
 
     if (selectedContractType !== "") {
       matchesContractType = jobText.includes(selectedContractType);
-    }
-
-    if (selectedExperienceLevel !== "") {
-      matchesExperienceLevel = jobText.includes(selectedExperienceLevel);
     }
 
     //Determine if job should be displayed based on filter matches
