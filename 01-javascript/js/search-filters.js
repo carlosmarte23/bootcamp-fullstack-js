@@ -39,11 +39,8 @@ if (filtersContainer) {
 // Function to apply filters to job listings
 function applyJobFilters() {
   //Get selected filter values
-  const selectedTechnology = filterTechnology.value.toLowerCase();
   let selectedLocation = filterLocation.value.toLowerCase();
   const selectedContractType = filterContractType.value.toLowerCase();
-  const selectedExperienceLevel = filterExperienceLevel.value.toLowerCase();
-  const searchQuery = searchBar.value.toLowerCase();
 
   // Map location abbreviations to full city names if necessary
   if (locationMap[selectedLocation]) {
@@ -58,6 +55,7 @@ function applyJobFilters() {
     const jobText = job.textContent.toLowerCase();
 
     // TITLE FILTER
+    const searchQuery = searchBar.value.toLowerCase();
     let matchesSearchQuery = true;
 
     const titleElement = job.querySelector(".job-listing-title h3");
@@ -67,6 +65,9 @@ function applyJobFilters() {
       matchesSearchQuery = jobTitle.includes(searchQuery);
     }
     // TECHNOLOGY FILTER
+    const selectedTechnologies = Array.from(
+      filterTechnology.selectedOptions
+    ).map((option) => option.value.toLowerCase());
     let matchesTechnology = true;
 
     const techDataset = (job.dataset.technology || "").toLowerCase().trim();
@@ -75,12 +76,16 @@ function applyJobFilters() {
       ? techDataset.split(",").map((t) => t.trim())
       : [];
 
-    if (selectedTechnology !== "") {
-      matchesTechnology = techAttr.includes(selectedTechnology);
+    if (selectedTechnologies.length !== 0) {
+      matchesTechnology = techAttr.some((t) =>
+        selectedTechnologies.includes(t)
+      );
     }
 
     // EXPERIENCE FILTER
+    const selectedExperienceLevel = filterExperienceLevel.value.toLowerCase();
     let matchesExperienceLevel = true;
+
     const expDataset = (job.dataset.level || "").toLowerCase().trim();
 
     if (selectedExperienceLevel !== "") {
