@@ -65,4 +65,12 @@ This change will make the data easier to manage and allow me to work with filter
 The first exercise is adding real-time search functionality to the job listings page.
 The goal is to allow users to filter jobs dynamically as they type in the search input.
 
-🟡 In progress — Started on November 9th 2025.
+🟢 Completed on November 10th 2025.
+
+### Refactor – Filter Using Dataset Attributes
+
+Before continuing, I noticed that the filters are still using the HTML text from the job cards instead of the data attributes coming from the JSON file. I created a branch to fix this, and once it's done, I’ll continue with the exercises.
+
+After finishing these changes, the title filter now searches only the <h3> title, and the technology filter now searches only the article’s data-technology attribute instead of the whole text.
+
+🟢 Completed on November 12th, 2025.
