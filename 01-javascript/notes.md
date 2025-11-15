@@ -74,3 +74,11 @@ Before continuing, I noticed that the filters are still using the HTML text from
 After finishing these changes, the title filter now searches only the <h3> title, and the technology filter now searches only the article’s data-technology attribute instead of the whole text.
 
 🟢 Completed on November 12th, 2025.
+
+### Exercise 2 — Filter by Experience and Tech (advanced)
+
+After the previous changes, I now need to implement the experience-level filter and an advanced version of the technology filter that supports selecting multiple options. I’ll start with the experience-level filter using the data attribute in the HTML, which is populated from the JSON file.
+
+After doing this, I changed the UI from a select to a pseudo multi-select using checkboxes for better UX/UI, so the user can select multiple technologies for filtering jobs.
+
+🟢 Completed on November 15th, 2025.
