@@ -71,7 +71,7 @@
             />
           </div>
           <div class="jobs-search-filters">
-            <select name="technology" id="filter-technology" multiple>
+            <!-- <select name="technology" id="filter-technology" multiple>
               <option value="">Tecnología</option>
               <optgroup label="Tecnologías populares">
                 <option value="javascript">JavaScript</option>
@@ -87,7 +87,70 @@
               <hr />
               <option value="ruby">Ruby</option>
               <option value="php">PHP</option>
-            </select>
+            </select> -->
+
+            <!-- Tech Filter pseudo select -->
+            <div class="filter filter-tech">
+              <button
+                type="button"
+                class="filter-toggle"
+                id="filter-tech-toggle"
+              >
+                Tecnología <span class="filter-toggle-icon"></span>
+              </button>
+
+              <div class="filter-dropdown" id="filter-tech-dropdown">
+                <p class="filter-dropdown-title">Tecnologias populares</p>
+                <label class="filter-checkbox">
+                  <input
+                    type="checkbox"
+                    name="filter-tech"
+                    value="javascript"
+                  />
+                  JavaScript
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="python" />
+                  Python
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="react" />
+                  React
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="node" />
+                  Node.js
+                </label>
+                <hr />
+                <p class="filter-dropdown-title">Otras tecnologías</p>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="java" />
+                  Java
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="csharp" />
+                  C#
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="c" />
+                  C
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="c++" />
+                  C++
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="ruby" />
+                  Ruby
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="filter-tech" value="php" />
+                  PHP
+                </label>
+              </div>
+            </div>
+
+            <!-- Other select filters -->
 
             <select name="location" id="filter-location">
               <option value="">Ubicación</option>
