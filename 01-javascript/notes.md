@@ -91,4 +91,4 @@ It have to show Previous and Next pages and highlight the current page.
 
 As an extra I decided to add a clear all filters button when at least a filter is selected, for beter UI/UX
 
-🟡 Last updated on November 15th, 2025.
+🟢 Completed on November 15th, 2025.
