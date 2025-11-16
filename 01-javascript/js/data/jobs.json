@@ -8,6 +8,7 @@
     "data": {
       "technology": ["react", "node", "javascript"],
       "modalidad": "remoto",
+      "contract": "full-time",
       "nivel": "senior"
     }
   },
@@ -20,6 +21,7 @@
     "data": {
       "technology": "python",
       "modalidad": "cdmx",
+      "contract": "full-time",
       "nivel": "junior"
     }
   },
@@ -32,6 +34,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "guadalajara",
+      "contract": "full-time",
       "nivel": "mid-level"
     }
   },
@@ -44,7 +47,8 @@
     "data": {
       "technology": "mobile",
       "modalidad": "remoto",
-      "nivel": "mid-level"
+      "contract": "full-time",
+      "nivel": "lead"
     }
   },
   {
@@ -56,6 +60,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "barcelona",
+      "contract": "freelance",
       "nivel": "mid-level"
     }
   },
@@ -68,6 +73,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "bsas",
+      "contract": "full-time",
       "nivel": "mid-level"
     }
   },
@@ -80,6 +86,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "remoto",
+      "contract": "freelance",
       "nivel": "mid-level"
     }
   },
@@ -92,6 +99,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "madrid",
+      "contract": "full-time",
       "nivel": "senior"
     }
   },
@@ -104,6 +112,7 @@
     "data": {
       "technology": "react",
       "modalidad": "valencia",
+      "contract": "part-time",
       "nivel": "mid-level"
     }
   },
@@ -116,6 +125,7 @@
     "data": {
       "technology": "node",
       "modalidad": "bogota",
+      "contract": "full-time",
       "nivel": "mid"
     }
   },
@@ -128,6 +138,7 @@
     "data": {
       "technology": "python",
       "modalidad": "remoto",
+      "contract": "full-time",
       "nivel": "senior"
     }
   },
@@ -140,6 +151,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "lima",
+      "contract": "full-time",
       "nivel": "mid-level"
     }
   },
@@ -152,6 +164,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "santiago",
+      "contract": "part-time",
       "nivel": "mid-level"
     }
   },
@@ -164,6 +177,7 @@
     "data": {
       "technology": "mobile",
       "modalidad": "madrid",
+      "contract": "part-time",
       "nivel": "mid-level"
     }
   },
@@ -176,6 +190,137 @@
     "data": {
       "technology": "mobile",
       "modalidad": "monterrey",
+      "contract": "internship",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "0f2c8f44-8f8c-4bd7-9b7e-c1df4b7a3c11",
+    "titulo": "Frontend Developer Intern",
+    "empresa": "Nova Web Studio",
+    "ubicacion": "Remoto",
+    "descripcion": "Buscamos un practicante de frontend con conocimientos básicos en HTML, CSS y JavaScript. Se valorará experiencia introductoria en React.",
+    "data": {
+      "technology": ["javascript", "react"],
+      "modalidad": "remoto",
+      "contract": "internship",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "b94e1cfb-a212-4e7f-8a9e-df748c14c3e4",
+    "titulo": "Asistente de Datos",
+    "empresa": "DataFlow Analytics",
+    "ubicacion": "Buenos Aires",
+    "descripcion": "Rol part time para apoyo en limpieza de datos, creación de reportes y consultas básicas en SQL.",
+    "data": {
+      "technology": "python",
+      "modalidad": "bsas",
+      "contract": "part-time",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "4cd13e54-9092-45e8-869d-b319b4f26af1",
+    "titulo": "Backend Intern",
+    "empresa": "CodeWorks",
+    "ubicacion": "Guadalajara",
+    "descripcion": "Práctica para estudiantes interesados en backend con Node.js, Express y bases de datos NoSQL.",
+    "data": {
+      "technology": "node",
+      "modalidad": "guadalajara",
+      "contract": "internship",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "d77129ab-3844-4c6f-bb18-1619850f66cb",
+    "titulo": "Assistant UX/UI Designer",
+    "empresa": "PixelCraft",
+    "ubicacion": "Barcelona",
+    "descripcion": "Puesto part time para apoyo en diseño de interfaces, prototipado en Figma y pruebas de usabilidad.",
+    "data": {
+      "technology": "mobile",
+      "modalidad": "barcelona",
+      "contract": "part-time",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "3b82d116-7cff-4ad0-ae52-4d0545d40f1c",
+    "titulo": "IT Support Intern",
+    "empresa": "Global Support Corp.",
+    "ubicacion": "Ciudad de México",
+    "descripcion": "Prácticas para estudiantes que quieran aprender soporte técnico, redes y mantenimiento básico de equipos.",
+    "data": {
+      "technology": "mobile",
+      "modalidad": "cdmx",
+      "contract": "internship",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "fa90cb37-2fdc-4233-8ddc-d867a4cc7294",
+    "titulo": "Junior QA Tester (Part Time)",
+    "empresa": "Testify",
+    "ubicacion": "Lima",
+    "descripcion": "Rol para realizar pruebas manuales, documentar casos de prueba y apoyar en la automatización básica.",
+    "data": {
+      "technology": "mobile",
+      "modalidad": "lima",
+      "contract": "part-time",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "6a54dbe4-7da3-4d18-9b50-e3ee60f93002",
+    "titulo": "Junior Web Designer",
+    "empresa": "BrightPixels",
+    "ubicacion": "Valencia",
+    "descripcion": "Puesto part time para apoyo en maquetación web, diseño responsive y uso de herramientas de diseño.",
+    "data": {
+      "technology": ["javascript"],
+      "modalidad": "valencia",
+      "contract": "part-time",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "bd2fe21c-2d73-4b66-9df2-2457f4c2f51e",
+    "titulo": "Machine Learning Intern",
+    "empresa": "NeuralTech",
+    "ubicacion": "Remoto",
+    "descripcion": "Prácticas enfocadas en manejo de datasets, modelos simples y herramientas como NumPy y scikit-learn.",
+    "data": {
+      "technology": "python",
+      "modalidad": "remoto",
+      "contract": "internship",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "ce01b353-43d2-4c70-9a60-c24543beac58",
+    "titulo": "DevOps Assistant",
+    "empresa": "CloudOps Jr.",
+    "ubicacion": "Bogotá",
+    "descripcion": "Rol part time para aprender automatización, Docker y pipelines básicos.",
+    "data": {
+      "technology": "mobile",
+      "modalidad": "bogota",
+      "contract": "part-time",
+      "nivel": "junior"
+    }
+  },
+  {
+    "id": "ab1d40fc-e33d-4cdf-a3c9-90e2dcd64549",
+    "titulo": "Content Manager Intern",
+    "empresa": "NextGen Digital",
+    "ubicacion": "Madrid",
+    "descripcion": "Prácticas enfocadas en gestión de contenido, SEO básico y soporte a equipos de producto.",
+    "data": {
+      "technology": "mobile",
+      "modalidad": "madrid",
+      "contract": "internship",
       "nivel": "junior"
     }
   }

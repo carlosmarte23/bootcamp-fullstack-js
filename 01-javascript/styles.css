@@ -369,9 +369,9 @@ footer {
     }
 
     /* Select Input Styles */
-    select {
+    select,
+    .button {
       padding: 0.75rem 1rem;
-      padding-right: 2.5rem;
       font-size: 1rem;
       border: none;
       border-radius: 0.5rem;
@@ -379,11 +379,24 @@ footer {
       color: var(--text-primary);
       cursor: pointer;
       font-family: inherit;
+      font-weight: 500;
       appearance: none;
+    }
+
+    select {
+      padding-right: 2.5rem;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
       background-size: 1em;
       background-repeat: no-repeat;
       background-position: right 0.75rem center;
+    }
+
+    .clear-filters-btn {
+      &.disabled {
+        opacity: 0.4;
+        cursor: default;
+        pointer-events: none;
+      }
     }
   }
 }
@@ -621,4 +634,51 @@ footer.job-apply-footer {
   display: flex;
   justify-content: flex-end;
   margin-top: 2rem;
+}
+
+.jobs-info {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+
+  span {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+}
+
+.pagination {
+  .pagination-pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pagination-link {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    background-color: var(--button-bg);
+    font-size: 1rem;
+    font-weight: 700;
+
+    &.is-active {
+      background-color: var(--primary-dark);
+      color: var(--text-primary);
+      pointer-events: none;
+    }
+
+    &[aria-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    &:hover,
+    &:focus {
+      color: var(--primary-hover);
+      outline: none;
+    }
+  }
 }
