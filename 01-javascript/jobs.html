@@ -71,24 +71,6 @@
             />
           </div>
           <div class="jobs-search-filters">
-            <!-- <select name="technology" id="filter-technology" multiple>
-              <option value="">Tecnología</option>
-              <optgroup label="Tecnologías populares">
-                <option value="javascript">JavaScript</option>
-                <option value="python">Python</option>
-                <option value="react">React</option>
-                <option value="node">Node.js</option>
-              </optgroup>
-              <option value="java">Java</option>
-              <hr />
-              <option value="csharp">C#</option>
-              <option value="c">C</option>
-              <option value="c++">C++</option>
-              <hr />
-              <option value="ruby">Ruby</option>
-              <option value="php">PHP</option>
-            </select> -->
-
             <!-- Tech Filter pseudo select -->
             <div class="filter filter-tech">
               <button
@@ -188,7 +170,12 @@
         <div class="job-listings" id="jobs-container"></div>
 
         <nav class="pagination">
-          <a href="" disabled
+          <a
+            href="#"
+            id="pagination-prev"
+            class="pagintion-link"
+            aria-label="Previous page"
+            aria-disabled="true"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -204,12 +191,15 @@
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M15 6l-6 6l6 6" /></svg
           ></a>
-          <a href="" class="active">1</a>
-          <a href="">2</a>
-          <a href="">3</a>
-          <a href="">4</a>
-          <a href="">5</a>
+
+          <div class="pagination-pages" id="pagination-pages"></div>
+
           <a
+            href="#"
+            id="pagination-next"
+            class="pagintion-link"
+            aria-label="Next page"
+            aria-disabled="true"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

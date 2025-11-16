@@ -1,3 +1,45 @@
+//Jobs fetch
+
+// Get jobs container
+const jobsContainer = document.getElementById("jobs-container");
+
+// Ensure jobs container exists
+if (jobsContainer) {
+  // Fetch job data from JSON file
+  fetch("./js/data/jobs.json")
+    .then((response) => {
+      return response.json();
+    })
+    .then((jobs) => {
+      jobs.forEach((job) => {
+        // Create job article element
+        const jobElement = document.createElement("article");
+        jobElement.classList.add("job-listing");
+
+        // Add data atributes and inner HTML
+        jobElement.setAttribute("data-technology", job.data.technology);
+        jobElement.setAttribute("data-location", job.data.modalidad);
+        jobElement.setAttribute("data-level", job.data.nivel);
+
+        jobElement.innerHTML = ` 
+      <div class="job-listing-title">
+        <h3>${job.titulo}</h3>
+        <small>${job.empresa} | ${job.ubicacion}</small>
+      </div>
+
+      <a href="./job-details.html" class="button btn-apply">Aplicar</a>
+      <p>
+        ${job.descripcion}
+      </p>
+      `;
+
+        jobsContainer.appendChild(jobElement);
+      });
+    });
+}
+
+// Filter jobs
+
 // search-filters.js
 
 // Dictionary for job locations and their corresponding cities
@@ -15,7 +57,6 @@ let filterLocation;
 let filterContractType;
 let filterExperienceLevel;
 let searchBar;
-let techCheckoxes;
 
 // Pseudo select variables
 const techFilter = document.querySelector(".filter-tech");
@@ -43,7 +84,7 @@ if (filtersContainer) {
   });
 }
 
-// Toggle pseudo select
+// Toggle pseudo select event listener
 if (techFilter && techToggle) {
   techFilter.addEventListener("click", () => {
     techFilter.classList.add("is-open");
