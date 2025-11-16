@@ -1,11 +1,43 @@
-//Jobs fetch
+// App state
+const PAGE_SIZE = 3;
+let currentPage = 1;
+let allJobsListings = [];
+let filteredJobs = [];
+
+// Pagination
+
+const paginationPrev = document.getElementById("pagination-prev");
+const paginationNext = document.getElementById("pagination-next");
+const paginationPages = document.getElementById("pagination-pages");
+const jobsInfoContainer = document.getElementById("jobs-info");
+
+// Link pagination previous and next events
+if (paginationPrev) {
+  paginationPrev.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentPage--;
+    if (currentPage < 1) currentPage = 1;
+    renderpage(currentPage);
+  });
+}
+if (paginationNext) {
+  paginationNext.addEventListener("click", (e) => {
+    e.preventDefault();
+    const lastPage = Math.ceil(filteredJobs.length / PAGE_SIZE);
+    currentPage++;
+    if (currentPage > lastPage) currentPage = lastPage;
+    renderpage(currentPage);
+  });
+}
+
+//Jobs listings fetch
 
 // Get jobs container
 const jobsContainer = document.getElementById("jobs-container");
 
 // Ensure jobs container exists
 if (jobsContainer) {
-  // Fetch job data from JSON file
+  // Fetch job data from JSON file and render jobs
   fetch("./js/data/jobs.json")
     .then((response) => {
       return response.json();
@@ -33,14 +65,22 @@ if (jobsContainer) {
       </p>
       `;
 
+        // Hide job by default
+        jobElement.style.display = "none";
+
+        // Append job element to jobs container
         jobsContainer.appendChild(jobElement);
       });
+
+      // Save all jobs data
+      allJobsListings = Array.from(document.querySelectorAll(".job-listing"));
+
+      // Render first page
+      renderpage(1);
     });
 }
 
 // Filter jobs
-
-// search-filters.js
 
 // Dictionary for job locations and their corresponding cities
 const locationMap = {
@@ -75,12 +115,12 @@ if (filtersContainer) {
   filtersTechnology = document.querySelectorAll('input[name="filter-tech"]');
 
   // Add event listeners to filter inputs
-  filterLocation.addEventListener("change", applyJobFilters);
-  filterContractType.addEventListener("change", applyJobFilters);
-  filterExperienceLevel.addEventListener("change", applyJobFilters);
-  searchBar.addEventListener("input", applyJobFilters);
+  filterLocation.addEventListener("change", () => renderpage());
+  filterContractType.addEventListener("change", () => renderpage());
+  filterExperienceLevel.addEventListener("change", () => renderpage());
+  searchBar.addEventListener("input", () => renderpage());
   filtersTechnology.forEach((checkbox) => {
-    checkbox.addEventListener("change", applyJobFilters);
+    checkbox.addEventListener("change", () => renderpage());
   });
 }
 
@@ -99,6 +139,7 @@ if (techFilter && techToggle) {
 
 // Function to apply filters to job listings
 function applyJobFilters() {
+  filteredJobs = [];
   //Get selected filter values
   let selectedLocation = filterLocation.value.toLowerCase();
   const selectedContractType = filterContractType.value.toLowerCase();
@@ -108,11 +149,8 @@ function applyJobFilters() {
     selectedLocation = locationMap[selectedLocation].toLowerCase();
   }
 
-  //Get all job listings
-  const jobListings = document.querySelectorAll(".job-listing");
-
   //Loop through job listings and apply filters
-  jobListings.forEach((job) => {
+  allJobsListings.forEach((job) => {
     const jobText = job.textContent.toLowerCase();
 
     // Validation variables
@@ -172,6 +210,91 @@ function applyJobFilters() {
       matchesExperienceLevel &&
       matchesSearchQuery;
 
-    job.style.display = matchFilters ? "" : "none";
+    // Saves only jobs that match filters
+
+    if (matchFilters) {
+      filteredJobs.push(job);
+    }
   });
+}
+
+function renderpage(page = 1) {
+  console.log("Rendering page: " + page);
+
+  // Filter jobs based on selected filters
+  applyJobFilters();
+
+  // Reset all jobs to hidden
+  allJobsListings.forEach((job) => {
+    job.style.display = "none";
+  });
+
+  // Show filtered jobs on current page
+  let start = (page - 1) * PAGE_SIZE;
+  let end = page * PAGE_SIZE;
+
+  filteredJobs.slice(start, end).forEach((job) => {
+    job.style.display = "";
+  });
+
+  // Update current page number
+  currentPage = page;
+
+  // update pagination
+  updatePagination();
+
+  // update jobs counter
+  updateJobsCounter();
+}
+
+function updateJobsCounter() {
+  if (jobsInfoContainer) {
+    jobsInfoContainer.innerHTML = "";
+    let jobsInfoElement = document.createElement("p");
+    let html = "";
+    if (filteredJobs.length === 0) {
+      html = "Actualmente no tenemos trabajos con esas características";
+    } else if (filteredJobs.length === 1) {
+      html = `¡Encontramos <span>1</span> oportunidad para ti!`;
+    } else {
+      html = `¡Encontramos <span>${filteredJobs.length}</span> oportunidades para ti!`;
+    }
+
+    jobsInfoElement.innerHTML = html;
+    jobsInfoContainer.appendChild(jobsInfoElement);
+  }
+}
+
+function updatePagination() {
+  // // Calculate number of pages
+  const numPages = Math.ceil(filteredJobs.length / PAGE_SIZE);
+
+  // Update previous and next button states
+  paginationPrev.setAttribute(
+    "aria-disabled",
+    currentPage === 1 ? "true" : false
+  );
+  paginationNext.setAttribute(
+    "aria-disabled",
+    currentPage === numPages ? "true" : false
+  );
+
+  // Create pagination buttons
+  paginationPages.innerHTML = "";
+
+  for (let i = 1; i <= numPages; i++) {
+    const btn = document.createElement("a");
+    btn.classList.add("button");
+    btn.classList.add("pagination-link");
+    btn.textContent = i;
+
+    if (i === currentPage) {
+      btn.classList.add("is-active");
+    }
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderpage(i);
+    });
+    paginationPages.appendChild(btn);
+  }
 }
