@@ -91,12 +91,13 @@ const locationMap = {
   // Add more locations as needed
 };
 
-// Declare filter variables
+// Declare filter element variables
 let filtersTechnology;
 let filterLocation;
 let filterContractType;
 let filterExperienceLevel;
 let searchBar;
+let clearFiltersBtn;
 
 // Pseudo select variables
 const techFilter = document.querySelector(".filter-tech");
@@ -114,6 +115,8 @@ if (filtersContainer) {
   searchBar = document.getElementById("jobs-search-input");
   filtersTechnology = document.querySelectorAll('input[name="filter-tech"]');
 
+  clearFiltersBtn = document.getElementById("clear-filters");
+
   // Add event listeners to filter inputs
   filterLocation.addEventListener("change", () => renderpage());
   filterContractType.addEventListener("change", () => renderpage());
@@ -122,6 +125,30 @@ if (filtersContainer) {
   filtersTechnology.forEach((checkbox) => {
     checkbox.addEventListener("change", () => renderpage());
   });
+
+  // Add event listener to clear filters button
+  if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      // clear inputs and selects
+      if (searchBar) searchBar.value = "";
+      if (filterLocation) filterLocation.value = "";
+      if (filterContractType) filterContractType.value = "";
+      if (filterExperienceLevel) filterExperienceLevel.value = "";
+
+      // Uncheck technologies
+      if (filtersTechnology)
+        filtersTechnology.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+      // Close pseudo select if open
+      if (techFilter) techFilter.classList.remove("is-open");
+
+      // Reset page and render
+      renderpage(1);
+    });
+  }
 }
 
 // Toggle pseudo select event listener
@@ -219,8 +246,6 @@ function applyJobFilters() {
 }
 
 function renderpage(page = 1) {
-  console.log("Rendering page: " + page);
-
   // Filter jobs based on selected filters
   applyJobFilters();
 
@@ -245,6 +270,24 @@ function renderpage(page = 1) {
 
   // update jobs counter
   updateJobsCounter();
+
+  // update reset filters button
+  updateResetFiltersButton();
+}
+
+function updateResetFiltersButton() {
+  let hasfilters =
+    searchBar.value.trim() !== "" ||
+    filterLocation.value !== "" ||
+    filterContractType.value !== "" ||
+    filterExperienceLevel.value !== "" ||
+    Array.from(filtersTechnology).some((cb) => cb.checked);
+
+  if (hasfilters) {
+    clearFiltersBtn.classList.remove("disabled");
+  } else {
+    clearFiltersBtn.classList.add("disabled");
+  }
 }
 
 function updateJobsCounter() {
