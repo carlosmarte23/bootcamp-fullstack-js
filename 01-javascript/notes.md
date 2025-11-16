@@ -82,3 +82,11 @@ After the previous changes, I now need to implement the experience-level filter 
 After doing this, I changed the UI from a select to a pseudo multi-select using checkboxes for better UX/UI, so the user can select multiple technologies for filtering jobs.
 
 🟢 Completed on November 15th, 2025.
+
+### Exercise 3 — Dynamic pagination
+
+The pagination have to work on the jobs listing page, Since the JSON dataset doesn’t contain many entries, the pagination will be configured to display 3 jobs per page.
+
+It have to show Previous and Next pages and highlight the current page.
+
+🟡 Last updated on November 15th, 2025.
