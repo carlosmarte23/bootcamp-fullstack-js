@@ -51,6 +51,7 @@ if (jobsContainer) {
         // Add data atributes and inner HTML
         jobElement.setAttribute("data-technology", job.data.technology);
         jobElement.setAttribute("data-location", job.data.modalidad);
+        jobElement.setAttribute("data-contract", job.data.contract);
         jobElement.setAttribute("data-level", job.data.nivel);
 
         jobElement.innerHTML = ` 
@@ -167,6 +168,7 @@ if (techFilter && techToggle) {
 // Function to apply filters to job listings
 function applyJobFilters() {
   filteredJobs = [];
+
   //Get selected filter values
   let selectedLocation = filterLocation.value.toLowerCase();
   const selectedContractType = filterContractType.value.toLowerCase();
@@ -221,13 +223,18 @@ function applyJobFilters() {
       matchesExperienceLevel = expDataset.includes(selectedExperienceLevel);
     }
 
-    if (selectedLocation !== "") {
-      matchesLocation = jobText.includes(selectedLocation);
-    }
+    // LOCATION FILTER
+    matchesLocation =
+      selectedLocation === job.dataset.location || selectedLocation === ""
+        ? true
+        : false;
 
-    if (selectedContractType !== "") {
-      matchesContractType = jobText.includes(selectedContractType);
-    }
+    // CONTRACT FILTER
+    matchesContractType =
+      selectedContractType === job.dataset.contract ||
+      selectedContractType === ""
+        ? true
+        : false;
 
     //Determine if job should be displayed based on filter matches
     const matchFilters =
