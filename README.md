@@ -22,10 +22,10 @@ Inside each one I include exercises, small projects, and a `notes.md` file where
 
 ## 🧩 Module progress
 
-| Module | Topic                   | Status         | Last update        |
-| :----- | :---------------------- | :------------- | :----------------- |
-| 00     | HTML & CSS Fundamentals | 🟢 Completed   | November 1st, 2025 |
-| 01     | Javascript              | 🟡 In progress | November 9th, 2025 |
+| Module | Topic                   | Status       | Last update         |
+| :----- | :---------------------- | :----------- | :------------------ |
+| 00     | HTML & CSS Fundamentals | 🟢 Completed | November 1st, 2025  |
+| 01     | Javascript              | 🟢 Completed | November 16th, 2025 |
 
 ---
 
@@ -47,6 +47,14 @@ but I will always prioritize **understanding and hands-on coding practice**, fol
 
 ---
 
+## 💻 Live Demos
+
+As I progress through the bootcamp, different versions of each project will be deployed to various hosting services. This section will be updated with their corresponding live links.
+
+- [DevJobs — Vanilla JS](https://enchanting-daifuku-f210fd.netlify.app/)
+
+---
+
 ## 🧾 License
 
 This repository is licensed under the **MIT License**.
@@ -55,5 +63,5 @@ You’re welcome to review the content to learn or get inspired, but please avoi
 
 ---
 
-📅 **Last updated:** _November 9th, 2025_  
+📅 **Last updated:** _November 16th, 2025_  
 👨‍💻 **Author:** [Carlos Marte](https://github.com/carlosmarte23)
