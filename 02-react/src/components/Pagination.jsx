@@ -1,3 +1,5 @@
+import styles from "./Pagination.module.css";
+
 export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
   const isFirstPage = currentPage === 1;
@@ -25,13 +27,13 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
   };
 
   return (
-    <nav className="pagination">
+    <nav className={styles.pagination}>
       <a
         href="#"
-        id="pagination-prev"
-        className="pagination-link button"
+        className={`${styles.paginationLink} ${
+          isFirstPage ? styles.isDisabled : ""
+        }`}
         aria-label="Previous page"
-        aria-disabled={isFirstPage ? "true" : "false"}
         onClick={handlePrevPageChange}
       >
         <svg
@@ -51,13 +53,13 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
         </svg>
       </a>
 
-      <div className="pagination-pages" id="pagination-pages">
+      <div className={styles.paginationPages} id="pagination-pages">
         {pages.map((page) => (
           <a
             href="#"
             key={page}
-            className={`pagination-link button ${
-              page === currentPage ? "is-active" : ""
+            className={`${styles.paginationLink} ${
+              currentPage === page && styles.isActive
             }`}
             onClick={(event) => handlePageChange(event, page)}
           >
@@ -68,10 +70,10 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
 
       <a
         href="#"
-        id="pagination-next"
-        className="pagination-link button"
+        className={`${styles.paginationLink} ${
+          isLastPage ? styles.isDisabled : ""
+        }`}
         aria-label="Next page"
-        aria-disabled={isLastPage ? "true" : "false"}
         onClick={handleNextPageChange}
       >
         <svg
