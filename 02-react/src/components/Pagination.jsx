@@ -1,4 +1,8 @@
-export function Pagination() {
+export function Pagination({ currentPage = 1, totalPages = 1 }) {
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === totalPages;
+
   return (
     <nav className="pagination">
       <a
@@ -6,7 +10,7 @@ export function Pagination() {
         id="pagination-prev"
         className="pagination-link button"
         aria-label="Previous page"
-        aria-disabled="true"
+        aria-disabled={isFirstPage ? "true" : "false"}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -25,14 +29,26 @@ export function Pagination() {
         </svg>
       </a>
 
-      <div className="pagination-pages" id="pagination-pages"></div>
+      <div className="pagination-pages" id="pagination-pages">
+        {pages.map((page) => (
+          <a
+            href="#"
+            key={page}
+            className={`pagination-link button ${
+              page === currentPage ? "is-active" : ""
+            }`}
+          >
+            {page}
+          </a>
+        ))}
+      </div>
 
       <a
         href="#"
         id="pagination-next"
         className="pagination-link button"
         aria-label="Next page"
-        aria-disabled="true"
+        aria-disabled={isLastPage ? "true" : "false"}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
