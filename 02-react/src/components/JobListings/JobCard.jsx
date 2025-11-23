@@ -1,9 +1,11 @@
+import styles from "./JobCard.module.css";
+
 export function JobCard({ job }) {
   const { titulo, empresa, ubicacion, descripcion } = job;
 
   return (
-    <article className="job-card">
-      <div className="job-title">
+    <article className={styles.jobCard}>
+      <div className={styles.jobTitle}>
         <h3>{titulo}</h3>
         <small>
           {empresa} | {ubicacion}

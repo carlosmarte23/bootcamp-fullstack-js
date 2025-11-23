@@ -1,0 +1,32 @@
+/* Individual Job Card Styles */
+.jobCard {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+}
+
+.jobTitle {
+  grid-column: 1;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  small {
+    grid-column: 1 / -1;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+
+  p {
+    grid-column: 1;
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

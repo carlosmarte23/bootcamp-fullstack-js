@@ -1,11 +1,13 @@
+import styles from "./JobsSearch.module.css";
+
 export function JobsSearch() {
   return (
-    <section className="jobs-search">
+    <section className={styles.jobsSearch}>
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
       <form action="submit" role="search">
-        <div className="search-bar">
+        <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -30,7 +32,7 @@ export function JobsSearch() {
             placeholder="Buscar trabajos, empresas o habilidades"
           />
         </div>
-        <div className="jobs-search-filters">
+        <div className={styles.searchFilters}>
           {/* <!-- Tech Filter pseudo select --> */}
           <div className="filter filter-tech">
             <button
@@ -116,11 +118,7 @@ export function JobsSearch() {
             <option value="senior">Senior</option>
             <option value="lead">Lead</option>
           </select>
-          <a
-            href="#"
-            id="clear-filters"
-            className="button clear-filters-btn disabled"
-          >
+          <a href="#" id="clear-filters" className={`button isDisabled`}>
             Eliminar filtros
           </a>
         </div>

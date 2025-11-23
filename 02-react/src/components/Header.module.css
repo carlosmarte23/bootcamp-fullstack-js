@@ -1,0 +1,49 @@
+/*Header Styles*/
+header {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  h1 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+  }
+}
+
+/* Header navigation styles */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover,
+    &:focus {
+      color: var(--primary-light);
+      cursor: pointer;
+      outline: none;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.active {
+      background-color: var(--primary-light);
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

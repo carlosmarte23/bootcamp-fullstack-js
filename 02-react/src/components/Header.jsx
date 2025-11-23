@@ -1,3 +1,5 @@
+import styles from "./Header.module.css";
+
 export function Header() {
   return (
     <header>
@@ -25,9 +27,13 @@ export function Header() {
         <a href="#">Salarios</a>
       </nav>
 
-      <div>
-        <a href="#">Publicar un empleo</a>
-        <a href="#">Iniciar sesión</a>
+      <div className={styles.actions}>
+        <a href="#" className="button">
+          Publicar un empleo
+        </a>
+        <a href="#" className="button">
+          Iniciar sesión
+        </a>
       </div>
     </header>
   );

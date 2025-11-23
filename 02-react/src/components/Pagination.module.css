@@ -38,15 +38,3 @@
     outline: none;
   }
 }
-
-.isDisabled {
-  pointer-events: none;
-  opacity: 0.4;
-  cursor: default;
-}
-
-.isActive {
-  background-color: var(--primary-dark);
-  color: var(--text-primary);
-  pointer-events: none;
-}
