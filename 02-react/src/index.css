@@ -488,20 +488,20 @@ footer {
     }
   }
 
-  .job-listings {
+  .job-list {
     gap: 1rem;
     margin-top: 2rem;
     border: 1px solid var(--border);
     border-radius: 0.5rem;
 
-    /* Individual Job Listing Styles */
-    .job-listing {
+    /* Individual Job Card Styles */
+    .job-card {
       border-bottom: 1px solid var(--border);
       padding: 1rem;
       display: grid;
       grid-template-columns: 1fr max-content;
 
-      .job-listing-title {
+      .job-title {
         grid-column: 1;
 
         h3 {
