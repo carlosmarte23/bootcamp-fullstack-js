@@ -1,11 +1,7 @@
 import { JobCard } from "./JobCard.jsx";
 import { JobsInfo } from "./JobsInfo.jsx";
 
-import data from "../../data/jobs.json";
-
-const jobs = data.slice(0, 5);
-
-export function JobListings() {
+export function JobListings({ jobs }) {
   return (
     <section className="search-results">
       <h2>Resultados de la búsqueda</h2>
