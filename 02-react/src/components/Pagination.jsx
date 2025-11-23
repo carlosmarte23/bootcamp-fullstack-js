@@ -1,7 +1,28 @@
-export function Pagination({ currentPage = 1, totalPages = 1 }) {
+export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
+
+  const handlePrevPageChange = (event) => {
+    event.preventDefault();
+    if (!isFirstPage) {
+      onPageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPageChange = (event) => {
+    event.preventDefault();
+    if (!isLastPage) {
+      onPageChange(currentPage + 1);
+    }
+  };
+
+  const handlePageChange = (event, page) => {
+    event.preventDefault();
+    if (page !== currentPage) {
+      onPageChange(page);
+    }
+  };
 
   return (
     <nav className="pagination">
@@ -11,6 +32,7 @@ export function Pagination({ currentPage = 1, totalPages = 1 }) {
         className="pagination-link button"
         aria-label="Previous page"
         aria-disabled={isFirstPage ? "true" : "false"}
+        onClick={handlePrevPageChange}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,6 +59,7 @@ export function Pagination({ currentPage = 1, totalPages = 1 }) {
             className={`pagination-link button ${
               page === currentPage ? "is-active" : ""
             }`}
+            onClick={(event) => handlePageChange(event, page)}
           >
             {page}
           </a>
@@ -49,6 +72,7 @@ export function Pagination({ currentPage = 1, totalPages = 1 }) {
         className="pagination-link button"
         aria-label="Next page"
         aria-disabled={isLastPage ? "true" : "false"}
+        onClick={handleNextPageChange}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

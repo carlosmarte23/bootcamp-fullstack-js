@@ -5,6 +5,9 @@ import { JobsSearch } from "./components/JobsSearch";
 import { Pagination } from "./components/Pagination";
 
 function App() {
+  const handlePageChange = (page) => {
+    console.log("Changing to page: " + page);
+  };
   return (
     <>
       <Header />
@@ -12,7 +15,11 @@ function App() {
         <JobsSearch />
 
         <JobListings />
-        <Pagination currentPage={1} totalPages={5} />
+        <Pagination
+          currentPage={1}
+          totalPages={5}
+          onPageChange={handlePageChange}
+        />
       </main>
 
       <Footer />
