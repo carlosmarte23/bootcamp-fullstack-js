@@ -1,4 +1,4 @@
-function JobsSearch() {
+export function JobsSearch() {
   return (
     <section className="jobs-search">
       <h1>Encuentra tu próximo trabajo</h1>
@@ -128,5 +128,3 @@ function JobsSearch() {
     </section>
   );
 }
-
-export default JobsSearch;
