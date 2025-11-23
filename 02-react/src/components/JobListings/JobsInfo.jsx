@@ -1,4 +1,4 @@
-function JobsInfo() {
+export function JobsInfo() {
   return (
     <div className="jobs-info" id="jobs-info">
       Actualmente no tenemos trabajos con esas características
@@ -13,5 +13,3 @@ function JobsInfo() {
 // } else {
 //   html = `¡Encontramos <span>${filteredJobs.length}</span> oportunidades para ti!`;
 // }
-
-export default JobsInfo;

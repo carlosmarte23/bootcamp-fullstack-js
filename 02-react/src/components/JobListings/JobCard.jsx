@@ -1,4 +1,4 @@
-function JobCard({ job }) {
+export function JobCard({ job }) {
   const { titulo, empresa, ubicacion, descripcion } = job;
 
   return (
@@ -16,5 +16,3 @@ function JobCard({ job }) {
     </article>
   );
 }
-
-export default JobCard;

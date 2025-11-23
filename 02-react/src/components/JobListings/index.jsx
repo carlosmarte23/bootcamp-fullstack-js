@@ -1,5 +1,5 @@
-import JobsCard from "./JobCard.jsx";
-import JobsInfo from "./JobsInfo.jsx";
+import { JobCard } from "./JobCard.jsx";
+import { JobsInfo } from "./JobsInfo.jsx";
 
 import data from "../../data/jobs.json";
 
@@ -13,7 +13,7 @@ export function JobListings() {
 
       <div className="job-list">
         {jobs.map((job) => (
-          <JobsCard key={job.id} job={job} />
+          <JobCard key={job.id} job={job} />
         ))}
       </div>
     </section>

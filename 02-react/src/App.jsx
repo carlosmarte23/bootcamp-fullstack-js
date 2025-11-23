@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
-import { JobListings } from "./components/JobListings/index";
-import { JobsSearch } from "./components/JobsSearch";
-import { Pagination } from "./components/Pagination";
+import { Footer } from "./components/Footer.jsx";
+import { Header } from "./components/Header.jsx";
+import { JobListings } from "./components/JobListings/index.jsx";
+import { JobsSearch } from "./components/JobsSearch.jsx";
+import { Pagination } from "./components/Pagination.jsx";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
