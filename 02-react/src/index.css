@@ -462,69 +462,44 @@ footer {
   max-width: 80rem;
   margin: 2rem auto;
   padding: 0 1rem;
-  .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-block: 2rem;
+}
 
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 700;
-      transition: all 0.3s;
+.job-list {
+  gap: 1rem;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
 
-      &:hover,
-      &:focus {
-        background-color: var(--text-primary);
-        cursor: pointer;
-        outline: none;
+  /* Individual Job Card Styles */
+  .job-card {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+
+    .job-title {
+      grid-column: 1;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      small {
+        grid-column: 1 / -1;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
       }
     }
-  }
 
-  .job-list {
-    gap: 1rem;
-    margin-top: 2rem;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    p {
+      grid-column: 1;
+      margin-top: 0.5rem;
+      color: var(--text-secondary);
+    }
 
-    /* Individual Job Card Styles */
-    .job-card {
-      border-bottom: 1px solid var(--border);
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: 1fr max-content;
-
-      .job-title {
-        grid-column: 1;
-
-        h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-        }
-
-        small {
-          grid-column: 1 / -1;
-          color: var(--text-muted);
-          margin-top: 0.5rem;
-        }
-      }
-
-      p {
-        grid-column: 1;
-        margin-top: 0.5rem;
-        color: var(--text-secondary);
-      }
-
-      &:last-child {
-        border-bottom: none;
-      }
+    &:last-child {
+      border-bottom: none;
     }
   }
 }
@@ -647,6 +622,29 @@ footer.job-apply-footer {
 }
 
 .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-block: 2rem;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      background-color: var(--text-primary);
+      cursor: pointer;
+      outline: none;
+    }
+  }
+
   .pagination-pages {
     display: flex;
     flex-direction: row;
