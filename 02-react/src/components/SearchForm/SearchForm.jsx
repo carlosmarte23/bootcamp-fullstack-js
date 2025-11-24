@@ -1,8 +1,8 @@
-import styles from "./JobsSearch.module.css";
+import styles from "./SearchForm.module.css";
 
-export function JobsSearch() {
+export function SearchForm() {
   return (
-    <section className={styles.jobsSearch}>
+    <section className={styles.searchForm}>
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 

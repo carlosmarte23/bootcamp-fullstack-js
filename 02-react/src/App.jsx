@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Footer } from "./components/Footer.jsx";
 import { Header } from "./components/Header.jsx";
 import { JobListings } from "./components/JobListings/index.jsx";
-import { JobsSearch } from "./components/JobsSearch.jsx";
 import { Pagination } from "./components/Pagination.jsx";
+import { SearchForm } from "./components/SearchForm/SearchForm.jsx";
 
 import jobsData from "./data/jobs.json";
 
@@ -26,7 +26,7 @@ function App() {
     <>
       <Header />
       <main>
-        <JobsSearch />
+        <SearchForm />
 
         <JobListings jobs={filteredJobs} />
         <Pagination
