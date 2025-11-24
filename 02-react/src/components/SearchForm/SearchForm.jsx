@@ -1,6 +1,12 @@
 import styles from "./SearchForm.module.css";
 
+import { useId } from "react";
+
 export function SearchForm() {
+  const searchId = useId();
+  const technologyId = useId();
+  const locationId = useId();
+  const experienceId = useId();
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Formulario enviado");
@@ -32,13 +38,15 @@ export function SearchForm() {
           <input
             type="text"
             name="search"
-            id="jobs-search-input"
-            required
+            id={searchId}
             placeholder="Buscar trabajos, empresas o habilidades"
           />
+          <button type="submit" className={`button ${styles.searchButton}`}>
+            Buscar
+          </button>
         </div>
         <div className={styles.searchFilters}>
-          <select name="technology" id="filter-technology">
+          <select name="technology" id={technologyId}>
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
               <option value="javascript">JavaScript</option>
@@ -56,7 +64,7 @@ export function SearchForm() {
             <option value="php">PHP</option>
           </select>
 
-          <select name="location" id="filter-location">
+          <select name="location" id={locationId}>
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
             <option value="cdmx">Ciudad de México</option>
@@ -76,7 +84,7 @@ export function SearchForm() {
             <option value="internship">Pasantía</option>
           </select>
 
-          <select name="experience-level" id="filter-experience">
+          <select name="experience-level" id={experienceId}>
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
             <option value="mid">Mid-level</option>

@@ -52,6 +52,7 @@
 /* Jobs Search Bar Styles */
 .searchBar {
   padding: 0.25rem 0.5rem;
+  position: relative;
 }
 
 /* Jobs Search Filters Styles */
@@ -71,4 +72,10 @@
     cursor: default;
     pointer-events: none;
   }
+}
+
+.searchButton {
+  border: none;
+  position: absolute;
+  right: 1rem;
 }
