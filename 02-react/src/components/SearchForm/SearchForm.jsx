@@ -2,14 +2,25 @@ import styles from "./SearchForm.module.css";
 
 import { useId } from "react";
 
-export function SearchForm() {
+export function SearchForm({ onSearch }) {
   const searchId = useId();
   const technologyId = useId();
   const locationId = useId();
+  const contractId = useId();
   const experienceId = useId();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Formulario enviado");
+    const formData = new FormData(event.target);
+
+    const filters = {
+      technology: formData.get(technologyId),
+      location: formData.get(locationId),
+      contract: formData.get(contractId),
+      experience: formData.get(experienceId),
+    };
+
+    onSearch(filters);
   };
 
   return (
@@ -37,7 +48,7 @@ export function SearchForm() {
           </svg>
           <input
             type="text"
-            name="search"
+            name={searchId}
             id={searchId}
             placeholder="Buscar trabajos, empresas o habilidades"
           />
@@ -46,7 +57,7 @@ export function SearchForm() {
           </button>
         </div>
         <div className={styles.searchFilters}>
-          <select name="technology" id={technologyId}>
+          <select name={technologyId} id={technologyId}>
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
               <option value="javascript">JavaScript</option>
@@ -64,7 +75,7 @@ export function SearchForm() {
             <option value="php">PHP</option>
           </select>
 
-          <select name="location" id={locationId}>
+          <select name={locationId} id={locationId}>
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
             <option value="cdmx">Ciudad de México</option>
@@ -76,7 +87,7 @@ export function SearchForm() {
             <option value="santiago">Santiago de Chile</option>
           </select>
 
-          <select name="contract-type" id="filter-contract-type">
+          <select name={contractId} id={contractId}>
             <option value="">Tipo de contrato</option>
             <option value="full-time">Tiempo completo</option>
             <option value="part-time">Medio tiempo</option>
@@ -84,7 +95,7 @@ export function SearchForm() {
             <option value="internship">Pasantía</option>
           </select>
 
-          <select name="experience-level" id={experienceId}>
+          <select name={experienceId} id={experienceId}>
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
             <option value="mid">Mid-level</option>

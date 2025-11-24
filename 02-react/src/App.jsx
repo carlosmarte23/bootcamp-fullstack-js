@@ -9,12 +9,40 @@ import { SearchForm } from "./components/SearchForm/SearchForm.jsx";
 import jobsData from "./data/jobs.json";
 
 function App() {
+  const [filters, setFilters] = useState({
+    technology: "",
+    location: "",
+    contract: "",
+    experience: "",
+  });
+
   const [currentPage, setCurrentPage] = useState(1);
 
-  const MAX_JOBS_PER_PAGE = 4;
-  const totalPages = Math.ceil(jobsData.length / MAX_JOBS_PER_PAGE);
+  const handleSearch = (newFilters) => {
+    setFilters({
+      technology: newFilters.technology,
+      location: newFilters.location,
+      contract: newFilters.contract,
+      experience: newFilters.experience,
+    });
 
-  const filteredJobs = jobsData.slice(
+    console.log(newFilters);
+  };
+
+  const filteredJobs = jobsData.filter((job) => {
+    return (
+      (filters.technology === "" ||
+        job.data.technology === filters.technology) &&
+      (filters.location === "" || job.data.modalidad === filters.location) &&
+      (filters.contract === "" || job.data.contract === filters.contract) &&
+      (filters.experience === "" || job.data.nivel === filters.experience)
+    );
+  });
+
+  const MAX_JOBS_PER_PAGE = 4;
+  const totalPages = Math.ceil(filteredJobs.length / MAX_JOBS_PER_PAGE);
+
+  const paginatedJobs = filteredJobs.slice(
     (currentPage - 1) * MAX_JOBS_PER_PAGE,
     currentPage * MAX_JOBS_PER_PAGE
   );
@@ -26,9 +54,9 @@ function App() {
     <>
       <Header />
       <main>
-        <SearchForm />
+        <SearchForm onSearch={handleSearch} />
 
-        <JobListings jobs={filteredJobs} />
+        <JobListings jobs={paginatedJobs} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
