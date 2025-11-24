@@ -25,10 +25,12 @@ function App() {
       contract: newFilters.contract,
       experience: newFilters.experience,
     });
+    setCurrentPage(1);
   };
 
   const handleTextSearch = (textQuery) => {
     setSearchQuery(textQuery);
+    setCurrentPage(1);
   };
 
   const filteredJobs = jobsData.filter((job) => {
