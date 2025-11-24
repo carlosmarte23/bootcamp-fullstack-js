@@ -1,12 +1,17 @@
 import styles from "./SearchForm.module.css";
 
 export function SearchForm() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Formulario enviado");
+  };
+
   return (
     <section className={styles.searchForm}>
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form action="submit" role="search">
+      <form action="submit" role="search" onSubmit={handleSubmit}>
         <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,63 +38,23 @@ export function SearchForm() {
           />
         </div>
         <div className={styles.searchFilters}>
-          {/* <!-- Tech Filter pseudo select --> */}
-          <div className="filter filter-tech">
-            <button
-              type="button"
-              className="filter-toggle"
-              id="filter-tech-toggle"
-            >
-              Tecnología <span className="filter-toggle-icon"></span>
-            </button>
-
-            <div className="filter-dropdown" id="filter-tech-dropdown">
-              <p className="filter-dropdown-title">Tecnologias populares</p>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="javascript" />
-                JavaScript
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="python" />
-                Python
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="react" />
-                React
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="node" />
-                Node.js
-              </label>
-              <hr />
-              <p className="filter-dropdown-title">Otras tecnologías</p>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="java" />
-                Java
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="csharp" />
-                C#
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="c" />C
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="c++" />
-                C++
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="ruby" />
-                Ruby
-              </label>
-              <label className="filter-checkbox">
-                <input type="checkbox" name="filter-tech" value="php" />
-                PHP
-              </label>
-            </div>
-          </div>
-
-          {/* <!-- Other select filters --> */}
+          <select name="technology" id="filter-technology">
+            <option value="">Tecnología</option>
+            <optgroup label="Tecnologías populares">
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="react">React</option>
+              <option value="nodejs">Node.js</option>
+            </optgroup>
+            <option value="java">Java</option>
+            <hr />
+            <option value="csharp">C#</option>
+            <option value="c">C</option>
+            <option value="c++">C++</option>
+            <hr />
+            <option value="ruby">Ruby</option>
+            <option value="php">PHP</option>
+          </select>
 
           <select name="location" id="filter-location">
             <option value="">Ubicación</option>
