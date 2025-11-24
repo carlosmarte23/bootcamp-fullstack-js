@@ -1,6 +1,6 @@
 import styles from "./SearchForm.module.css";
 
-import { useId } from "react";
+import { useId, useState } from "react";
 
 export function SearchForm({ onSearch, onTextSearch }) {
   const searchId = useId();
@@ -8,6 +8,8 @@ export function SearchForm({ onSearch, onTextSearch }) {
   const locationId = useId();
   const contractId = useId();
   const experienceId = useId();
+
+  const [focusedField, setFocusedField] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,6 +58,9 @@ export function SearchForm({ onSearch, onTextSearch }) {
             id={searchId}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
+            onFocus={() => setFocusedField("search")}
+            onBlur={() => setFocusedField(null)}
+            className={focusedField === "search" ? styles.isFocused : ""}
           />
           <button type="submit" className={`button ${styles.searchButton}`}>
             Buscar
