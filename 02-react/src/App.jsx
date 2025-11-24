@@ -61,7 +61,7 @@ function App() {
       <main>
         <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
 
-        <JobListings jobs={paginatedJobs} />
+        <JobListings jobs={paginatedJobs} totalJobs={filteredJobs.length} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
