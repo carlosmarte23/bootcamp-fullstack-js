@@ -15,7 +15,7 @@ function App() {
     contract: "",
     experience: "",
   });
-
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleSearch = (newFilters) => {
@@ -25,8 +25,10 @@ function App() {
       contract: newFilters.contract,
       experience: newFilters.experience,
     });
+  };
 
-    console.log(newFilters);
+  const handleTextSearch = (textQuery) => {
+    setSearchQuery(textQuery);
   };
 
   const filteredJobs = jobsData.filter((job) => {
@@ -35,7 +37,8 @@ function App() {
         job.data.technology === filters.technology) &&
       (filters.location === "" || job.data.modalidad === filters.location) &&
       (filters.contract === "" || job.data.contract === filters.contract) &&
-      (filters.experience === "" || job.data.nivel === filters.experience)
+      (filters.experience === "" || job.data.nivel === filters.experience) &&
+      job.titulo.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
 
@@ -54,7 +57,7 @@ function App() {
     <>
       <Header />
       <main>
-        <SearchForm onSearch={handleSearch} />
+        <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
 
         <JobListings jobs={paginatedJobs} />
         <Pagination

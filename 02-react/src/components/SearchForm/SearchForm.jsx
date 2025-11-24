@@ -2,7 +2,7 @@ import styles from "./SearchForm.module.css";
 
 import { useId } from "react";
 
-export function SearchForm({ onSearch }) {
+export function SearchForm({ onSearch, onTextSearch }) {
   const searchId = useId();
   const technologyId = useId();
   const locationId = useId();
@@ -21,6 +21,10 @@ export function SearchForm({ onSearch }) {
     };
 
     onSearch(filters);
+  };
+
+  const handleTextChange = (event) => {
+    onTextSearch(event.target.value);
   };
 
   return (
@@ -51,6 +55,7 @@ export function SearchForm({ onSearch }) {
             name={searchId}
             id={searchId}
             placeholder="Buscar trabajos, empresas o habilidades"
+            onChange={handleTextChange}
           />
           <button type="submit" className={`button ${styles.searchButton}`}>
             Buscar
