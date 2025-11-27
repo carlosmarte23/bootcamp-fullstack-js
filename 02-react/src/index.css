@@ -106,7 +106,7 @@ h1 + p {
 }
 
 /* Button status */
-.is-disabled {
+.isDisabled {
   pointer-events: none;
   opacity: 0.4;
   cursor: default;
