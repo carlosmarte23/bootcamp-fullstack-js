@@ -62,9 +62,6 @@ export function SearchForm({ onSearch, onTextSearch }) {
             onBlur={() => setFocusedField(null)}
             className={focusedField === "search" ? styles.isFocused : ""}
           />
-          <button type="submit" className={`button ${styles.searchButton}`}>
-            Buscar
-          </button>
         </div>
         <div className={styles.searchFilters}>
           <select name={technologyId} id={technologyId}>
