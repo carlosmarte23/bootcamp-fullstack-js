@@ -13,7 +13,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
 
     const filters = {
       technology: formData.get(technologyId),
@@ -34,7 +34,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form action="submit" role="search" onSubmit={handleSubmit}>
+      <form action="submit" role="search" onChange={handleSubmit}>
         <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
