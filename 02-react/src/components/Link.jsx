@@ -1,3 +1,5 @@
+import styles from "./Link.module.css";
+
 export function Link({ href, children, ...props }) {
   const handleClick = (event) => {
     event.preventDefault();
@@ -11,7 +13,7 @@ export function Link({ href, children, ...props }) {
   };
 
   return (
-    <a href={href} onClick={handleClick} {...props}>
+    <a href={href} onClick={handleClick} className={styles.link} {...props}>
       {children}
     </a>
   );
