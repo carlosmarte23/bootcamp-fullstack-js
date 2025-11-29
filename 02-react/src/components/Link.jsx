@@ -1,18 +1,14 @@
+import { useRouter } from "../hooks/useRouter";
 import styles from "./Link.module.css";
-
 export function Link({ href, children, ...props }) {
+  const { navigateTo } = useRouter();
   const handleClick = (event) => {
     event.preventDefault();
 
     //remove focus so style doesn't get stuck
     event.currentTarget.blur();
 
-    //change URL
-    window.history.pushState({}, "", href);
-
-    //trigger navigation event
-    const navigationEvent = new PopStateEvent("popstate");
-    window.dispatchEvent(navigationEvent);
+    navigateTo(href);
   };
 
   return (
