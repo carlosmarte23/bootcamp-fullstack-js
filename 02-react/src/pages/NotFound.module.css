@@ -1,0 +1,135 @@
+.container {
+  position: relative;
+  min-height: calc(100vh - 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem 3rem;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 44rem;
+  padding: 3rem;
+  background: radial-gradient(
+      120% 120% at 20% 25%,
+      rgba(13, 91, 168, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(100% 100% at 85% 20%, rgba(59, 69, 80, 0.35), transparent 60%),
+    var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 24px 48px -28px var(--shadow);
+  overflow: hidden;
+  text-align: center;
+  z-index: 1;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    30% 30% at 18% 25%,
+    rgba(13, 91, 168, 0.45),
+    transparent 70%
+  );
+  filter: blur(30px);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.kicker {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  text-wrap: balance;
+  position: relative;
+  z-index: 1;
+}
+
+.code {
+  display: inline-flex;
+  align-self: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  color: var(--primary-light);
+  background: rgba(13, 91, 168, 0.1);
+  border: 1px solid rgba(13, 91, 168, 0.35);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.description {
+  color: var(--text-secondary);
+  max-width: 36rem;
+  margin: 1rem auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.primary {
+  background: var(--primary-dark);
+  color: var(--text-primary);
+  box-shadow: 0 10px 24px -12px var(--shadow);
+
+  &:hover,
+  &:focus {
+    background: var(--primary-hover);
+    color: var(--text-primary);
+  }
+}
+
+.secondary {
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    color: var(--text-primary);
+    border-color: rgba(13, 91, 168, 0.6);
+    background: rgba(13, 91, 168, 0.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .title {
+    font-size: clamp(2.1rem, 9vw, 3rem);
+  }
+}
