@@ -1,73 +1,20 @@
-import { useState } from "react";
-
 import { Footer } from "./components/Footer.jsx";
 import { Header } from "./components/Header.jsx";
-import { JobListings } from "./components/JobListings/index.jsx";
-import { Pagination } from "./components/Pagination.jsx";
-import { SearchForm } from "./components/SearchForm/SearchForm.jsx";
 
-import jobsData from "./data/jobs.json";
+import { Home } from "./pages/Home.jsx";
+import { NotFound } from "./pages/NotFound.jsx";
+import { Search } from "./pages/Search.jsx";
+
+import { useRouter } from "./hooks/useRouter.js";
 
 function App() {
-  const [filters, setFilters] = useState({
-    technology: "",
-    location: "",
-    contract: "",
-    experience: "",
-  });
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleSearch = (newFilters) => {
-    setFilters({
-      technology: newFilters.technology,
-      location: newFilters.location,
-      contract: newFilters.contract,
-      experience: newFilters.experience,
-    });
-    setCurrentPage(1);
-  };
-
-  const handleTextSearch = (textQuery) => {
-    setSearchQuery(textQuery);
-    setCurrentPage(1);
-  };
-
-  const filteredJobs = jobsData.filter((job) => {
-    return (
-      (filters.technology === "" ||
-        job.data.technology === filters.technology) &&
-      (filters.location === "" || job.data.modalidad === filters.location) &&
-      (filters.contract === "" || job.data.contract === filters.contract) &&
-      (filters.experience === "" || job.data.nivel === filters.experience) &&
-      job.titulo.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
-
-  const MAX_JOBS_PER_PAGE = 4;
-  const totalPages = Math.ceil(filteredJobs.length / MAX_JOBS_PER_PAGE);
-
-  const paginatedJobs = filteredJobs.slice(
-    (currentPage - 1) * MAX_JOBS_PER_PAGE,
-    currentPage * MAX_JOBS_PER_PAGE
-  );
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const { currentPath } = useRouter();
   return (
     <>
       <Header />
-      <main>
-        <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
 
-        <JobListings jobs={paginatedJobs} totalJobs={filteredJobs.length} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </main>
+      {currentPath === "/" && <Home />}
+      {currentPath === "/search" && <Search />}
 
       <Footer />
     </>
