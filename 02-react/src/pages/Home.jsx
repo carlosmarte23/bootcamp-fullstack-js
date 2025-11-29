@@ -1,4 +1,19 @@
+import { useRouter } from "../hooks/useRouter";
+
 export function Home() {
+  const { navigateTo } = useRouter();
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const search = formData.get("search");
+
+    const url = search ? `/search?q=${encodeURIComponent(search)}` : `/search`;
+
+    navigateTo(url);
+  };
+
   return (
     <main>
       <section className="hero">
@@ -8,7 +23,7 @@ export function Home() {
           Únete a la comunidad más grande de desarrolladores y encuentra tu
           próxima oportunidad
         </p>
-        <form action="submit">
+        <form role="search" onSubmit={handleSearch}>
           <div>
             <svg
               width="24"
@@ -26,13 +41,12 @@ export function Home() {
             </svg>
             <input
               type="text"
-              name=""
-              id=""
+              name="search"
               placeholder="Buscar empleos por título, habilidad o empresa"
             />
-            <a type="submit" className="button">
+            <button type="submit" className="button">
               Buscar
-            </a>
+            </button>
           </div>
         </form>
       </section>
