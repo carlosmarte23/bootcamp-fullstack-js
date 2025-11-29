@@ -5,13 +5,28 @@ import { Home } from "./pages/Home.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { Search } from "./pages/Search.jsx";
 
+import { useEffect, useState } from "react";
+
 function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handleLocationChange);
+
+    return () => window.removeEventListener("popstate", handleLocationChange);
+  }, []);
+
   return (
     <>
       <Header />
-      {/* <Home /> */}
-      {/* <Search /> */}
-      <NotFound />
+
+      {currentPath === "/" && <Home />}
+      {currentPath === "/search" && <Search />}
+
       <Footer />
     </>
   );
