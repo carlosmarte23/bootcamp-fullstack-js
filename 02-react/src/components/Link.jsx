@@ -4,6 +4,9 @@ export function Link({ href, children, ...props }) {
   const handleClick = (event) => {
     event.preventDefault();
 
+    //remove focus so style doesn't get stuck
+    event.currentTarget.blur();
+
     //change URL
     window.history.pushState({}, "", href);
 
