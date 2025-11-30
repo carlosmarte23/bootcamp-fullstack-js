@@ -1,0 +1,129 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 5rem;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    border: none;
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  }
+
+  .contactPageContent {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+
+    border: none;
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 54rem;
+
+      button {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 100%;
+        color: var(--bg-primary);
+        background-color: var(--primary-dark);
+        transition: all 0.3s;
+
+        &:hover,
+        &:focus {
+          background-color: var(--primary-hover);
+          color: var(--bg-primary);
+          cursor: pointer;
+          outline: none;
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .contactInput {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        background-color: var(--bg-primary);
+        box-shadow: none;
+
+        input,
+        textarea {
+          width: 100%;
+          border: none;
+          border-radius: 0.5rem;
+          padding: 0.75rem;
+          background-color: var(--input-bg);
+          color: var(--text-primary);
+
+          font-size: 0.875rem;
+        }
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          grid-column: 1 / -1;
+          width: 100%;
+        }
+
+        textarea {
+          height: 10rem;
+          resize: vertical;
+        }
+      }
+    }
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .contactInfo {
+      display: flex;
+
+      gap: 1rem;
+      border: none;
+
+      .icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary-light);
+        background-color: var(--primary-dark);
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+      .textHighlight {
+        color: var(--primary-hover);
+      }
+    }
+  }
+}
