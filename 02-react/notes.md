@@ -12,4 +12,10 @@ Finally, I built a very simple custom routing system using a hook, allowing navi
 
 The last change before the exercises was to make a new custom hook to extract the logic of the searchform, this is to later use some of this logic in the form on the home page.
 
+## Exercises
+
+### 1. New page
+
+Create a new page (Ill create the contact page) and add it as a new component with a new route and add it as a link in the header navbar.
+
 #### 🟡 Last updated on November 29th, 2025.
