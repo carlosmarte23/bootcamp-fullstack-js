@@ -1,6 +1,7 @@
 import styles from "./SearchForm.module.css";
 
 import { useId, useState } from "react";
+import { useSearchForm } from "../../hooks/useSearchForm";
 
 export function SearchForm({ onSearch, onTextSearch }) {
   const searchId = useId();
@@ -9,25 +10,16 @@ export function SearchForm({ onSearch, onTextSearch }) {
   const contractId = useId();
   const experienceId = useId();
 
+  const { searchText, handleSubmit, handleTextChange } = useSearchForm({
+    onSearch,
+    onTextSearch,
+    technologyId,
+    locationId,
+    contractId,
+    experienceId,
+  });
+
   const [focusedField, setFocusedField] = useState(null);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-
-    const filters = {
-      technology: formData.get(technologyId),
-      location: formData.get(locationId),
-      contract: formData.get(contractId),
-      experience: formData.get(experienceId),
-    };
-
-    onSearch(filters);
-  };
-
-  const handleTextChange = (event) => {
-    onTextSearch(event.target.value);
-  };
 
   return (
     <section className={styles.searchForm}>

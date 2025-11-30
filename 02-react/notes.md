@@ -10,4 +10,6 @@ After completing the UI for the search page, I implemented the filtering system,
 
 Finally, I built a very simple custom routing system using a hook, allowing navigation between different pages within the project, starting with the Home and Search pages.
 
+The last change before the exercises was to make a new custom hook to extract the logic of the searchform, this is to later use some of this logic in the form on the home page.
+
 #### 🟡 Last updated on November 29th, 2025.
