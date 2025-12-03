@@ -40,7 +40,7 @@
       gap: 1rem;
       max-width: 54rem;
 
-      button {
+      .contactFormButton {
         grid-column: 1 / -1;
         justify-self: center;
         width: 100%;
@@ -48,8 +48,20 @@
         background-color: var(--primary-dark);
         transition: all 0.3s;
 
-        &:hover,
-        &:focus {
+        &.submitting & {
+          background-color: var(--primary-hover);
+          pointer-events: none;
+          cursor: wait;
+        }
+
+        &.success {
+          background-color: var(--button-bg-applied);
+          pointer-events: none;
+          cursor: default;
+        }
+
+        &:not(.submitting):not(.success):hover,
+        &:not(.submitting):not(.success):focus {
           background-color: var(--primary-hover);
           color: var(--bg-primary);
           cursor: pointer;
@@ -78,6 +90,11 @@
           color: var(--text-primary);
 
           font-size: 0.875rem;
+        }
+
+        .inputError {
+          border: 1px solid var(--error);
+          box-shadow: 0 0 0 1px var(--error-shadow);
         }
 
         &:nth-child(3),
@@ -125,5 +142,32 @@
         color: var(--primary-hover);
       }
     }
+  }
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.875rem;
+  opacity: 80%;
+  margin-top: 0.75rem;
+  font-weight: 600;
+
+  animation: fadeIn 0.3s ease-in-out;
+  border-left: 3px solid currentColor;
+  padding-left: 8px;
+
+  &::before {
+    content: "⚠️ ";
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 0.85;
+    transform: translateY(0);
   }
 }
