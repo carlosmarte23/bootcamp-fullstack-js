@@ -1,6 +1,86 @@
+import { useId, useState } from "react";
+
 import styles from "./Contact.module.css";
 
 export function Contact() {
+  const nameInputId = useId();
+  const emailInputId = useId();
+  const subjectInputId = useId();
+  const messageInputId = useId();
+
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("idle");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const values = {
+      name: formData.get(nameInputId),
+      email: formData.get(emailInputId),
+      subject: formData.get(subjectInputId),
+      message: formData.get(messageInputId),
+    };
+
+    const errors = validate(values);
+
+    if (Object.keys(errors).length > 0) {
+      console.error("errors: ", errors);
+      return;
+    }
+
+    // submit form (we'll send it to console with a timeout since its a excercise)
+    setStatus("submitting");
+
+    setTimeout(() => {
+      console.log("Data sent to server", values);
+
+      event.target.reset();
+
+      setStatus("success");
+    }, 5000);
+  }
+
+  function validate(values) {
+    const newErrors = {};
+
+    // name validation
+    if (!values.name) {
+      newErrors.name = "Por favor, indícanos tu nombre y apellido.";
+    } else if (values.name.length < 3) {
+      newErrors.name =
+        "El nombre parece demasiado corto, revisa que esté completo.";
+    }
+
+    // email validation
+    if (!values.email) {
+      newErrors.email = "Necesitamos tu correo para poder responderte.";
+    } else if (!/^\S+@\S+\.\S+$/.test(values.email)) {
+      newErrors.email =
+        "El correo no parece válido. Revisa que tenga el formato usuario@dominio.com.";
+    }
+
+    // subject validation
+    if (!values.subject) {
+      newErrors.subject =
+        "Añade un asunto para saber de qué trata tu consulta.";
+    } else if (values.subject.length < 3) {
+      newErrors.subject =
+        "El asunto es muy breve. Describe un poco mejor tu consulta.";
+    }
+
+    // message validation
+    if (!values.message) {
+      newErrors.message = "Escribe tu mensaje para que podamos ayudarte.";
+    } else if (values.message.length < 3) {
+      newErrors.message =
+        "Tu mensaje es muy corto. Danos un poco más de detalles para responderte mejor.";
+    }
+
+    setErrors(newErrors);
+    return newErrors;
+  }
+
   return (
     <main className={styles.contact}>
       <header>
@@ -12,48 +92,65 @@ export function Contact() {
       </header>
 
       <div className={styles.contactPageContent}>
-        <form action="submit">
+        <form action="submit" onSubmit={handleSubmit} noValidate>
           <div className={styles.contactInput}>
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor={nameInputId}>Nombre</label>
             <input
-              required
-              name="name"
+              name={nameInputId}
+              id={nameInputId}
               type="text"
               placeholder="Tú nombre completo"
+              className={errors.name ? styles.inputError : ""}
             />
+            {errors.name && <p className={styles.error}>{errors.name}</p>}
           </div>
 
           <div className={styles.contactInput}>
-            <label htmlFor="email">Correo</label>
+            <label htmlFor={emailInputId}>Correo</label>
             <input
-              required
-              name="email"
+              name={emailInputId}
+              id={emailInputId}
               type="email"
               placeholder="tu@email.com"
+              className={errors.email ? styles.inputError : ""}
             />
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
           </div>
 
           <div className={`${styles.contactInput} ${styles.subjectInput}`}>
-            <label htmlFor="subject">Asunto</label>
+            <label htmlFor={subjectInputId}>Asunto</label>
             <input
-              required
-              name="subject"
+              name={subjectInputId}
+              id={subjectInputId}
               type="text"
               placeholder="¿En que podemos ayudarte?"
+              className={errors.subject ? styles.inputError : ""}
             />
+            {errors.subject && <p className={styles.error}>{errors.subject}</p>}
           </div>
 
           <div className={`${styles.contactInput} ${styles.messageInput}`}>
-            <label htmlFor="message">Mensaje</label>
+            <label htmlFor={messageInputId}>Mensaje</label>
             <textarea
-              required
-              name="message"
+              name={messageInputId}
+              id={messageInputId}
               placeholder="Escribe tu mensaje aquí..."
+              className={errors.message ? styles.inputError : ""}
             />
+            {errors.message && <p className={styles.error}>{errors.message}</p>}
           </div>
 
-          <button type="submit" className={`${styles.button} button`}>
-            Enviar Mensaje
+          <button
+            type="submit"
+            className={`${styles.contactFormButton} button
+            ${status === "submitting" ? styles.submitting : ""}
+            ${status === "success" ? styles.success : ""}`}
+          >
+            {status === "submitting"
+              ? "Enviando..."
+              : status === "success"
+              ? "¡Enviado correctamente!"
+              : "Enviar Mensaje"}
           </button>
         </form>
 
