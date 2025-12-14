@@ -14,7 +14,7 @@ The last change before the exercises was to make a new custom hook to extract th
 
 ## Exercises
 
-### 1. New page
+### 1 & 2. New route and contacts page form
 
 For this exercise, I added a new Contact page to the project and integrated it into the existing navigation system. I created the Contact component inside src/pages/ and connected it to the router by adding a new route (/contact) in App.jsx. I also updated the Header component to include a “Contact” link using React Router’s Link component, ensuring the navigation keeps SPA behavior without full page reloads. While updating the navigation, I also fixed a small issue by removing a duplicated navbar entry.
 
@@ -23,5 +23,20 @@ On the Contact page itself, I built the complete form markup and layout, using C
 Next, I implemented the React logic required by the exercise. The form manages local state for its input values as well as the submission status. I added field-level validations for name, email, subject, and message, generating an errors object and displaying contextual error messages below the corresponding inputs. When a field has an error, its input style changes to visually highlight the issue.
 
 To simulate form submission, the submit button transitions through different states (idle → submitting → success), updating both its text and styles. While the form is “submitting”, user interaction is disabled to prevent multiple submissions. I also used useId() to correctly associate each label with its corresponding input, improving accessibility.
+
+### 3. Improve Link component
+
+Now we have to improve the link component with the following changes:
+
+- Detect if its href matches the current path.
+- Adds a class "active" to the link if it matches the current path.
+- Works with out developers configuring anything.
+
+Nice to have:
+
+- Animation between changing active links.
+- Partial matching url for nested routes.
+- Responsive styling.
+- Accessibility. Add "aria-current" to the link if it matches the current path.
 
 🟡 Last updated on December 14th, 2025.
