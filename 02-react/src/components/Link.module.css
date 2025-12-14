@@ -1,11 +1,22 @@
 .link {
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   transition: all 0.3s;
 
   &:hover,
   &:focus {
     text-decoration: underline;
+    color: var(--primary-hover);
+  }
+}
+
+.active {
+  font-weight: bold;
+  color: var(--text-primary);
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
     color: var(--primary-hover);
   }
 }
