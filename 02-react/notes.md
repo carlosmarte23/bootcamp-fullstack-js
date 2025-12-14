@@ -16,6 +16,12 @@ The last change before the exercises was to make a new custom hook to extract th
 
 ### 1. New page
 
-Create a new page (Ill create the contact page) and add it as a new component with a new route and add it as a link in the header navbar.
+For this exercise, I added a new Contact page to the project and integrated it into the existing navigation system. I created the Contact component inside src/pages/ and connected it to the router by adding a new route (/contact) in App.jsx. I also updated the Header component to include a “Contact” link using React Router’s Link component, ensuring the navigation keeps SPA behavior without full page reloads. While updating the navigation, I also fixed a small issue by removing a duplicated navbar entry.
 
-#### 🟡 Last updated on November 29th, 2025.
+On the Contact page itself, I built the complete form markup and layout, using CSS Modules (Contact.module.css) to scope styles locally and keep the project structure clean and maintainable. The layout follows a common support-page pattern, with a main section for the form and a sidebar that displays alternative contact information such as email and phone number.
+
+Next, I implemented the React logic required by the exercise. The form manages local state for its input values as well as the submission status. I added field-level validations for name, email, subject, and message, generating an errors object and displaying contextual error messages below the corresponding inputs. When a field has an error, its input style changes to visually highlight the issue.
+
+To simulate form submission, the submit button transitions through different states (idle → submitting → success), updating both its text and styles. While the form is “submitting”, user interaction is disabled to prevent multiple submissions. I also used useId() to correctly associate each label with its corresponding input, improving accessibility.
+
+🟡 Last updated on December 14th, 2025.
