@@ -8,19 +8,17 @@ export function Contact() {
   const subjectInputId = useId();
   const messageInputId = useId();
 
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
 
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-
-    const values = {
-      name: formData.get(nameInputId),
-      email: formData.get(emailInputId),
-      subject: formData.get(subjectInputId),
-      message: formData.get(messageInputId),
-    };
 
     const errors = validate(values);
 
@@ -38,7 +36,7 @@ export function Contact() {
       event.target.reset();
 
       setStatus("success");
-    }, 5000);
+    }, 1500);
   }
 
   function validate(values) {
@@ -81,6 +79,22 @@ export function Contact() {
     return newErrors;
   }
 
+  function handleChange(event) {
+    const [name, value] = [event.target.name, event.target.value];
+
+    setValues({
+      ...values,
+      [name]: value,
+    });
+
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: null,
+      });
+    }
+  }
+
   return (
     <main className={styles.contact}>
       <header>
@@ -96,11 +110,13 @@ export function Contact() {
           <div className={styles.contactInput}>
             <label htmlFor={nameInputId}>Nombre</label>
             <input
-              name={nameInputId}
+              name="name"
               id={nameInputId}
               type="text"
               placeholder="Tú nombre completo"
+              value={values.name}
               className={errors.name ? styles.inputError : ""}
+              onChange={handleChange}
             />
             {errors.name && <p className={styles.error}>{errors.name}</p>}
           </div>
@@ -108,11 +124,12 @@ export function Contact() {
           <div className={styles.contactInput}>
             <label htmlFor={emailInputId}>Correo</label>
             <input
-              name={emailInputId}
+              name="email"
               id={emailInputId}
               type="email"
               placeholder="tu@email.com"
               className={errors.email ? styles.inputError : ""}
+              onChange={handleChange}
             />
             {errors.email && <p className={styles.error}>{errors.email}</p>}
           </div>
@@ -120,11 +137,12 @@ export function Contact() {
           <div className={`${styles.contactInput} ${styles.subjectInput}`}>
             <label htmlFor={subjectInputId}>Asunto</label>
             <input
-              name={subjectInputId}
+              name="subject"
               id={subjectInputId}
               type="text"
               placeholder="¿En que podemos ayudarte?"
               className={errors.subject ? styles.inputError : ""}
+              onChange={handleChange}
             />
             {errors.subject && <p className={styles.error}>{errors.subject}</p>}
           </div>
@@ -132,10 +150,11 @@ export function Contact() {
           <div className={`${styles.contactInput} ${styles.messageInput}`}>
             <label htmlFor={messageInputId}>Mensaje</label>
             <textarea
-              name={messageInputId}
+              name="message"
               id={messageInputId}
               placeholder="Escribe tu mensaje aquí..."
               className={errors.message ? styles.inputError : ""}
+              onChange={handleChange}
             />
             {errors.message && <p className={styles.error}>{errors.message}</p>}
           </div>
