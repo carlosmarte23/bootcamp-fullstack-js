@@ -26,6 +26,7 @@ export function Header() {
 
       <nav>
         <Link href="/search">Empleos</Link>
+        <Link href="/contact">Contacto</Link>
       </nav>
 
       <div className={styles.actions}>
