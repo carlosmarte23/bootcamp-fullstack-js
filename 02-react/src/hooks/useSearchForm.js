@@ -26,8 +26,9 @@ export function useSearchForm({
   };
 
   const handleTextChange = (event) => {
-    setSearchText(event.target.value);
-    onTextSearch(searchText);
+    const nextValue = event.target.value;
+    setSearchText(nextValue);
+    onTextSearch(nextValue);
   };
 
   return { searchText, handleSubmit, handleTextChange };
