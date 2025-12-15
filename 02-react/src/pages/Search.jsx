@@ -6,7 +6,7 @@ import jobsData from "../data/jobs.json";
 
 import { useState } from "react";
 
-export function Search() {
+const useFilters = () => {
   const [filters, setFilters] = useState({
     technology: "",
     type: "",
@@ -46,10 +46,30 @@ export function Search() {
     (currentPage - 1) * MAX_JOBS_PER_PAGE,
     currentPage * MAX_JOBS_PER_PAGE
   );
+  return {
+    handleSearch,
+    handleTextSearch,
+    filteredJobs,
+    paginatedJobs,
+    totalPages,
+    currentPage,
+  };
+};
+
+export function Search() {
+  const {
+    handleSearch,
+    handleTextSearch,
+    filteredJobs,
+    paginatedJobs,
+    totalPages,
+    currentPage,
+  } = useFilters();
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
   return (
     <main>
       <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
