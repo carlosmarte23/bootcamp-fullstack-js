@@ -13,10 +13,6 @@ export function SearchForm({ onSearch, onTextSearch }) {
   const { searchText, handleFilterChange, handleTextChange } = useSearchForm({
     onSearch,
     onTextSearch,
-    technologyId,
-    locationId,
-    contractId,
-    experienceId,
   });
 
   const [focusedField, setFocusedField] = useState(null);
@@ -26,7 +22,12 @@ export function SearchForm({ onSearch, onTextSearch }) {
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form action="submit" role="search" onChange={handleFilterChange}>
+      <form
+        action=""
+        role="search"
+        onChange={handleFilterChange}
+        onSubmit={(e) => e.preventDefault()}
+      >
         <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +47,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
           </svg>
           <input
             type="text"
-            name={searchId}
+            name="text"
             id={searchId}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
@@ -56,7 +57,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
           />
         </div>
         <div className={styles.searchFilters}>
-          <select name={technologyId} id={technologyId}>
+          <select name="technology" id={technologyId}>
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
               <option value="javascript">JavaScript</option>
@@ -74,7 +75,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="php">PHP</option>
           </select>
 
-          <select name={locationId} id={locationId}>
+          <select name="type" id={locationId}>
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
             <option value="cdmx">Ciudad de México</option>
@@ -86,7 +87,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="santiago">Santiago de Chile</option>
           </select>
 
-          <select name={contractId} id={contractId}>
+          <select name="contract" id={contractId}>
             <option value="">Tipo de contrato</option>
             <option value="full-time">Tiempo completo</option>
             <option value="part-time">Medio tiempo</option>
@@ -94,7 +95,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="internship">Pasantía</option>
           </select>
 
-          <select name={experienceId} id={experienceId}>
+          <select name="level" id={experienceId}>
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
             <option value="mid">Mid-level</option>

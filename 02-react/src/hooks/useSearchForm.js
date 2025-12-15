@@ -1,23 +1,18 @@
 import { useState } from "react";
 
-export function useSearchForm({
-  onSearch,
-  onTextSearch,
-  technologyId,
-  locationId,
-  contractId,
-  experienceId,
-}) {
+export function useSearchForm({ onSearch, onTextSearch }) {
   const [searchText, setSearchText] = useState("");
 
   const handleFilterChange = (event) => {
+    if (event.target.name === "text") return;
+
     const formData = new FormData(event.currentTarget);
 
     const filters = {
-      technology: formData.get(technologyId),
-      location: formData.get(locationId),
-      contract: formData.get(contractId),
-      experience: formData.get(experienceId),
+      technology: formData.get("technology"),
+      location: formData.get("type"),
+      contract: formData.get("contract"),
+      experience: formData.get("level"),
     };
 
     onSearch(filters);
