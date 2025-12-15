@@ -39,4 +39,12 @@ Nice to have:
 - Responsive styling.
 - Accessibility. Add "aria-current" to the link if it matches the current path.
 
+🟢 Completed on December 14th, 2025.
+
+## Fetch from API
+
+Right now we load the jobs from a local JSON file, now its time to fetch from a remote API. The base url for this is [JSCamp API](https://jscamp-api.vercel.app/api/jobs) and for the documentation for it [check the docs in the lesson](https://www.jscamp.dev/introduccion-a-react/llamada-a-la-api).
+
+Ill start making a new branch, before doing the fetch with the API I'll start fixing some bugs with the search form.
+
 🟡 Last updated on December 14th, 2025.
