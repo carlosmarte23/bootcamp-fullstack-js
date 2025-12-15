@@ -9,8 +9,8 @@ import { useState } from "react";
 export function Search() {
   const [filters, setFilters] = useState({
     technology: "",
-    location: "",
-    experience: "",
+    type: "",
+    level: "",
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,8 +18,8 @@ export function Search() {
   const handleSearch = (newFilters) => {
     setFilters({
       technology: newFilters.technology,
-      location: newFilters.location,
-      experience: newFilters.experience,
+      type: newFilters.type,
+      level: newFilters.level,
     });
     setCurrentPage(1);
   };
@@ -33,8 +33,8 @@ export function Search() {
     return (
       (filters.technology === "" ||
         job.data.technology === filters.technology) &&
-      (filters.location === "" || job.data.modalidad === filters.location) &&
-      (filters.experience === "" || job.data.nivel === filters.experience) &&
+      (filters.type === "" || job.data.modalidad === filters.type) &&
+      (filters.level === "" || job.data.nivel === filters.level) &&
       job.titulo.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });

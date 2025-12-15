@@ -10,8 +10,8 @@ export function useSearchForm({ onSearch, onTextSearch }) {
 
     const filters = {
       technology: formData.get("technology"),
-      location: formData.get("type"),
-      experience: formData.get("level"),
+      type: formData.get("type"),
+      level: formData.get("level"),
     };
 
     onSearch(filters);
