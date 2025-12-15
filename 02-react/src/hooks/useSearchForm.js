@@ -11,7 +11,6 @@ export function useSearchForm({ onSearch, onTextSearch }) {
     const filters = {
       technology: formData.get("technology"),
       location: formData.get("type"),
-      contract: formData.get("contract"),
       experience: formData.get("level"),
     };
 

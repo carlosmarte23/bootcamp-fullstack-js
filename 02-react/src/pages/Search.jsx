@@ -10,7 +10,6 @@ export function Search() {
   const [filters, setFilters] = useState({
     technology: "",
     location: "",
-    contract: "",
     experience: "",
   });
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,7 +19,6 @@ export function Search() {
     setFilters({
       technology: newFilters.technology,
       location: newFilters.location,
-      contract: newFilters.contract,
       experience: newFilters.experience,
     });
     setCurrentPage(1);
@@ -36,7 +34,6 @@ export function Search() {
       (filters.technology === "" ||
         job.data.technology === filters.technology) &&
       (filters.location === "" || job.data.modalidad === filters.location) &&
-      (filters.contract === "" || job.data.contract === filters.contract) &&
       (filters.experience === "" || job.data.nivel === filters.experience) &&
       job.titulo.toLowerCase().includes(searchQuery.toLowerCase())
     );

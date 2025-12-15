@@ -7,7 +7,6 @@ export function SearchForm({ onSearch, onTextSearch }) {
   const searchId = useId();
   const technologyId = useId();
   const locationId = useId();
-  const contractId = useId();
   const experienceId = useId();
 
   const { searchText, handleFilterChange, handleTextChange } = useSearchForm({
@@ -85,14 +84,6 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="bsas">Buenos Aires</option>
             <option value="bogota">Bogotá</option>
             <option value="santiago">Santiago de Chile</option>
-          </select>
-
-          <select name="contract" id={contractId}>
-            <option value="">Tipo de contrato</option>
-            <option value="full-time">Tiempo completo</option>
-            <option value="part-time">Medio tiempo</option>
-            <option value="freelance">Freelance</option>
-            <option value="internship">Pasantía</option>
           </select>
 
           <select name="level" id={experienceId}>
