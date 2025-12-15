@@ -2,9 +2,9 @@ import { JobListings } from "../components/JobListings/index.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { SearchForm } from "../components/SearchForm/SearchForm.jsx";
 
-import jobsData from "../data/jobs.json";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
+const MAX_JOBS_PER_PAGE = 4;
 
 const useFilters = () => {
   const [filters, setFilters] = useState({
@@ -29,42 +29,49 @@ const useFilters = () => {
     setCurrentPage(1);
   };
 
-  const filteredJobs = jobsData.filter((job) => {
-    return (
-      (filters.technology === "" ||
-        job.data.technology === filters.technology) &&
-      (filters.type === "" || job.data.modalidad === filters.type) &&
-      (filters.level === "" || job.data.nivel === filters.level) &&
-      job.titulo.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
-
-  const MAX_JOBS_PER_PAGE = 4;
-  const totalPages = Math.ceil(filteredJobs.length / MAX_JOBS_PER_PAGE);
-
-  const paginatedJobs = filteredJobs.slice(
-    (currentPage - 1) * MAX_JOBS_PER_PAGE,
-    currentPage * MAX_JOBS_PER_PAGE
-  );
   return {
+    filters,
+    searchQuery,
     handleSearch,
     handleTextSearch,
-    filteredJobs,
-    paginatedJobs,
-    totalPages,
     currentPage,
+    setCurrentPage,
   };
 };
 
 export function Search() {
   const {
+    filters,
+    searchQuery,
     handleSearch,
     handleTextSearch,
-    filteredJobs,
-    paginatedJobs,
-    totalPages,
     currentPage,
+    setCurrentPage,
   } = useFilters();
+
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        setLoading(true);
+        const response = await fetch("https://jscamp-api.vercel.app/api/jobs");
+        const json = await response.json();
+        setJobs(json.data);
+        setTotal(json.total);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchJobs();
+  }, []);
+
+  const totalPages = Math.ceil(total / MAX_JOBS_PER_PAGE);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -74,12 +81,20 @@ export function Search() {
     <main>
       <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
 
-      <JobListings jobs={paginatedJobs} totalJobs={filteredJobs.length} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {loading ? (
+        <div style={{ textAlign: "center", marginBlock: "2rem" }}>
+          Cargando empleos...
+        </div>
+      ) : (
+        <div>
+          <JobListings jobs={jobs} totalJobs={total} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </main>
   );
 }
