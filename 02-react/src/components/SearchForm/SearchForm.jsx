@@ -10,7 +10,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
   const contractId = useId();
   const experienceId = useId();
 
-  const { searchText, handleSubmit, handleTextChange } = useSearchForm({
+  const { searchText, handleFilterChange, handleTextChange } = useSearchForm({
     onSearch,
     onTextSearch,
     technologyId,
@@ -26,7 +26,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form action="submit" role="search" onChange={handleSubmit}>
+      <form action="submit" role="search" onChange={handleFilterChange}>
         <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

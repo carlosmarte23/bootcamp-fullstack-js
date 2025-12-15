@@ -10,9 +10,7 @@ export function useSearchForm({
 }) {
   const [searchText, setSearchText] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleFilterChange = (event) => {
     const formData = new FormData(event.currentTarget);
 
     const filters = {
@@ -31,5 +29,5 @@ export function useSearchForm({
     onTextSearch(nextValue);
   };
 
-  return { searchText, handleSubmit, handleTextChange };
+  return { searchText, handleFilterChange, handleTextChange };
 }
