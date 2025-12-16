@@ -96,17 +96,34 @@ export function Search() {
       <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
 
       {loading ? (
-        <div style={{ textAlign: "center", marginBlock: "2rem" }}>
+        <div
+          style={{ padding: "2rem", textWrap: "balance", textAlign: "center" }}
+        >
           Cargando empleos...
         </div>
       ) : (
         <div>
-          <JobListings jobs={jobs} totalJobs={total} />
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          {jobs.length === 0 ? (
+            <div
+              style={{
+                padding: "2rem",
+                textWrap: "balance",
+                textAlign: "center",
+              }}
+            >
+              No se encontraron empleos que coincidan con los criterios de
+              búsqueda.
+            </div>
+          ) : (
+            <>
+              <JobListings jobs={jobs} totalJobs={total} />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </>
+          )}
         </div>
       )}
     </main>
