@@ -31,7 +31,7 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
       <a
         href="#"
         className={`${styles.paginationLink} ${
-          isFirstPage ? "is-disabled" : ""
+          isFirstPage ? styles.isDisabled : ""
         }`}
         aria-label="Previous page"
         onClick={handlePrevPageChange}
@@ -71,7 +71,7 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
       <a
         href="#"
         className={`${styles.paginationLink} ${
-          isLastPage ? "is-disabled" : ""
+          isLastPage ? styles.isDisabled : ""
         }`}
         aria-label="Next page"
         onClick={handleNextPageChange}
