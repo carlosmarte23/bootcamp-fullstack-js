@@ -43,8 +43,14 @@ Nice to have:
 
 ## Fetch from API
 
-Right now we load the jobs from a local JSON file, now its time to fetch from a remote API. The base url for this is [JSCamp API](https://jscamp-api.vercel.app/api/jobs) and for the documentation for it [check the docs in the lesson](https://www.jscamp.dev/introduccion-a-react/llamada-a-la-api).
+Right now we load the jobs from a local JSON file, so the next step was to fetch them from a remote API. The base url for this is [JSCamp API](https://jscamp-api.vercel.app/api/jobs) and for the documentation for it [check the docs in the lesson](https://www.jscamp.dev/introduccion-a-react/llamada-a-la-api).
 
-Ill start making a new branch, before doing the fetch with the API I'll start fixing some bugs with the search form. Also i'll add a new useFilters hook on the Search page for better separation of concerns.
+Before implementing the fetch, I adjusted the SearchForm and useSearchForm logic to properly align with the API contract. This included renaming filters so they match the expected query parameters (technology, type, and level), removing the contract filter since it is not supported by the API, and refactoring the form so filters are applied automatically on change instead of relying on a manual submit. I also fixed how the search text is handled to keep it consistent with the API behavior.
 
-🟡 Last updated on December 14th, 2025.
+After that, I refactored the Search page by extracting its state management into a small custom hook called useFilters. This hook centralizes the filters, search query, and current page state, making it easier to trigger a new search and automatically reset pagination back to page 1 whenever filters or the search text change.
+
+Once the state flow was in place, I replaced the local JSON loading with a real API request using useEffect. The fetch builds the query string using URLSearchParams, sending the active filters and search text as parameters. Pagination is handled through the limit and offset parameters, and the total value returned by the API is used to calculate the total number of pages.
+
+To improve the user experience, I added a loading state to indicate when jobs are being fetched and an empty state for cases where no results match the current filters. I also improved the Pagination component by disabling the previous and next controls when the user is on the first or last page, including a dedicated CSS module class for the disabled state.
+
+🟢 Completed on December 18th, 2025.
