@@ -64,11 +64,13 @@ export function Search() {
         if (filters.level) params.append("level", filters.level);
         if (searchQuery) params.append("text", searchQuery);
 
-        const queryParams = params.toString();
-
         params.append("limit", MAX_JOBS_PER_PAGE);
+
         const offset = (currentPage - 1) * MAX_JOBS_PER_PAGE;
         params.append("offset", offset);
+
+        const queryParams = params.toString();
+
         const response = await fetch(
           `https://jscamp-api.vercel.app/api/jobs?${queryParams}`
         );
@@ -83,7 +85,13 @@ export function Search() {
     }
 
     fetchJobs();
-  }, [currentPage, filters, searchQuery]);
+  }, [
+    currentPage,
+    filters.technology,
+    filters.type,
+    filters.level,
+    searchQuery,
+  ]);
 
   const totalPages = Math.ceil(total / MAX_JOBS_PER_PAGE);
 
