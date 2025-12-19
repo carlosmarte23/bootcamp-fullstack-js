@@ -64,4 +64,14 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 - Use a function or helper to check if any filters are applied
 - Use conditional rendering to hide the button when no filters are applied
 
-#### Solution:
+#### 1.2 Create function handleClearFilters
+
+- Clear all filters
+- Reset state to inital values
+- Reset pagination (optional)
+
+#### 1.3 Show button when filters are applied
+
+- Only shows in DOM when there are active filters use && operator for conditional rendering
+
+🟢 Completed on December 18th, 2025.
