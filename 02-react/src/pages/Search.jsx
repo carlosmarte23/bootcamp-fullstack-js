@@ -15,6 +15,7 @@ export function Search() {
     isFiltered,
     handleSearch,
     handleTextSearch,
+    handleResetFilters,
     currentPage,
     setCurrentPage,
   } = useFilters();
@@ -44,6 +45,7 @@ export function Search() {
         const response = await fetch(
           `https://jscamp-api.vercel.app/api/jobs?${queryParams}`
         );
+
         const json = await response.json();
         setJobs(json.data);
         setTotal(json.total);
@@ -72,9 +74,12 @@ export function Search() {
   return (
     <main>
       <SearchForm
+        filters={filters}
+        searchQuery={searchQuery}
         onSearch={handleSearch}
         onTextSearch={handleTextSearch}
         isFiltered={isFiltered}
+        onResetFilters={handleResetFilters}
       />
 
       {loading ? (

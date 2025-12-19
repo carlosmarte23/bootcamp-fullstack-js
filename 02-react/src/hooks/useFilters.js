@@ -33,12 +33,19 @@ export function useFilters() {
     setCurrentPage(1);
   };
 
+  const handleResetFilters = () => {
+    setFilters(INITIAL_FILTERS);
+    setSearchQuery("");
+    setCurrentPage(1);
+  };
+
   return {
     filters,
     searchQuery,
     isFiltered,
     handleSearch,
     handleTextSearch,
+    handleResetFilters,
     currentPage,
     setCurrentPage,
   };

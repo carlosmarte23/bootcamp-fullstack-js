@@ -1,12 +1,10 @@
-import { useState } from "react";
-
 export function useSearchForm({ onSearch, onTextSearch }) {
-  const [searchText, setSearchText] = useState("");
-
   const handleFilterChange = (event) => {
     if (event.target.name === "text") return;
 
-    const formData = new FormData(event.currentTarget);
+    // event.preventDefault();
+    const form = event.target.form;
+    const formData = new FormData(form);
 
     const filters = {
       technology: formData.get("technology"),
@@ -19,9 +17,8 @@ export function useSearchForm({ onSearch, onTextSearch }) {
 
   const handleTextChange = (event) => {
     const nextValue = event.target.value;
-    setSearchText(nextValue);
     onTextSearch(nextValue);
   };
 
-  return { searchText, handleFilterChange, handleTextChange };
+  return { handleFilterChange, handleTextChange };
 }
