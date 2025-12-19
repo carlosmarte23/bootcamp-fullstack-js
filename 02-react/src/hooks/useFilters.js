@@ -17,12 +17,7 @@ export function useFilters() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // const isFiltered = hasActiveFilters(filters, searchQuery);
-  const isFiltered =
-    filters.technology !== "" ||
-    filters.type !== "" ||
-    filters.level !== "" ||
-    searchQuery.trim() !== "";
+  const isFiltered = hasActiveFilters(filters, searchQuery);
 
   const handleSearch = (newFilters) => {
     setFilters({
