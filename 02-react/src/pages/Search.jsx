@@ -2,42 +2,11 @@ import { JobListings } from "../components/JobListings/index.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { SearchForm } from "../components/SearchForm/SearchForm.jsx";
 
+import { useFilters } from "../hooks/useFilters";
+
 import { useEffect, useState } from "react";
 
 const MAX_JOBS_PER_PAGE = 4;
-
-const useFilters = () => {
-  const [filters, setFilters] = useState({
-    technology: "",
-    type: "",
-    level: "",
-  });
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleSearch = (newFilters) => {
-    setFilters({
-      technology: newFilters.technology,
-      type: newFilters.type,
-      level: newFilters.level,
-    });
-    setCurrentPage(1);
-  };
-
-  const handleTextSearch = (textQuery) => {
-    setSearchQuery(textQuery);
-    setCurrentPage(1);
-  };
-
-  return {
-    filters,
-    searchQuery,
-    handleSearch,
-    handleTextSearch,
-    currentPage,
-    setCurrentPage,
-  };
-};
 
 export function Search() {
   const {
