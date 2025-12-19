@@ -3,7 +3,7 @@ import styles from "./SearchForm.module.css";
 import { useId, useState } from "react";
 import { useSearchForm } from "../../hooks/useSearchForm";
 
-export function SearchForm({ onSearch, onTextSearch }) {
+export function SearchForm({ onSearch, onTextSearch, isFiltered }) {
   const searchId = useId();
   const technologyId = useId();
   const locationId = useId();
@@ -48,6 +48,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
             type="text"
             name="text"
             id={searchId}
+            value={searchText}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
             onFocus={() => setFocusedField("search")}
@@ -93,9 +94,15 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="senior">Senior</option>
             <option value="lead">Lead</option>
           </select>
-          <a href="#" id="clear-filters" className={`button isDisabled`}>
-            Eliminar filtros
-          </a>
+          {isFiltered && (
+            <a
+              href="#"
+              id="clear-filters"
+              className={`button ${styles.clearFilters}`}
+            >
+              Eliminar filtros
+            </a>
+          )}
         </div>
       </form>
     </section>

@@ -12,6 +12,7 @@ export function Search() {
   const {
     filters,
     searchQuery,
+    isFiltered,
     handleSearch,
     handleTextSearch,
     currentPage,
@@ -70,7 +71,11 @@ export function Search() {
 
   return (
     <main>
-      <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
+      <SearchForm
+        onSearch={handleSearch}
+        onTextSearch={handleTextSearch}
+        isFiltered={isFiltered}
+      />
 
       {loading ? (
         <div
