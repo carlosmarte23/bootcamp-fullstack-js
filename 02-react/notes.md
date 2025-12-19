@@ -54,3 +54,14 @@ Once the state flow was in place, I replaced the local JSON loading with a real 
 To improve the user experience, I added a loading state to indicate when jobs are being fetched and an empty state for cases where no results match the current filters. I also improved the Pagination component by disabling the previous and next controls when the user is on the first or last page, including a dedicated CSS module class for the disabled state.
 
 🟢 Completed on December 18th, 2025.
+
+## Exercises (Improving the app)
+
+### 1. Clear filters button
+
+#### 1.1 Dont show when no filters are applied
+
+- Use a function or helper to check if any filters are applied
+- Use conditional rendering to hide the button when no filters are applied
+
+#### Solution:
