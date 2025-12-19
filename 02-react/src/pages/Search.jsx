@@ -2,16 +2,15 @@ import { JobListings } from "../components/JobListings/index.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { SearchForm } from "../components/SearchForm/SearchForm.jsx";
 
-import jobsData from "../data/jobs.json";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
+const MAX_JOBS_PER_PAGE = 4;
 
-export function Search() {
+const useFilters = () => {
   const [filters, setFilters] = useState({
     technology: "",
-    location: "",
-    contract: "",
-    experience: "",
+    type: "",
+    level: "",
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,9 +18,8 @@ export function Search() {
   const handleSearch = (newFilters) => {
     setFilters({
       technology: newFilters.technology,
-      location: newFilters.location,
-      contract: newFilters.contract,
-      experience: newFilters.experience,
+      type: newFilters.type,
+      level: newFilters.level,
     });
     setCurrentPage(1);
   };
@@ -31,38 +29,111 @@ export function Search() {
     setCurrentPage(1);
   };
 
-  const filteredJobs = jobsData.filter((job) => {
-    return (
-      (filters.technology === "" ||
-        job.data.technology === filters.technology) &&
-      (filters.location === "" || job.data.modalidad === filters.location) &&
-      (filters.contract === "" || job.data.contract === filters.contract) &&
-      (filters.experience === "" || job.data.nivel === filters.experience) &&
-      job.titulo.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
+  return {
+    filters,
+    searchQuery,
+    handleSearch,
+    handleTextSearch,
+    currentPage,
+    setCurrentPage,
+  };
+};
 
-  const MAX_JOBS_PER_PAGE = 4;
-  const totalPages = Math.ceil(filteredJobs.length / MAX_JOBS_PER_PAGE);
+export function Search() {
+  const {
+    filters,
+    searchQuery,
+    handleSearch,
+    handleTextSearch,
+    currentPage,
+    setCurrentPage,
+  } = useFilters();
 
-  const paginatedJobs = filteredJobs.slice(
-    (currentPage - 1) * MAX_JOBS_PER_PAGE,
-    currentPage * MAX_JOBS_PER_PAGE
-  );
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        setLoading(true);
+
+        const params = new URLSearchParams();
+        if (filters.technology) params.append("technology", filters.technology);
+        if (filters.type) params.append("type", filters.type);
+        if (filters.level) params.append("level", filters.level);
+        if (searchQuery) params.append("text", searchQuery);
+
+        params.append("limit", MAX_JOBS_PER_PAGE);
+
+        const offset = (currentPage - 1) * MAX_JOBS_PER_PAGE;
+        params.append("offset", offset);
+
+        const queryParams = params.toString();
+
+        const response = await fetch(
+          `https://jscamp-api.vercel.app/api/jobs?${queryParams}`
+        );
+        const json = await response.json();
+        setJobs(json.data);
+        setTotal(json.total);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchJobs();
+  }, [
+    currentPage,
+    filters.technology,
+    filters.type,
+    filters.level,
+    searchQuery,
+  ]);
+
+  const totalPages = Math.ceil(total / MAX_JOBS_PER_PAGE);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
   return (
     <main>
       <SearchForm onSearch={handleSearch} onTextSearch={handleTextSearch} />
 
-      <JobListings jobs={paginatedJobs} totalJobs={filteredJobs.length} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {loading ? (
+        <div
+          style={{ padding: "2rem", textWrap: "balance", textAlign: "center" }}
+        >
+          Cargando empleos...
+        </div>
+      ) : (
+        <div>
+          {jobs.length === 0 ? (
+            <div
+              style={{
+                padding: "2rem",
+                textWrap: "balance",
+                textAlign: "center",
+              }}
+            >
+              No se encontraron empleos que coincidan con los criterios de
+              búsqueda.
+            </div>
+          ) : (
+            <>
+              <JobListings jobs={jobs} totalJobs={total} />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </>
+          )}
+        </div>
+      )}
     </main>
   );
 }
