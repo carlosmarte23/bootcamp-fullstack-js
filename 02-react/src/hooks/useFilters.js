@@ -13,7 +13,19 @@ const hasActiveFilters = (filters, searchQuery) => {
   );
 };
 export function useFilters() {
-  const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const [filters, setFilters] = useState(() => {
+    const savedFilters = localStorage.getItem("jobFilters");
+
+    if (!savedFilters) return INITIAL_FILTERS;
+
+    try {
+      return JSON.parse(savedFilters);
+    } catch (error) {
+      console.error(
+        `Failed to parse local storage job filters: ${error.message}`
+      );
+    }
+  });
 
   useEffect(() => {
     //see if the filters are empty
