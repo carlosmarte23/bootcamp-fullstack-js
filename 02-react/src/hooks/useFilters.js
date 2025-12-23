@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { usePersistenFilters } from "./usePersistentFilters";
 
-const INITIAL_FILTERS = {
-  technology: "",
-  type: "",
-  level: "",
-};
 const hasActiveFilters = (filters, searchQuery) => {
   return (
     Object.values(filters).some(
@@ -13,34 +9,7 @@ const hasActiveFilters = (filters, searchQuery) => {
   );
 };
 export function useFilters() {
-  const [filters, setFilters] = useState(() => {
-    const savedFilters = localStorage.getItem("jobFilters");
-
-    if (!savedFilters) return INITIAL_FILTERS;
-
-    try {
-      return JSON.parse(savedFilters);
-    } catch (error) {
-      console.error(
-        `Failed to parse local storage job filters: ${error.message}`
-      );
-    }
-  });
-
-  useEffect(() => {
-    //see if the filters are empty
-    const isEmpty = Object.values(filters).every((f) => f === "");
-
-    if (isEmpty) {
-      localStorage.removeItem("jobFilters");
-      return;
-    }
-
-    //If there is a filter, save it to the local storage
-    const filterString = JSON.stringify(filters);
-    localStorage.setItem("jobFilters", filterString);
-  }, [filters]);
-
+  const { filters, setFilters, resetFilters } = usePersistenFilters();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -61,7 +30,7 @@ export function useFilters() {
   };
 
   const handleResetFilters = () => {
-    setFilters(INITIAL_FILTERS);
+    resetFilters();
     setSearchQuery("");
     setCurrentPage(1);
   };
