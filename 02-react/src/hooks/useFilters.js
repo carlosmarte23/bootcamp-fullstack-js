@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const INITIAL_FILTERS = {
   technology: "",
@@ -14,6 +14,21 @@ const hasActiveFilters = (filters, searchQuery) => {
 };
 export function useFilters() {
   const [filters, setFilters] = useState(INITIAL_FILTERS);
+
+  useEffect(() => {
+    //see if the filters are empty
+    const isEmpty = Object.values(filters).every((f) => f === "");
+
+    if (isEmpty) {
+      localStorage.removeItem("jobFilters");
+      return;
+    }
+
+    //If there is a filter, save it to the local storage
+    const filterString = JSON.stringify(filters);
+    localStorage.setItem("jobFilters", filterString);
+  }, [filters]);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 

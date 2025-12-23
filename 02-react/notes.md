@@ -80,4 +80,11 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 
 - Replace loading text with a spinner component to improve user experience.
 
-🟡 In progress, last updated on December 18th, 2025.
+🟢 Completed on December 18th, 2025.
+
+### 3. Saving filters to LocalStorage
+
+- Use useEffect to save filters to LocalStorage when they change.
+- Use useEffect to load filters from LocalStorage when the page mounts.
+
+🟡 In progress, last updated on December 23rd, 2025.
