@@ -75,3 +75,9 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 - Only shows in DOM when there are active filters use && operator for conditional rendering
 
 🟢 Completed on December 18th, 2025.
+
+### 2. Loading spinner
+
+- Replace loading text with a spinner component to improve user experience.
+
+🟡 In progress, last updated on December 18th, 2025.

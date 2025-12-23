@@ -1,6 +1,7 @@
 import { JobListings } from "../components/JobListings/index.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { SearchForm } from "../components/SearchForm/SearchForm.jsx";
+import { Spinner } from "../components/Spinner.jsx";
 
 import { useFilters } from "../hooks/useFilters";
 
@@ -83,11 +84,7 @@ export function Search() {
       />
 
       {loading ? (
-        <div
-          style={{ padding: "2rem", textWrap: "balance", textAlign: "center" }}
-        >
-          Cargando empleos...
-        </div>
+        <Spinner />
       ) : (
         <div>
           {jobs.length === 0 ? (
