@@ -6,14 +6,20 @@ const INITIAL_FILTERS = {
   level: "",
 };
 
-export function usePersistenFilters() {
-  const [filters, setFilters] = useState(() => {
-    const savedFilters = localStorage.getItem("jobFilters");
+const INITIAL_STATE = {
+  filters: INITIAL_FILTERS,
+  text: "",
+  page: 1,
+};
 
-    if (!savedFilters) return INITIAL_FILTERS;
+export function usePersistentFilters() {
+  const [searchState, setSearchState] = useState(() => {
+    const savedJobState = localStorage.getItem("jobSearchState");
+
+    if (!savedJobState) return INITIAL_STATE;
 
     try {
-      return JSON.parse(savedFilters);
+      return JSON.parse(savedJobState);
     } catch (error) {
       console.error(
         `Failed to parse local storage job filters: ${error.message}`
@@ -22,26 +28,54 @@ export function usePersistenFilters() {
   });
 
   useEffect(() => {
-    //see if the filters are empty
-    const isEmpty = Object.values(filters).every((f) => f === "");
+    //see if the filters are empty or searchQuery is empty
+    const isEmpty =
+      Object.values(searchState.filters).every((f) => f === "") &&
+      searchState.text.trim() === "" &&
+      searchState.page === 1;
 
     if (isEmpty) {
-      localStorage.removeItem("jobFilters");
+      localStorage.removeItem("jobSearchState");
       return;
     }
 
     //If there is a filter, save it to the local storage
-    const filterString = JSON.stringify(filters);
-    localStorage.setItem("jobFilters", filterString);
-  }, [filters]);
+    const stateString = JSON.stringify(searchState);
+    localStorage.setItem("jobSearchState", stateString);
+  }, [searchState]);
+
+  const updateFilters = (newFilters) => {
+    setSearchState((prev) => ({
+      ...prev,
+      filters: newFilters,
+    }));
+  };
+
+  const updateSearchQuery = (newQuery) => {
+    setSearchState((prev) => ({
+      ...prev,
+      text: newQuery,
+    }));
+  };
+
+  const updatePage = (newPage) => {
+    setSearchState((prev) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
 
   const resetFilters = () => {
-    setFilters(INITIAL_FILTERS);
+    setSearchState(INITIAL_STATE);
   };
 
   return {
-    filters,
-    setFilters,
+    filters: searchState.filters,
+    searchQuery: searchState.text,
+    currentPage: searchState.page,
+    updateFilters,
+    updateSearchQuery,
+    updatePage,
     resetFilters,
   };
 }
