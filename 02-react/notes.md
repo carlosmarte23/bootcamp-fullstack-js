@@ -106,4 +106,4 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 
 - Use the title tag to set the title of each page dinamically.
 
-🟡 In progress, last updated on December 24rd, 2025.
+🟢 Completed on December 24rd, 2025.
