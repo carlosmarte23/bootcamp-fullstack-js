@@ -87,4 +87,15 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 - Use useEffect to save filters to LocalStorage when they change.
 - Use useEffect to load filters from LocalStorage when the page mounts.
 
+🟢 Completed on December 23rd, 2025.
+
+### 4. Error handling
+
+- Add a new error state to store API error messages. (TODO HERE)
+- Wrap the fetch logic in a try-catch-finally block.
+- Verify response.ok before processing the response and threw an error when the request failed.
+- Display a user-friendly error message using conditional rendering.
+- Add a retry option to allow the user to recover from failed requests.
+- Improve error feedback by handling offline scenarios and common HTTP errors.
+
 🟡 In progress, last updated on December 23rd, 2025.
