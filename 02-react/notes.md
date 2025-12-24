@@ -104,6 +104,6 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 
 ### 1. Add title to each page using React
 
-- Use the title tag to set the title of each page and component.
+- Use the title tag to set the title of each page dinamically.
 
 🟡 In progress, last updated on December 24rd, 2025.
