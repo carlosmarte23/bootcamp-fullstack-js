@@ -47,6 +47,7 @@ export function usePersistentFilters() {
     setSearchState((prev) => ({
       ...prev,
       filters: newFilters,
+      page: 1,
     }));
   };
 
@@ -54,6 +55,7 @@ export function usePersistentFilters() {
     setSearchState((prev) => ({
       ...prev,
       text: newQuery,
+      page: 1,
     }));
   };
 
