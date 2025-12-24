@@ -67,11 +67,8 @@
 }
 
 .clearFilters {
-  &.disabled {
-    opacity: 0.4;
-    cursor: default;
-    pointer-events: none;
-  }
+  margin-left: auto;
+  background-color: var(--primary-dark) !important;
 }
 
 .searchButton {

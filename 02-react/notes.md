@@ -54,3 +54,48 @@ Once the state flow was in place, I replaced the local JSON loading with a real 
 To improve the user experience, I added a loading state to indicate when jobs are being fetched and an empty state for cases where no results match the current filters. I also improved the Pagination component by disabling the previous and next controls when the user is on the first or last page, including a dedicated CSS module class for the disabled state.
 
 🟢 Completed on December 18th, 2025.
+
+## Exercises (Improving the app)
+
+### 1. Clear filters button
+
+#### 1.1 Dont show when no filters are applied
+
+- Use a function or helper to check if any filters are applied
+- Use conditional rendering to hide the button when no filters are applied
+
+#### 1.2 Create function handleClearFilters
+
+- Clear all filters
+- Reset state to inital values
+- Reset pagination (optional)
+
+#### 1.3 Show button when filters are applied
+
+- Only shows in DOM when there are active filters use && operator for conditional rendering
+
+🟢 Completed on December 18th, 2025.
+
+### 2. Loading spinner
+
+- Replace loading text with a spinner component to improve user experience.
+
+🟢 Completed on December 18th, 2025.
+
+### 3. Saving filters to LocalStorage
+
+- Use useEffect to save filters to LocalStorage when they change.
+- Use useEffect to load filters from LocalStorage when the page mounts.
+
+🟢 Completed on December 23rd, 2025.
+
+### 4. Error handling
+
+- Add a new error state to store API error messages. (TODO HERE)
+- Wrap the fetch logic in a try-catch-finally block.
+- Verify response.ok before processing the response and threw an error when the request failed.
+- Display a user-friendly error message using conditional rendering.
+- Add a retry option to allow the user to recover from failed requests.
+- Improve error feedback by handling offline scenarios and common HTTP errors.
+
+🟡 In progress, last updated on December 23rd, 2025.

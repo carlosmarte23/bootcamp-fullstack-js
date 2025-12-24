@@ -24,6 +24,7 @@
   --button-bg-applied: #22c55e;
   --error: rgba(255, 77, 79, 0.9);
   --error-shadow: rgba(255, 77, 79, 0.25);
+  --warning: rgba(255, 204, 0, 0.9);
 }
 
 /* Font Face */

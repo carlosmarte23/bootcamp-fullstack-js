@@ -3,30 +3,36 @@ import styles from "./SearchForm.module.css";
 import { useId, useState } from "react";
 import { useSearchForm } from "../../hooks/useSearchForm";
 
-export function SearchForm({ onSearch, onTextSearch }) {
+export function SearchForm({
+  filters,
+  searchQuery,
+  onSearch,
+  onTextSearch,
+  isFiltered,
+  onResetFilters,
+}) {
   const searchId = useId();
   const technologyId = useId();
   const locationId = useId();
   const experienceId = useId();
 
-  const { searchText, handleFilterChange, handleTextChange } = useSearchForm({
+  const { handleFilterChange, handleTextChange } = useSearchForm({
     onSearch,
     onTextSearch,
   });
 
   const [focusedField, setFocusedField] = useState(null);
 
+  const handleClickReset = (e) => {
+    e.preventDefault();
+    onResetFilters();
+  };
   return (
     <section className={styles.searchForm}>
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form
-        action=""
-        role="search"
-        onChange={handleFilterChange}
-        onSubmit={(e) => e.preventDefault()}
-      >
+      <form action="" onSubmit={(e) => e.preventDefault()}>
         <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +54,7 @@ export function SearchForm({ onSearch, onTextSearch }) {
             type="text"
             name="text"
             id={searchId}
+            value={searchQuery}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
             onFocus={() => setFocusedField("search")}
@@ -56,7 +63,12 @@ export function SearchForm({ onSearch, onTextSearch }) {
           />
         </div>
         <div className={styles.searchFilters}>
-          <select name="technology" id={technologyId}>
+          <select
+            name="technology"
+            id={technologyId}
+            value={filters.technology}
+            onChange={handleFilterChange}
+          >
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
               <option value="javascript">JavaScript</option>
@@ -74,7 +86,12 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="php">PHP</option>
           </select>
 
-          <select name="type" id={locationId}>
+          <select
+            name="type"
+            id={locationId}
+            value={filters.type}
+            onChange={handleFilterChange}
+          >
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
             <option value="cdmx">Ciudad de México</option>
@@ -86,16 +103,28 @@ export function SearchForm({ onSearch, onTextSearch }) {
             <option value="santiago">Santiago de Chile</option>
           </select>
 
-          <select name="level" id={experienceId}>
+          <select
+            name="level"
+            id={experienceId}
+            value={filters.level}
+            onChange={handleFilterChange}
+          >
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
             <option value="mid">Mid-level</option>
             <option value="senior">Senior</option>
             <option value="lead">Lead</option>
           </select>
-          <a href="#" id="clear-filters" className={`button isDisabled`}>
-            Eliminar filtros
-          </a>
+          {isFiltered && (
+            <button
+              href="#"
+              id="clear-filters"
+              className={`button ${styles.clearFilters}`}
+              onClick={handleClickReset}
+            >
+              Eliminar filtros
+            </button>
+          )}
         </div>
       </form>
     </section>
