@@ -1,4 +1,13 @@
-export function useSearchForm({ onSearch, onTextSearch }) {
+import { useEffect, useState } from "react";
+let timeout = null;
+
+export function useSearchForm({ onSearch, onTextSearch, initialText = "" }) {
+  const [searchText, setSearchText] = useState(initialText);
+
+  useEffect(() => {
+    setSearchText(initialText);
+  }, [initialText]);
+
   const handleFilterChange = (event) => {
     if (event.target.name === "text") return;
 
@@ -17,8 +26,15 @@ export function useSearchForm({ onSearch, onTextSearch }) {
 
   const handleTextChange = (event) => {
     const nextValue = event.target.value;
-    onTextSearch(nextValue);
+
+    setSearchText(nextValue);
+
+    if (timeout) clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      onTextSearch(nextValue);
+    }, 300);
   };
 
-  return { handleFilterChange, handleTextChange };
+  return { searchText, handleFilterChange, handleTextChange };
 }

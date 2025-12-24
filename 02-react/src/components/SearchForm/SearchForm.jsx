@@ -16,9 +16,10 @@ export function SearchForm({
   const locationId = useId();
   const experienceId = useId();
 
-  const { handleFilterChange, handleTextChange } = useSearchForm({
+  const { searchText, handleFilterChange, handleTextChange } = useSearchForm({
     onSearch,
     onTextSearch,
+    initialText: searchQuery,
   });
 
   const [focusedField, setFocusedField] = useState(null);
@@ -54,7 +55,7 @@ export function SearchForm({
             type="text"
             name="text"
             id={searchId}
-            value={searchQuery}
+            value={searchText}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
             onFocus={() => setFocusedField("search")}
