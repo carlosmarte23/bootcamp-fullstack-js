@@ -14,16 +14,15 @@ const INITIAL_STATE = {
 
 export function usePersistentFilters() {
   const [searchState, setSearchState] = useState(() => {
-    const savedJobState = localStorage.getItem("jobSearchState");
-
-    if (!savedJobState) return INITIAL_STATE;
-
     try {
-      return JSON.parse(savedJobState);
+      const savedJobState = localStorage.getItem("jobSearchState");
+      if (!savedJobState) return INITIAL_STATE;
+      return JSON.parse(savedJobState) ?? INITIAL_STATE;
     } catch (error) {
       console.error(
         `Failed to parse local storage job filters: ${error.message}`
       );
+      return INITIAL_STATE;
     }
   });
 
@@ -67,6 +66,7 @@ export function usePersistentFilters() {
 
   const resetFilters = () => {
     setSearchState(INITIAL_STATE);
+    localStorage.removeItem("jobSearchState");
   };
 
   return {
