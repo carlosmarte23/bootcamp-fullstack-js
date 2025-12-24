@@ -98,7 +98,7 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 - Add a retry option to allow the user to recover from failed requests.
 - Improve error feedback by handling offline scenarios and common HTTP errors.
 
-🟡 In progress, last updated on December 23rd, 2025.
+🟢 Completed on December 24th, 2025.
 
 ## Extra improvements
 
