@@ -99,3 +99,11 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 - Improve error feedback by handling offline scenarios and common HTTP errors.
 
 🟢 Completed on December 24th, 2025.
+
+## Extra improvements
+
+### 1. Add title to each page using React
+
+- Use the title tag to set the title of each page dinamically.
+
+🟢 Completed on December 24rd, 2025.

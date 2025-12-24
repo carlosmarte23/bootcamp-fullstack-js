@@ -97,6 +97,7 @@ export function Contact() {
 
   return (
     <main className={styles.contact}>
+      <title>DevJobs - Contacto</title>
       <header>
         <h2>Ponte en contacto con nosotros</h2>
         <p>

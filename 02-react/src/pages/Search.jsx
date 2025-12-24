@@ -89,8 +89,15 @@ export function Search() {
     setCurrentPage(page);
   };
 
+  const searchPageTitle = loading
+    ? `DevJobs - Buscando empleos...`
+    : error
+    ? `DevJobs - Error al cargar`
+    : `DevJobs - Empleos: Mostrando ${total} Resultados. Pagina ${currentPage} de ${totalPages}`;
+
   return (
     <main>
+      <title>{searchPageTitle}</title>
       <SearchForm
         filters={filters}
         searchQuery={searchQuery}
