@@ -16,5 +16,6 @@ Well also going to change the navigateTo function in our useRouter hook to use i
 - Step 2: Change our main.jsx file to use React Router
 - Step 3: In App.jsx use the react-router Routes and Route components instead of our custom Route component
 - Step 4: Integrate the react-router native hooks useNavigate and useLocation in our Link component using abstraction pattern. This will improve our app architecture maintaining the same external API that we have been using previously.
+- Step 5: Modify the useRouter custom hook to implement react-router useNavigate hook's functions.
 
 ## Exercises
