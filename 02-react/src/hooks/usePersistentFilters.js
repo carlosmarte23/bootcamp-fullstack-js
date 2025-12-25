@@ -12,11 +12,46 @@ const INITIAL_STATE = {
   page: 1,
 };
 
+const initializeFromURL = (search = window.location.search) => {
+  const params = new URLSearchParams(search);
+
+  const hasAny =
+    params.has("text") ||
+    params.has("technology") ||
+    params.has("type") ||
+    params.has("level") ||
+    params.has("page");
+
+  if (!hasAny) return { hasAny: false, urlState: null };
+
+  const page = Number(params.get("page"));
+
+  return {
+    hasAny: true,
+    urlState: {
+      text: params.get("text") ?? "",
+      page: page <= 0 ? 1 : page,
+      filters: {
+        technology: params.get("technology") ?? "",
+        type: params.get("type") ?? "",
+        level: params.get("level") ?? "",
+      },
+    },
+  };
+};
+
 export function usePersistentFilters() {
   const [searchState, setSearchState] = useState(() => {
+    const { hasAny, urlState } = initializeFromURL();
+
+    if (hasAny) {
+      return urlState;
+    }
+
     try {
       const savedJobState = localStorage.getItem("jobSearchState");
       if (!savedJobState) return INITIAL_STATE;
+
       return JSON.parse(savedJobState) ?? INITIAL_STATE;
     } catch (error) {
       console.error(
