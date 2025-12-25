@@ -2,20 +2,51 @@
 
 The fourth module of the bootcamp introduces routing using **React Router**.
 
-Right now, the app has a basic custom router that we made using the React components Link and Route, aswell as using the custom hook useRouter. In this module our task is to modify the app to use React Router instead of our custom router. This will bring a lot of benefits that we couldn't get with the custom router, such as using 404 pages, dynamic routes, protected routes, code splitting, and more.
+Right now, the app has a basic custom router that we made using the React components `Link` and `Route`, as well as a custom hook called `useRouter`.
 
-React router has 3 different modes, for our case well use the simplest one, which is the browser router in declarative mode. In this mode we can declare routes and navigate between them.
+In this module, our task is to modify the app to use **React Router** instead of our custom router. This brings a lot of benefits we couldn’t easily get before, like:
 
-Well modify our Link component to use React Router's Link component using an abstaction pattern design, so if later we need to change how the navigation works we can do it easily in a single place without needing to change all the Links components in all of our pages.
+- 404 pages
+- dynamic routes
+- protected routes
+- code splitting
+- and more
 
-Well also going to change the navigateTo function in our useRouter hook to use instead React Router's useNavigate hook.
+## React Router mode used in this module
+
+React Router has different ways to handle routing. For our case, we’ll use the simplest one: **Browser Router (declarative mode)**.
+
+With this mode we can declare routes and navigate between them in a clean, standard way.
+
+## Migration plan (keeping our architecture clean)
+
+We’ll modify our `Link` component to use React Router’s `Link` internally, using an **abstraction pattern**. That way, if later we want to change how navigation works, we can do it in a single place without updating all the `Link` usage across the app.
+
+We’ll also update the `navigateTo` function in our `useRouter` hook, replacing it with React Router’s `useNavigate`.
 
 ## Steps to migrate to React Router
 
-- Step 1: Install React Router
-- Step 2: Change our main.jsx file to use React Router
-- Step 3: In App.jsx use the react-router Routes and Route components instead of our custom Route component
-- Step 4: Integrate the react-router native hooks useNavigate and useLocation in our Link component using abstraction pattern. This will improve our app architecture maintaining the same external API that we have been using previously.
-- Step 5: Modify the useRouter custom hook to implement react-router useNavigate hook's functions.
+- **Step 1:** Install React Router
+- **Step 2:** Update `main.jsx` to use React Router
+- **Step 3:** In `App.jsx`, use React Router’s `Routes` and `Route` instead of our custom `Route`
+- **Step 4:** Integrate React Router native hooks (`useNavigate`, `useLocation`) inside our `Link` component using the abstraction pattern  
+  This keeps the same external API we already use in the app, but improves the architecture.
+- **Step 5:** Modify the `useRouter` custom hook to use React Router’s `useNavigate` functions
+
+## Implement the job detail page with a dynamic route
+
+Now that we are using React Router, we can easily implement **dynamic routes**.
+
+In our case, the job detail page will use a job id, so we can migrate the previously created job detail page that we built using only HTML.
+
+### Route
+
+- `/jobs/:id`
+
+### API used
+
+The data for each job is located in an external API, fetched with:
+
+- `https://jscamp-api.vercel.app/api/jobs/{job-id}`
 
 ## Exercises
