@@ -1,0 +1,82 @@
+/* Jobs Search Page and Section Styles */
+.searchForm {
+  margin: 0;
+  margin-top: 3rem;
+  padding: 0;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Jobs Search Form Styles */
+  form {
+    width: 100%;
+    max-width: 80rem;
+
+    /* Select Input Styles */
+    select,
+    .button {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: var(--primary);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      appearance: none;
+    }
+
+    select {
+      padding-right: 2.5rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+      background-size: 1em;
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+    }
+  }
+}
+
+/* Jobs Search Bar Styles */
+.searchBar {
+  padding: 0.25rem 0.5rem;
+  position: relative;
+}
+
+/* Jobs Search Filters Styles */
+.searchFilters {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding-inline: 0;
+  background-color: var(--background);
+  box-shadow: none;
+  border: none;
+}
+
+.clearFilters {
+  margin-left: auto;
+  background-color: var(--primary-dark) !important;
+}
+
+.searchButton {
+  border: none;
+  position: absolute;
+  right: 1rem;
+}
+
+.isFocused {
+  outline: 2px solid #4f46e5 !important;
+}

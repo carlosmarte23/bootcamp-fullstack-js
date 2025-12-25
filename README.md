@@ -26,7 +26,8 @@ Inside each one I include exercises, small projects, and a `notes.md` file where
 | :----- | :---------------------- | :------------- | :------------------ |
 | 00     | HTML & CSS Fundamentals | 🟢 Completed   | November 1st, 2025  |
 | 01     | JavaScript              | 🟢 Completed   | November 16th, 2025 |
-| 02     | Vite + React            | 🟡 In progress | December 25th, 2025 |
+| 02     | Vite + React            | 🟢 Completed   | December 25th, 2025 |
+| 03     | React Router + Zustand  | 🟡 In progress | December 25th, 2025 |
 
 ---
 
