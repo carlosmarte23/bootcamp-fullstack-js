@@ -16,9 +16,10 @@ export function SearchForm({
   const locationId = useId();
   const experienceId = useId();
 
-  const { handleFilterChange, handleTextChange } = useSearchForm({
+  const { searchText, handleFilterChange, handleTextChange } = useSearchForm({
     onSearch,
     onTextSearch,
+    initialText: searchQuery,
   });
 
   const [focusedField, setFocusedField] = useState(null);
@@ -27,12 +28,20 @@ export function SearchForm({
     e.preventDefault();
     onResetFilters();
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (e.target.name === searchId) {
+      return;
+    }
+    onSearch(filters);
+  };
   return (
     <section className={styles.searchForm}>
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form action="" onSubmit={(e) => e.preventDefault()}>
+      <form action="" onSubmit={handleSubmit}>
         <div className={styles.searchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +63,8 @@ export function SearchForm({
             type="text"
             name="text"
             id={searchId}
-            value={searchQuery}
+            value={searchText}
+            onSubmit={handleSubmit}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
             onFocus={() => setFocusedField("search")}
@@ -117,7 +127,7 @@ export function SearchForm({
           </select>
           {isFiltered && (
             <button
-              href="#"
+              type="button"
               id="clear-filters"
               className={`button ${styles.clearFilters}`}
               onClick={handleClickReset}

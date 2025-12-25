@@ -26,7 +26,7 @@ Inside each one I include exercises, small projects, and a `notes.md` file where
 | :----- | :---------------------- | :------------- | :------------------ |
 | 00     | HTML & CSS Fundamentals | 🟢 Completed   | November 1st, 2025  |
 | 01     | JavaScript              | 🟢 Completed   | November 16th, 2025 |
-| 02     | Vite + React            | 🟡 In progress | December 24th, 2025 |
+| 02     | Vite + React            | 🟡 In progress | December 25th, 2025 |
 
 ---
 
@@ -64,5 +64,5 @@ You’re welcome to review the content to learn or get inspired, but please avoi
 
 ---
 
-📅 **Last updated:** _December 24th, 2025_  
+📅 **Last updated:** _December 25th, 2025_  
 👨‍💻 **Author:** [Carlos Marte](https://github.com/carlosmarte23)

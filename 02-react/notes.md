@@ -106,4 +106,14 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 
 - Use the title tag to set the title of each page dinamically.
 
-🟢 Completed on December 24rd, 2025.
+🟢 Completed on December 24th, 2025.
+
+## Extra improvements
+
+### 2. Add debounce to the search bar input to improve performance
+
+- Use useRef to create a new variable to store a debounce timer.
+- Use useEffect to clear the debounce timer when the input value changes.
+- Use useEffect to trigger the search when the input value changes after a debounce delay.
+
+🟢 Completed on December 25th, 2025.
