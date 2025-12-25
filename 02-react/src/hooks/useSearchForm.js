@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-let timeout = null;
+import { useEffect, useRef, useState } from "react";
 
 export function useSearchForm({ onSearch, onTextSearch, initialText = "" }) {
   const [searchText, setSearchText] = useState(initialText);
+  let timeoutId = useRef(null);
 
   useEffect(() => {
     setSearchText(initialText);
@@ -29,11 +29,11 @@ export function useSearchForm({ onSearch, onTextSearch, initialText = "" }) {
 
     setSearchText(nextValue);
 
-    if (timeout) clearTimeout(timeout);
+    if (timeoutId.current) clearTimeout(timeoutId.current);
 
-    timeout = setTimeout(() => {
+    timeoutId.current = setTimeout(() => {
       onTextSearch(nextValue);
-    }, 300);
+    }, 400);
   };
 
   return { searchText, handleFilterChange, handleTextChange };
