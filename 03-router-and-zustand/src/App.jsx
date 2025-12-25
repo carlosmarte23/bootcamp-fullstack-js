@@ -1,6 +1,7 @@
+import { Route, Routes } from "react-router";
+
 import { Footer } from "./components/Footer.jsx";
 import { Header } from "./components/Header.jsx";
-import { Route } from "./components/Route.jsx";
 
 import { Contact } from "./pages/Contact.jsx";
 import { Home } from "./pages/Home.jsx";
@@ -10,10 +11,11 @@ function App() {
   return (
     <>
       <Header />
-
-      <Route path="/" component={Home} />
-      <Route path="/search" component={Search} />
-      <Route path="/contact" component={Contact} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
 
       <Footer />
     </>

@@ -13,6 +13,7 @@ Well also going to change the navigateTo function in our useRouter hook to use i
 ## Steps to migrate to React Router
 
 - Step 1: Install React Router
-- Step 2: change our main.jsx file to use React Router
+- Step 2: Change our main.jsx file to use React Router
+- Step 3: In App.jsx use the react-router Routes and Route components instead of our custom Route component
 
 ## Exercises
