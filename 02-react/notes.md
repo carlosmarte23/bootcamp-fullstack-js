@@ -102,6 +102,14 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 
 ## Extra improvements
 
+### 1. Add title to each page using React
+
+- Use the title tag to set the title of each page dinamically.
+
+🟢 Completed on December 24rd, 2025.
+
+## Extra improvements
+
 ### 2. Add debounce to the search bar input to improve performance
 
 - Use useRef to create a new variable to store a debounce timer.

@@ -16,6 +16,7 @@ export function Home() {
 
   return (
     <main>
+      <title>DevJobs - Inicio</title>
       <section className="hero">
         <img src="./background.webp" alt="" />
         <h1>Encuentra el trabajo de tus sueños</h1>
