@@ -117,3 +117,14 @@ To improve the user experience, I added a loading state to indicate when jobs ar
 - Use useEffect to trigger the search when the input value changes after a debounce delay.
 
 🟢 Completed on December 25th, 2025.
+
+### 3. Sync form values with the URL and vice versa
+
+- Change URL when filters changes.
+- Change Url when page changes.
+- When refresh, get values from URL and set them to the form.
+- Make sure when user types in the form, on the Home page, the filters and the URL are updated.
+
+This way we can use the URL as a single source of truth for the form values.
+
+🟢 Completed on December 25th, 2025.

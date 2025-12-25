@@ -4,11 +4,13 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
+  const prevPage = isFirstPage ? 1 : currentPage - 1;
+  const nextPage = isLastPage ? currentPage : currentPage + 1;
 
   const handlePrevPageChange = (event) => {
     event.preventDefault();
     if (!isFirstPage) {
-      onPageChange(currentPage - 1);
+      onPageChange(prevPage);
     }
   };
 
@@ -26,10 +28,22 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
     }
   };
 
+  const builtPageURL = (pageNum) => {
+    const url = new URL(window.location.href);
+
+    const searchParams = url.searchParams;
+
+    searchParams.set("page", String(pageNum));
+
+    url.search = searchParams.toString();
+
+    return `${url.pathname}?${url.searchParams.toString()}`;
+  };
+
   return (
     <nav className={styles.pagination}>
       <a
-        href="#"
+        href={builtPageURL(prevPage)}
         className={`${styles.paginationLink} ${
           isFirstPage ? styles.isDisabled : ""
         }`}
@@ -56,7 +70,7 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
       <div className={styles.paginationPages} id="pagination-pages">
         {pages.map((page) => (
           <a
-            href="#"
+            href={builtPageURL(page)}
             key={page}
             className={`${styles.paginationLink} ${
               currentPage === page ? "is-active" : ""
@@ -69,7 +83,7 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
       </div>
 
       <a
-        href="#"
+        href={builtPageURL(nextPage)}
         className={`${styles.paginationLink} ${
           isLastPage ? styles.isDisabled : ""
         }`}
