@@ -5,6 +5,7 @@ import { SearchForm } from "../components/SearchForm/SearchForm.jsx";
 import { Spinner } from "../components/Spinner.jsx";
 
 import { useFilters } from "../hooks/useFilters";
+import { useRouter } from "../hooks/useRouter";
 import { errorHelper } from "../utils/errorHelper";
 
 import { useEffect, useState } from "react";
@@ -12,6 +13,8 @@ import { useEffect, useState } from "react";
 const MAX_JOBS_PER_PAGE = 4;
 
 export function Search() {
+  const { navigateTo } = useRouter();
+
   const {
     filters,
     searchQuery,
@@ -82,6 +85,21 @@ export function Search() {
     searchQuery,
     retryCount,
   ]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.append("text", searchQuery);
+    if (filters.technology) params.append("technology", filters.technology);
+    if (filters.type) params.append("type", filters.type);
+    if (filters.level) params.append("level", filters.level);
+    if (currentPage > 1) params.append("page", currentPage);
+
+    const queryParams = params.toString();
+    const basePath = window.location.pathname;
+
+    const newUrl = queryParams ? `${basePath}?${queryParams}` : basePath;
+    navigateTo(newUrl);
+  }, [filters, searchQuery, currentPage]);
 
   const totalPages = Math.ceil(total / MAX_JOBS_PER_PAGE);
 
