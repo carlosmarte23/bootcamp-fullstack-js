@@ -1,25 +1,18 @@
-import { useRouter } from "../hooks/useRouter";
+import { useLocation } from "react-router";
 import styles from "./Link.module.css";
+
+import { Link as NavLink } from "react-router";
 export function Link({ href, children, ...props }) {
-  const { currentPath, navigateTo } = useRouter();
-
-  const handleClick = (event) => {
-    event.preventDefault();
-
-    //remove focus so style doesn't get stuck
-    event.currentTarget.blur();
-
-    navigateTo(href);
-  };
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
-    <a
-      href={href}
-      onClick={handleClick}
+    <NavLink
+      to={href}
       className={`${styles.link} ${currentPath === href ? styles.active : ""}`}
       {...props}
     >
       {children}
-    </a>
+    </NavLink>
   );
 }
