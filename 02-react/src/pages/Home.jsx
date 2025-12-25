@@ -9,7 +9,9 @@ export function Home() {
     const formData = new FormData(event.currentTarget);
     const search = formData.get("search");
 
-    const url = search ? `/search?q=${encodeURIComponent(search)}` : `/search`;
+    const url = search
+      ? `/search?text=${encodeURIComponent(search)}`
+      : `/search`;
 
     navigateTo(url);
   };
