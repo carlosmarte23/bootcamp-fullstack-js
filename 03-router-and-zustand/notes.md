@@ -12,4 +12,6 @@ Well also going to change the navigateTo function in our useRouter hook to use i
 
 ## Steps to migrate to React Router
 
+### Step 1: Install React Router
+
 ## Exercises
