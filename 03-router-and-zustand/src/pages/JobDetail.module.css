@@ -1,0 +1,123 @@
+.jobDetailsPage {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+/* breadcrumbs styles*/
+.jobBreadcrumb {
+  display: block;
+  width: 100%;
+  max-width: 65rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 1rem auto;
+
+  .currentJob {
+    color: var(--text-primary);
+  }
+
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: var(--primary-hover);
+      outline: none;
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    margin: 0 0.25rem;
+  }
+}
+
+.jobHeader {
+  padding: 0;
+  border: none;
+  margin: 0;
+
+  p {
+    color: var(--text-muted);
+  }
+}
+
+/* job details section styles */
+.jobDetails {
+  width: 100%;
+  max-width: 60rem;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+
+  .job-meta {
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+
+      p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+.jobSection {
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    /* list-style: none; */
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      position: relative;
+      list-style: none;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -1.75rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        top: 0.25rem;
+
+        background-color: var(--primary-light);
+
+        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'/><path d='M9 12l2 2l4 -4'/></svg>")
+          center / contain no-repeat;
+        mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'/><path d='M9 12l2 2l4 -4'/></svg>")
+          center / contain no-repeat;
+      }
+    }
+  }
+}
+
+.jobApplyFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.jobsInfo {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+
+  span {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+}
