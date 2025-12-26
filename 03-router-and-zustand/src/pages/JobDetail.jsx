@@ -59,9 +59,18 @@ export function JobDetail() {
     else navigate("/search", { replace: true });
   };
 
+  const pageTitle = loading
+    ? "Cargando..."
+    : job
+    ? `${job.titulo} - DevJobs`
+    : error
+    ? error.message
+    : "DevJobs";
+
   return (
     <main className={styles.container}>
-      {loading || !job ? (
+      <title>{pageTitle}</title>
+      {loading ? (
         <Spinner text="Cargando información del empleo..." />
       ) : error ? (
         <ErrorState
@@ -71,50 +80,62 @@ export function JobDetail() {
           onAction={handleErrorClick}
         />
       ) : (
-        <>
-          <div className={styles.jobDetails}>
-            <nav className={styles.jobBreadcrumb}>
-              <Link to="/search">Empleos</Link>
-              <span>/</span>
-              <span className={styles.currentJob}>{job.titulo}</span>
-            </nav>
-            <header className={styles.jobHeader}>
-              <div>
-                <h1>{job.titulo}</h1>
-                <p>
-                  <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
-                </p>
-              </div>
+        job && (
+          <>
+            <div className={styles.jobDetails}>
+              <nav className={styles.jobBreadcrumb}>
+                <Link to="/search">Empleos</Link>
+                <span>/</span>
+                <span className={styles.currentJob}>{job.titulo}</span>
+              </nav>
+              <header className={styles.jobHeader}>
+                <div>
+                  <h1>{job.titulo}</h1>
+                  <p>
+                    <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
+                  </p>
+                </div>
 
-              <button href="#" className={`button`}>
-                Aplicar ahora
-              </button>
-            </header>
+                <button
+                  type="button"
+                  className={`button`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                >
+                  Aplicar ahora
+                </button>
+              </header>
 
-            <JobSection
-              title="Descripción del puesto"
-              content={job.content.description}
-            />
+              <JobSection
+                title="Descripción del puesto"
+                content={job.content.description}
+              />
 
-            <JobSection
-              title="Responsabilidades"
-              content={job.content.responsibilities}
-            />
+              <JobSection
+                title="Responsabilidades"
+                content={job.content.responsibilities}
+              />
 
-            <JobSection title="Requisitos" content={job.content.requirements} />
+              <JobSection
+                title="Requisitos"
+                content={job.content.requirements}
+              />
 
-            <JobSection
-              title="Acerca de la empresa"
-              content={job.content.about}
-            />
+              <JobSection
+                title="Acerca de la empresa"
+                content={job.content.about}
+              />
 
-            <footer className={styles.jobApplyFooter}>
-              <a href="#" className={`button`}>
-                Aplicar ahora
-              </a>
-            </footer>
-          </div>
-        </>
+              <footer className={styles.jobApplyFooter}>
+                <a href="#" className={`button`}>
+                  Aplicar ahora
+                </a>
+              </footer>
+            </div>
+          </>
+        )
       )}
     </main>
   );
