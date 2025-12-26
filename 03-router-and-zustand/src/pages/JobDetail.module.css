@@ -1,7 +1,7 @@
 .container {
   width: 100%;
+  max-width: 50rem;
   margin: 0 auto;
-  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,27 +9,49 @@
 
 .jobDetails {
   width: 100%;
-  max-width: 70rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1.25rem;
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 
   h1 {
     font-size: 2rem;
-    margin-bottom: 0.25rem;
+    line-height: 1.15;
+    margin: 0 0 0 0.35rem;
+    font-weight: 800;
 
     p {
+      margin: 0;
       color: var(--text-muted);
-      font-size: 0.95rem;
     }
   }
 }
 
+button.applyBtn {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.875rem;
+  border-radius: 0.6rem;
+  background: var(--primary-light);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.35),
+    0 10px 35px rgba(9, 153, 255, 0.22);
+
+  transition: all 0.25s ease;
+
+  &:hover,
+  &:focus {
+    background: var(--primary-hover);
+    color: var(--text-primary);
+  }
+}
+
 .jobBreadcrumb {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
-  margin: 0 0 1rem;
+  margin: 0 0 2.5rem;
+  margin-inline: -2.5rem;
 
   display: flex;
   align-items: center;
@@ -53,6 +75,11 @@
 }
 
 .jobHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
   padding: 0;
   border: none;
   margin: 0;
@@ -66,14 +93,4 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 2rem;
-}
-
-.jobsInfo {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-
-  span {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
 }

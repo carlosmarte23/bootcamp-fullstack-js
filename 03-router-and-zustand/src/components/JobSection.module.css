@@ -39,25 +39,20 @@
   }
 }
 
-.jobSection + .jobSection {
-  margin-top: 2rem;
-}
-
 .prose {
-  max-width: 100ch;
+  max-width: 85ch;
   line-height: 1.7;
   font-size: 1rem;
   color: #111827;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .prose h1,
 .prose h2,
 .prose h3 {
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 0.75rem;
   margin-top: 1.5rem;
-  color: #111827;
 }
 
 .prose h2 {

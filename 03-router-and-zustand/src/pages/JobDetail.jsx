@@ -62,7 +62,7 @@ export function JobDetail() {
   const pageTitle = loading
     ? "Cargando..."
     : job
-    ? `${job.titulo} - DevJobs`
+    ? `DevJobs - ${job.titulo}`
     : error
     ? error.message
     : "DevJobs";
@@ -98,7 +98,7 @@ export function JobDetail() {
 
                 <button
                   type="button"
-                  className={`button`}
+                  className={`button ${styles.applyBtn}`}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -129,9 +129,9 @@ export function JobDetail() {
               />
 
               <footer className={styles.jobApplyFooter}>
-                <a href="#" className={`button`}>
+                <button href="#" className={`button ${styles.applyBtn}`}>
                   Aplicar ahora
-                </a>
+                </button>
               </footer>
             </div>
           </>
