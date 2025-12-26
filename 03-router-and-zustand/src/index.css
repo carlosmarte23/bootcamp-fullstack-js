@@ -42,7 +42,7 @@
 
 /* Body Styles */
 body {
-  font-family: system-ui;
+  font-family: "Inter Variable", system-ui, sans-serif;
   background-color: var(--background);
   min-height: 100vh;
   color: var(--text-primary);
