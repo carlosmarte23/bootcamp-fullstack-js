@@ -1,3 +1,4 @@
+import { Link } from "../Link";
 import styles from "./JobCard.module.css";
 
 export function JobCard({ job }) {
@@ -6,15 +7,31 @@ export function JobCard({ job }) {
   return (
     <article className={styles.jobCard}>
       <div className={styles.jobTitle}>
-        <h3>{titulo}</h3>
+        <Link to={`/jobs/${job.id}`}>
+          <h3>{titulo}</h3>
+        </Link>
         <small>
           {empresa} | {ubicacion}
         </small>
       </div>
-      <a href="#" className="button btn-apply">
-        Aplicar
-      </a>
-      <p>{descripcion}</p>
+
+      <p className={styles.description}>{descripcion}</p>
+
+      <div className={styles.actions}>
+        <Link to={`/jobs/${job.id}`} className="button">
+          Ver detalles
+        </Link>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+          }}
+          className="button"
+        >
+          Aplicar
+        </button>
+      </div>
     </article>
   );
 }

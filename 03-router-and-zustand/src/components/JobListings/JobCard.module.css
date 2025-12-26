@@ -1,9 +1,32 @@
 /* Individual Job Card Styles */
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
 .jobCard {
   border-bottom: 1px solid var(--border);
   padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  box-shadow: 0 2px 8px rgb(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+
+  transition: transform 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    transform: translateY(-4px);
+  }
+
+  &:hover .jobCard,
+  &:focus-visible .jobCard {
+    box-shadow: 0 8px 16px rgb(0, 0, 0, 0.1);
+  }
 }
 
 .jobTitle {
@@ -20,13 +43,26 @@
     margin-top: 0.5rem;
   }
 
-  p {
-    grid-column: 1;
-    margin-top: 0.5rem;
-    color: var(--text-secondary);
-  }
-
   &:last-child {
     border-bottom: none;
   }
+}
+
+.description {
+  grid-column: 1;
+  max-width: 95%;
+  text-wrap: balance;
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.actions {
+  grid-row: 1 / -1;
+  grid-column: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 0.5rem;
 }
