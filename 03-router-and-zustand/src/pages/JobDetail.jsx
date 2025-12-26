@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 
 import { ErrorState } from "../components/ErrorState";
+import { JobSection } from "../components/JobSection";
+import { Link } from "../components/Link";
 import { Spinner } from "../components/Spinner";
 
 import { errorHelper } from "../utils/errorHelper";
@@ -57,15 +59,6 @@ export function JobDetail() {
     else navigate("/search", { replace: true });
   };
 
-  const JobSection = ({ title, content }) => {
-    return (
-      <section className={styles.jobSection}>
-        <h2>{title}</h2>
-        <div>{content}</div>
-      </section>
-    );
-  };
-
   return (
     <main className={styles.container}>
       {loading || !job ? (
@@ -79,12 +72,12 @@ export function JobDetail() {
         />
       ) : (
         <>
-          <nav className={styles.jobBreadcrumb}>
-            <a href="/jobs">Empleos</a>
-            <span>/</span>
-            <span className={styles.currentJob}>{job.titulo}</span>
-          </nav>
           <div className={styles.jobDetails}>
+            <nav className={styles.jobBreadcrumb}>
+              <Link to="/search">Empleos</Link>
+              <span>/</span>
+              <span className={styles.currentJob}>{job.titulo}</span>
+            </nav>
             <header className={styles.jobHeader}>
               <div>
                 <h1>{job.titulo}</h1>
@@ -92,10 +85,12 @@ export function JobDetail() {
                   <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
                 </p>
               </div>
+
               <button href="#" className={`button`}>
                 Aplicar ahora
               </button>
             </header>
+
             <JobSection
               title="Descripción del puesto"
               content={job.content.description}
@@ -103,7 +98,7 @@ export function JobDetail() {
 
             <JobSection
               title="Responsabilidades"
-              content={job.content.responsabilities}
+              content={job.content.responsibilities}
             />
 
             <JobSection title="Requisitos" content={job.content.requirements} />

@@ -1,54 +1,16 @@
 .container {
   width: 100%;
-  max-width: 80rem;
   margin: 0 auto;
   margin-top: 4rem;
-}
-/* breadcrumbs styles*/
-.jobBreadcrumb {
-  display: block;
-  width: 100%;
-  max-width: 65rem;
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin: 1rem auto;
-
-  .currentJob {
-    color: var(--text-primary);
-  }
-
-  a {
-    color: var(--text-muted);
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      color: var(--primary-hover);
-      outline: none;
-      text-decoration: underline;
-    }
-  }
-
-  span {
-    margin: 0 0.25rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.jobHeader {
-  padding: 0;
-  border: none;
-  margin: 0;
-
-  p {
-    color: var(--text-muted);
-  }
-}
-
-/* job details section styles */
 .jobDetails {
-  width: 100%;
-  max-width: 60rem;
-  margin: 3rem auto;
+  width: 70rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
 
@@ -63,44 +25,39 @@
   }
 }
 
-.jobSection {
-  h2 {
-    font-size: 1.75rem;
-    margin-bottom: 0.75rem;
+.jobBreadcrumb {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+
+  .currentJob {
+    color: var(--text-primary);
   }
 
-  div {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-  }
+  & > a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    transition: color 0.25s ease;
 
-  ul {
-    /* list-style: none; */
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-
-    li {
-      margin-bottom: 0.5rem;
-      color: var(--text-secondary);
-      position: relative;
-      list-style: none;
-
-      &:before {
-        content: "";
-        position: absolute;
-        left: -1.75rem;
-        width: 1.25rem;
-        height: 1.25rem;
-        top: 0.25rem;
-
-        background-color: var(--primary-light);
-
-        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'/><path d='M9 12l2 2l4 -4'/></svg>")
-          center / contain no-repeat;
-        mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'/><path d='M9 12l2 2l4 -4'/></svg>")
-          center / contain no-repeat;
-      }
+    &:hover,
+    &:focus {
+      color: var(--primary-hover);
+      text-decoration: none;
     }
+  }
+}
+
+.jobHeader {
+  padding: 0;
+  border: none;
+  margin: 0;
+
+  p {
+    color: var(--text-muted);
   }
 }
 
