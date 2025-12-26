@@ -1,6 +1,6 @@
 import styles from "./ErrorState.module.css";
 
-export function ErrorState({ title, message, onRetry }) {
+export function ErrorState({ title, message, actionLabel, onAction }) {
   return (
     <div className={styles.container}>
       <svg
@@ -20,8 +20,8 @@ export function ErrorState({ title, message, onRetry }) {
 
       <h2 className={styles.title}>{title}</h2>
       <p className={styles.description}>{message}</p>
-      <button className="button" onClick={onRetry}>
-        Reintentar
+      <button className="button" onClick={onAction}>
+        {actionLabel}
       </button>
     </div>
   );

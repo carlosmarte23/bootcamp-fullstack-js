@@ -131,7 +131,8 @@ export function Search() {
         <ErrorState
           title="Ocurrió un error"
           message={errorHelper(error)}
-          onRetry={() => setRetryCount((prev) => prev + 1)}
+          actionLabel={"Reintentar"}
+          onAction={() => setRetryCount((prev) => prev + 1)}
         />
       ) : (
         <div>
