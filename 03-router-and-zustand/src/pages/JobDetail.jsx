@@ -2,12 +2,70 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 
 import { ErrorState } from "../components/ErrorState";
-import { JobSection } from "../components/JobSection";
 import { Link } from "../components/Link";
 import { Spinner } from "../components/Spinner";
 
 import { errorHelper } from "../utils/errorHelper";
 import styles from "./JobDetail.module.css";
+
+import snarkdown from "snarkdown";
+
+export function JobSection({ title, content }) {
+  const html = snarkdown(content ?? "");
+
+  return (
+    <section className={styles.jobSection}>
+      <h2>{title}</h2>
+      <div className={`${styles.sectionContent} ${styles.prose}`}>
+        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+      </div>
+    </section>
+  );
+}
+
+function DetailBreadcrumb({ job }) {
+  return (
+    <nav className={styles.jobBreadcrumb}>
+      <Link to="/search">Empleos</Link>
+      <span>/</span>
+      <span className={styles.currentJob}>{job.titulo}</span>
+    </nav>
+  );
+}
+
+function DetailHeader({ job }) {
+  return (
+    <header className={styles.jobHeader}>
+      <div>
+        <h1>{job.titulo}</h1>
+        <p>
+          <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
+        </p>
+      </div>
+
+      <button
+        type="button"
+        className={`button ${styles.applyBtn}`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        Aplicar ahora
+      </button>
+    </header>
+  );
+}
+
+function DetailFooter() {
+  return (
+    <footer className={styles.jobApplyFooter}>
+      <button href="#" className={`button ${styles.applyBtn}`}>
+        Aplicar ahora
+      </button>
+    </footer>
+  );
+}
 
 export function JobDetail() {
   const { jobId } = useParams();
@@ -24,6 +82,9 @@ export function JobDetail() {
     const controller = new AbortController();
     async function fetchJob() {
       setLoading(true);
+      setError(null);
+      setJob(null);
+
       try {
         const response = await fetch(
           `https://jscamp-api.vercel.app/api/jobs/${jobId}`,
@@ -67,76 +128,46 @@ export function JobDetail() {
     ? error.message
     : "DevJobs";
 
-  return (
-    <main className={styles.container}>
-      <title>{pageTitle}</title>
-      {loading ? (
+  if (loading) {
+    return (
+      <main className={styles.container}>
+        <title>{pageTitle}</title>
         <Spinner text="Cargando información del empleo..." />
-      ) : error ? (
+      </main>
+    );
+  }
+
+  if (error || !job) {
+    return (
+      <main className={styles.container}>
+        <title>{pageTitle}</title>
+
         <ErrorState
           title="Ocurrió un error"
           message={errorHelper(error)}
           actionLabel={"Regresar"}
           onAction={handleErrorClick}
         />
-      ) : (
-        job && (
-          <>
-            <div className={styles.jobDetails}>
-              <nav className={styles.jobBreadcrumb}>
-                <Link to="/search">Empleos</Link>
-                <span>/</span>
-                <span className={styles.currentJob}>{job.titulo}</span>
-              </nav>
-              <header className={styles.jobHeader}>
-                <div>
-                  <h1>{job.titulo}</h1>
-                  <p>
-                    <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
-                  </p>
-                </div>
+      </main>
+    );
+  }
 
-                <button
-                  type="button"
-                  className={`button ${styles.applyBtn}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                >
-                  Aplicar ahora
-                </button>
-              </header>
-
-              <JobSection
-                title="Descripción del puesto"
-                content={job.content.description}
-              />
-
-              <JobSection
-                title="Responsabilidades"
-                content={job.content.responsibilities}
-              />
-
-              <JobSection
-                title="Requisitos"
-                content={job.content.requirements}
-              />
-
-              <JobSection
-                title="Acerca de la empresa"
-                content={job.content.about}
-              />
-
-              <footer className={styles.jobApplyFooter}>
-                <button href="#" className={`button ${styles.applyBtn}`}>
-                  Aplicar ahora
-                </button>
-              </footer>
-            </div>
-          </>
-        )
-      )}
+  return (
+    <main className={styles.container}>
+      <title>{pageTitle}</title>
+      <DetailBreadcrumb job={job} />
+      <DetailHeader job={job} />
+      <JobSection
+        title="Descripción del puesto"
+        content={job.content.description}
+      />
+      <JobSection
+        title="Responsabilidades"
+        content={job.content.responsibilities}
+      />
+      <JobSection title="Requisitos" content={job.content.requirements} />
+      <JobSection title="Acerca de la empresa" content={job.content.about} />
+      <DetailFooter />
     </main>
   );
 }

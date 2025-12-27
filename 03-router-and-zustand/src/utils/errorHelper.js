@@ -1,4 +1,6 @@
 export const errorHelper = (error) => {
+  if (!error) return "Ocurrio un error inesperado. Intenta nuevamente.";
+
   if (!navigator.onLine) {
     return "No tienes conexión a internet. Verifica tu red y vuelve a intentar.";
   } else if (error.status === null) {
