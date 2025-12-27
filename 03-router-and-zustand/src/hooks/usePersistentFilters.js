@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 
 const INITIAL_FILTERS = {
   technology: "",
@@ -12,9 +13,7 @@ const INITIAL_STATE = {
   page: 1,
 };
 
-const initializeFromURL = (search = window.location.search) => {
-  const params = new URLSearchParams(search);
-
+const initializeFromURL = (params) => {
   const hasAny =
     params.has("text") ||
     params.has("technology") ||
@@ -40,9 +39,23 @@ const initializeFromURL = (search = window.location.search) => {
   };
 };
 
+const buildParamsFromState = (state) => {
+  const params = new URLSearchParams();
+  if (state.text.trim()) params.set("text", state.text.trim());
+  if (state.page !== 1) params.set("page", String(state.page));
+
+  if (state.filters.technology)
+    params.set("technology", state.filters.technology);
+  if (state.filters.type) params.set("type", state.filters.type);
+  if (state.filters.level) params.set("level", state.filters.level);
+
+  return params;
+};
+
 export function usePersistentFilters() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchState, setSearchState] = useState(() => {
-    const { hasAny, urlState } = initializeFromURL();
+    const { hasAny, urlState } = initializeFromURL(searchParams);
 
     if (hasAny) {
       return urlState;
@@ -61,8 +74,8 @@ export function usePersistentFilters() {
     }
   });
 
+  //If there is a filter, save it to the local storage
   useEffect(() => {
-    //see if the filters are empty or searchQuery is empty
     const isEmpty =
       Object.values(searchState.filters).every((f) => f === "") &&
       searchState.text.trim() === "" &&
@@ -77,6 +90,28 @@ export function usePersistentFilters() {
     const stateString = JSON.stringify(searchState);
     localStorage.setItem("jobSearchState", stateString);
   }, [searchState]);
+
+  // State -> URL (User change filters/text/page)
+  useEffect(() => {
+    const nextParams = buildParamsFromState(searchState);
+
+    if (nextParams.toString() === searchParams.toString()) return;
+
+    setSearchParams(nextParams, { replace: true });
+  }, [searchState, searchParams, setSearchParams]);
+
+  // URL -> State (URL changes because of back/forward or shared link)
+  useEffect(() => {
+    const { hasAny, urlState } = initializeFromURL(searchParams);
+    if (!hasAny) return;
+
+    setSearchState((prev) => {
+      const current = JSON.stringify(prev);
+      const next = JSON.stringify(urlState);
+      if (current === next) prev;
+      return urlState;
+    });
+  }, [searchParams]);
 
   const updateFilters = (newFilters) => {
     setSearchState((prev) => ({
@@ -104,6 +139,7 @@ export function usePersistentFilters() {
   const resetFilters = () => {
     setSearchState(INITIAL_STATE);
     localStorage.removeItem("jobSearchState");
+    setSearchParams({}, { replace: true });
   };
 
   return {

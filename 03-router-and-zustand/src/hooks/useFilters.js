@@ -26,12 +26,10 @@ export function useFilters() {
       type: newFilters.type,
       level: newFilters.level,
     });
-    updatePage(1);
   };
 
   const handleTextSearch = (textQuery) => {
     updateSearchQuery(textQuery);
-    updatePage(1);
   };
 
   const handleResetFilters = () => {

@@ -49,4 +49,4 @@ The data for each job is located in an external API, fetched with:
 
 - `https://jscamp-api.vercel.app/api/jobs/{job-id}`
 
-## Exercises
+After doing all of these changes our app is in a much better state! But there is still one issue, we are building the searchParams manually and using windows.location.path to build the URL. We can do better with React Router. Its now time to use the useSearchParams hook and the useLocation hook.
