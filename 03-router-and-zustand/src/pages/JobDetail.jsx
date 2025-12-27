@@ -33,7 +33,7 @@ function DetailBreadcrumb({ job }) {
   );
 }
 
-function DetailHeader({ job }) {
+function DetailHeader({ job, onBack }) {
   return (
     <header className={styles.jobHeader}>
       <div>
@@ -43,16 +43,21 @@ function DetailHeader({ job }) {
         </p>
       </div>
 
-      <button
-        type="button"
-        className={`button ${styles.applyBtn}`}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-      >
-        Aplicar ahora
-      </button>
+      <div className={styles.headerActions}>
+        <button
+          type="button"
+          className={`button ${styles.applyBtn}`}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
+          Aplicar ahora
+        </button>
+        <button onClick={onBack} className={`button`}>
+          Regresar
+        </button>
+      </div>
     </header>
   );
 }
@@ -115,6 +120,12 @@ export function JobDetail() {
     fetchJob();
   }, [jobId]);
 
+  const handleBack = (e) => {
+    e.preventDefault();
+
+    navigate(-1);
+  };
+
   const handleErrorClick = () => {
     if (location.key !== "default") navigate(-1);
     else navigate("/search", { replace: true });
@@ -156,7 +167,7 @@ export function JobDetail() {
     <main className={styles.container}>
       <title>{pageTitle}</title>
       <DetailBreadcrumb job={job} />
-      <DetailHeader job={job} />
+      <DetailHeader job={job} onBack={handleBack} />
       <JobSection
         title="Descripción del puesto"
         content={job.content.description}

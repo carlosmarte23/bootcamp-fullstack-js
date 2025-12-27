@@ -81,6 +81,12 @@ button.applyBtn {
   }
 }
 
+.headerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .jobApplyFooter {
   display: flex;
   justify-content: flex-end;
