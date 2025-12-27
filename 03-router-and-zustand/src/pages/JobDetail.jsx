@@ -120,15 +120,10 @@ export function JobDetail() {
     fetchJob();
   }, [jobId]);
 
-  const handleBack = (e) => {
+  const handleClick = (e, replaceHistory = true) => {
     e.preventDefault();
-
-    navigate(-1);
-  };
-
-  const handleErrorClick = () => {
     if (location.key !== "default") navigate(-1);
-    else navigate("/search", { replace: true });
+    else navigate("/search", { replace: replaceHistory });
   };
 
   const pageTitle = loading
@@ -157,7 +152,7 @@ export function JobDetail() {
           title="Ocurrió un error"
           message={errorHelper(error)}
           actionLabel={"Regresar"}
-          onAction={handleErrorClick}
+          onAction={handleClick}
         />
       </main>
     );
@@ -167,7 +162,7 @@ export function JobDetail() {
     <main className={styles.container}>
       <title>{pageTitle}</title>
       <DetailBreadcrumb job={job} />
-      <DetailHeader job={job} onBack={handleBack} />
+      <DetailHeader job={job} onBack={(e) => handleClick(e, false)} />
       <JobSection
         title="Descripción del puesto"
         content={job.content.description}
