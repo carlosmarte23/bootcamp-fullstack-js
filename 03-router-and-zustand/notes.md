@@ -56,3 +56,7 @@ After doing all of these changes our app is in a much better state! But there is
 Our app is now using React Router, one new improvement that we can do is **lazy loading pages**. That means, only load the page when it is needed (right now, when our home is loaded, all the other pages are also downloaded). For this we can use React lazy and React Suspense.
 
 In our case, we are using React lazy to lazy load the pages. We can also use React Suspense to show a loading spinner, custom message, or whatever we want while the page is being loaded.
+
+## Add active status to links
+
+For this, we'll use the `NavLink` component from React Router replacing our `Link` component with an abstraction pattern.

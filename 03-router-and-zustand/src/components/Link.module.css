@@ -1,34 +1,55 @@
-.link {
+.base {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Variante NAV: aquí vive tu estilo actual */
+.nav {
   color: var(--text-secondary);
-  transition: all 0.3s;
+  transition: color 0.25s ease;
   position: relative;
+}
 
-  &:hover,
-  &:focus {
-    color: var(--primary-hover);
-  }
+.nav:hover,
+.nav:focus {
+  color: var(--primary-hover);
+}
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background: currentColor;
-    transition: width 0.25s ease;
-  }
+.nav:focus-visible {
+  border-radius: 0.4rem;
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.25s ease;
+  opacity: 0.9;
 }
 
 .active {
-  font-weight: bold;
+  font-weight: 700;
   color: var(--text-primary);
+}
 
-  &:hover,
-  &:focus {
-    color: var(--primary-hover);
-  }
-  &::after {
-    width: 100%;
+.active:hover,
+.active:focus {
+  color: var(--primary-hover);
+}
+
+.active::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .nav::after {
+    transition: none;
   }
 }

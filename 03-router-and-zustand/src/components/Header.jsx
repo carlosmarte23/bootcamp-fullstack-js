@@ -29,10 +29,10 @@ export function Header() {
       </nav>
 
       <div className={styles.actions}>
-        <Link href="#" className="button">
+        <Link href="#" variant="button" className="button">
           Publicar un empleo
         </Link>
-        <Link href="#" className="button">
+        <Link href="#" variant="button" className="button">
           Iniciar sesión
         </Link>
       </div>
