@@ -1,15 +1,23 @@
-import { useLocation } from "react-router";
+import { NavLink } from "react-router";
 import styles from "./Link.module.css";
 
-import { Link as NavLink } from "react-router";
-export function Link({ href, children, ...props }) {
-  const location = useLocation();
-  const currentPath = location.pathname;
+export function Link({
+  href,
+  children,
+  className = "",
+  variant = "nav", // "nav" | "button"
+  ...props
+}) {
+  const isNav = variant === "nav";
 
   return (
     <NavLink
       to={href}
-      className={`${styles.link} ${currentPath === href ? styles.active : ""}`}
+      className={({ isActive }) =>
+        `${styles.base} ${isNav ? styles.nav : ""} ${
+          isNav && isActive ? styles.active : ""
+        } ${className}`.trim()
+      }
       {...props}
     >
       {children}
