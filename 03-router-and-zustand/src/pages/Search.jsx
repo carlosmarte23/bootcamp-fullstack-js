@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const MAX_JOBS_PER_PAGE = 4;
 
-export function Search() {
+export default function Search() {
   const {
     filters,
     searchQuery,

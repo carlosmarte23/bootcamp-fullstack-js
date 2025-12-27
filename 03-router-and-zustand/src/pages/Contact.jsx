@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 
 import styles from "./Contact.module.css";
 
-export function Contact() {
+export default function Contact() {
   const nameInputId = useId();
   const emailInputId = useId();
   const subjectInputId = useId();
