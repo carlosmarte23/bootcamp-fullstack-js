@@ -1,10 +1,10 @@
 import styles from "./Spinner.module.css";
 
-export function Spinner() {
+export function Spinner({ text = "Buscando empleos..." }) {
   return (
     <div className={styles.spinnerContainer}>
       <div className={styles.spinnerAnimation}></div>
-      <p>Buscando empleos...</p>
+      <p>{text}</p>
     </div>
   );
 }

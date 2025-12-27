@@ -1,4 +1,6 @@
 export const errorHelper = (error) => {
+  if (!error) return "Ocurrio un error inesperado. Intenta nuevamente.";
+
   if (!navigator.onLine) {
     return "No tienes conexión a internet. Verifica tu red y vuelve a intentar.";
   } else if (error.status === null) {
@@ -12,7 +14,7 @@ export const errorHelper = (error) => {
   } else if (error.status === 403) {
     return "No tienes permisos para acceder a esta información.";
   } else if (error.status === 404) {
-    return "No se encontraron empleos que coincidan con los filtros seleccionados.";
+    return "No se encontraron empleos que coincidan con la información dada.";
   } else if (error.status === 500) {
     return "Ocurrió un problema en el servidor. Intenta nuevamente en unos minutos.";
   } else {
