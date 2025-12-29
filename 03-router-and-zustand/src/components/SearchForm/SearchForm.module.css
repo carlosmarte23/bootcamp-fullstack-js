@@ -51,19 +51,55 @@
 
 /* Jobs Search Bar Styles */
 .searchBar {
-  padding: 0.25rem 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
   position: relative;
+  background-color: var(--input-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -3px var(--shadow);
+}
+
+.searchBar svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.searchBar input[type="text"] {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--text-primary);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  text-overflow: ellipsis;
+}
+
+.searchBar input[type="text"]::placeholder {
+  color: var(--text-muted);
 }
 
 /* Jobs Search Filters Styles */
 .searchFilters {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.75rem;
   margin-top: 0.5rem;
   padding-inline: 0;
   background-color: var(--background);
   box-shadow: none;
   border: none;
+}
+
+.searchFilters select {
+  flex: 0 0 auto;
+  min-width: 9.5rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.95rem;
 }
 
 .clearFilters {
@@ -79,4 +115,51 @@
 
 .isFocused {
   outline: 2px solid #4f46e5 !important;
+}
+
+@media (max-width: 768px) {
+  .searchForm {
+    margin-top: 2rem;
+    padding: 0 1rem;
+
+    h1 {
+      font-size: clamp(1.8rem, 6vw, 2.1rem);
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    form {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+
+  .searchFilters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .searchFilters select,
+  .searchFilters .button {
+    width: 100%;
+  }
+
+  .clearFilters {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .searchForm {
+    padding: 0 1.5rem;
+  }
 }

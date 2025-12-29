@@ -73,7 +73,7 @@ export function Pagination({ currentPage = 1, totalPages = 1, onPageChange }) {
             href={builtPageURL(page)}
             key={page}
             className={`${styles.paginationLink} ${
-              currentPage === page ? "is-active" : ""
+              currentPage === page ? styles.isActive : ""
             }`}
             onClick={(event) => handlePageChange(event, page)}
           >

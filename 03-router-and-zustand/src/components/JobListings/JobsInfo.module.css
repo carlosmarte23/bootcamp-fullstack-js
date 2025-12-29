@@ -1,0 +1,17 @@
+.jobsInfo {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+
+  span {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  strong {
+    color: var(--primary-light);
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}

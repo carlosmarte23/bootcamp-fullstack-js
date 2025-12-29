@@ -8,6 +8,7 @@ import { useFilters } from "../hooks/useFilters";
 import { errorHelper } from "../utils/errorHelper";
 
 import { useEffect, useState } from "react";
+import styles from "./Search.module.css";
 
 const MAX_JOBS_PER_PAGE = 4;
 
@@ -96,7 +97,7 @@ export default function Search() {
     : `DevJobs - Empleos: Mostrando ${total} Resultados. Pagina ${currentPage} de ${totalPages}`;
 
   return (
-    <main>
+    <main className={styles.search}>
       <title>{searchPageTitle}</title>
       <SearchForm
         filters={filters}
@@ -117,15 +118,9 @@ export default function Search() {
           onAction={() => setRetryCount((prev) => prev + 1)}
         />
       ) : (
-        <div>
+        <div className={styles.results}>
           {jobs.length === 0 ? (
-            <div
-              style={{
-                padding: "2rem",
-                textWrap: "balance",
-                textAlign: "center",
-              }}
-            >
+            <div className={styles.emptyState}>
               No se encontraron empleos que coincidan con los criterios de
               búsqueda.
             </div>
