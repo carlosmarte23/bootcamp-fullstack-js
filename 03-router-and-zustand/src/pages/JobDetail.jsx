@@ -36,7 +36,7 @@ function DetailBreadcrumb({ job }) {
 function DetailHeader({ job, onBack }) {
   return (
     <header className={styles.jobHeader}>
-      <div>
+      <div className={styles.headerTitle}>
         <h1>{job.titulo}</h1>
         <p>
           <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
@@ -46,7 +46,7 @@ function DetailHeader({ job, onBack }) {
       <div className={styles.headerActions}>
         <button
           type="button"
-          className={`button ${styles.applyBtn}`}
+          className="button button-apply"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -65,7 +65,10 @@ function DetailHeader({ job, onBack }) {
 function DetailFooter() {
   return (
     <footer className={styles.jobApplyFooter}>
-      <button href="#" className={`button ${styles.applyBtn}`}>
+      <button
+        href="#"
+        className={`button button-apply ${styles.footerApplyButton}`}
+      >
         Aplicar ahora
       </button>
     </footer>
