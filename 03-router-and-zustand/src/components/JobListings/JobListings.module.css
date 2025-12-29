@@ -6,8 +6,21 @@
 }
 
 .jobList {
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin-top: 2rem;
   border: 1px solid var(--border);
   border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .searchResults {
+    margin: 1.5rem auto;
+    padding-inline: 0.75rem;
+  }
+
+  .jobList {
+    border-width: 1px;
+  }
 }

@@ -102,7 +102,7 @@ export default function Contact() {
         <h2>Ponte en contacto con nosotros</h2>
         <p>
           ¿Tienes alguna pregunta o comentario? Rellena el siguiente formulario
-          y nos pondremos en contacto contigo pronto
+          y nos pondremos en contacto contigo pronto.
         </p>
       </header>
 

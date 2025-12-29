@@ -27,7 +27,7 @@ export function JobCard({ job }) {
             e.stopPropagation();
             e.preventDefault();
           }}
-          className="button"
+          className="button button-apply"
         >
           Aplicar
         </button>

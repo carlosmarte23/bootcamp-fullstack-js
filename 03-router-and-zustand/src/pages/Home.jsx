@@ -1,4 +1,5 @@
 import { useRouter } from "../hooks/useRouter";
+import styles from "./Home.module.css";
 
 export default function Home() {
   const { navigateTo } = useRouter();
@@ -19,14 +20,18 @@ export default function Home() {
   return (
     <main>
       <title>DevJobs - Inicio</title>
-      <section className="hero">
+      <section className={styles.hero}>
         <img src="./background.webp" alt="" />
         <h1>Encuentra el trabajo de tus sueños</h1>
         <p>
           Únete a la comunidad más grande de desarrolladores y encuentra tu
           próxima oportunidad
         </p>
-        <form role="search" onSubmit={handleSearch}>
+        <form
+          role="search"
+          onSubmit={handleSearch}
+          className={styles.searchForm}
+        >
           <div>
             <svg
               width="24"
@@ -54,7 +59,7 @@ export default function Home() {
         </form>
       </section>
 
-      <section className="features">
+      <section className={styles.features}>
         <header>
           <h2>¿Por qué DevJobs?</h2>
           <p>

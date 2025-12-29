@@ -60,3 +60,59 @@ In our case, we are using React lazy to lazy load the pages. We can also use Rea
 ## Add active status to links
 
 For this, we'll use the `NavLink` component from React Router replacing our `Link` component with an abstraction pattern.
+
+## Responsive UI refactor (CSS Modules cleanup)
+
+After the routing migration, I refactored the UI layer to be fully responsive and more maintainable by moving page-specific styles out of `index.css` and into **CSS Modules**. This reduced global CSS noise, avoided class name collisions, and made it easier to iterate on each page/component independently.
+
+### Pages updated
+
+- **Home page**
+
+  - Migrated `.hero`, `.features`, and the search form styles into `Home.module.css`.
+  - Added responsive rules for smaller screens (hero height, typography, and layout tweaks).
+
+- **Search page**
+
+  - Added `Search.module.css` and replaced inline styles with module classes.
+  - Improved spacing/layout for results and empty state.
+  - Updated the whole Search “system” to be mobile-friendly (filters, list, pagination).
+
+- **Job detail page**
+
+  - Refactored layout to support wider screens while staying clean on mobile.
+  - Made header/actions/footer stack properly on small screens.
+  - Unified apply button styling using a shared `.button-apply` class and added a larger footer apply button.
+
+- **Contact page**
+
+  - Added responsive layout rules for the form + sidebar to collapse into one column.
+  - Improved text wrapping/line-height for better readability on small screens.
+
+### Components updated
+
+- **Header**
+
+  - Made header responsive by stacking logo/nav/actions on mobile.
+
+- **Job listings**
+
+  - Updated `JobCard` layout to switch to a single-column layout on mobile.
+  - Added responsive spacing and ensured action buttons behave correctly on small screens.
+  - Added `JobsInfo.module.css` and moved styling out of global classes.
+
+- **SearchForm**
+
+  - Improved the search bar layout and made filters stack vertically on mobile.
+  - Added a CSS Module for `TechFilter` and moved the dropdown styles there.
+  - Added responsive dropdown sizing for smaller viewports.
+
+- **Pagination**
+
+  - Refactored active state styling into CSS Modules (`isActive`).
+  - Added horizontal scroll behavior for pagination links on mobile.
+
+### Global CSS cleanup
+
+- Removed large blocks of page-specific styles from `index.css`.
+- Kept only truly global styles and introduced a reusable `.button-apply` utility class.
