@@ -116,3 +116,7 @@ After the routing migration, I refactored the UI layer to be fully responsive an
 
 - Removed large blocks of page-specific styles from `index.css`.
 - Kept only truly global styles and introduced a reusable `.button-apply` utility class.
+
+## Authentication
+
+Our next step is implement authentication, our long term goal is to use a global state management library like **Zustand**, but we will start simple. First since there isn't an API for authentication, we will use a simple in-memory authentication system simulating a login / logout button. For the global state management we will use **React Context** with the hook useContext finally use the hook "use" that is a new feature since React 19. Finally prepare our app to use zustand creating our custom hook useAuth.
