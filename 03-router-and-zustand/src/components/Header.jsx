@@ -1,4 +1,4 @@
-import { useAuth } from "../context/authContext.jsx";
+import { useAuthStore } from "../store/authStore.js";
 
 import styles from "./Header.module.css";
 import { Link } from "./Link.jsx";
@@ -41,7 +41,7 @@ export function Header() {
 }
 
 function LoginButton() {
-  const { isLoggedIn, login, logout } = useAuth();
+  const { isLoggedIn, login, logout } = useAuthStore();
 
   return isLoggedIn ? (
     <button onClick={logout} className="button">

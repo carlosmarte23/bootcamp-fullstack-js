@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-import { useAuth } from "../context/authContext";
-
 import { ErrorState } from "../components/ErrorState";
 import { Link } from "../components/Link";
 import { Spinner } from "../components/Spinner";
+import { useAuthStore } from "../store/authStore";
 
 import { errorHelper } from "../utils/errorHelper";
 import styles from "./JobDetail.module.css";
@@ -34,8 +33,25 @@ function DetailBreadcrumb({ job }) {
   );
 }
 
+function DetailApplyButton() {
+  const { isLoggedIn } = useAuthStore();
+
+  return (
+    <button
+      disabled={!isLoggedIn}
+      type="button"
+      className="button button-apply"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+    >
+      {isLoggedIn ? "Aplicar ahora" : "Iniciar sesión para aplicar"}
+    </button>
+  );
+}
+
 function DetailHeader({ job, onBack }) {
-  const { isLoggedIn } = useAuth();
   return (
     <header className={styles.jobHeader}>
       <div className={styles.headerTitle}>
@@ -46,17 +62,7 @@ function DetailHeader({ job, onBack }) {
       </div>
 
       <div className={styles.headerActions}>
-        <button
-          disabled={!isLoggedIn}
-          type="button"
-          className="button button-apply"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-        >
-          {isLoggedIn ? "Aplicar ahora" : "Iniciar sesión para aplicar"}
-        </button>
+        <DetailApplyButton />
         <button onClick={onBack} className={`button`}>
           Regresar
         </button>
