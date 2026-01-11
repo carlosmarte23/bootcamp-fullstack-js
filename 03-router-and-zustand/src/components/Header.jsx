@@ -5,7 +5,6 @@ import styles from "./Header.module.css";
 import { Link } from "./Link.jsx";
 
 export function Header() {
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
   return (
     <header>
       <h1 className={styles.logo}>
@@ -36,16 +35,22 @@ export function Header() {
         <Link href="#" variant="button" className="button">
           Publicar un empleo
         </Link>
-        {isLoggedIn ? (
-          <button onClick={logout} className="button">
-            Cerrar sesión
-          </button>
-        ) : (
-          <button onClick={login} className="button button-apply">
-            Iniciar sesión
-          </button>
-        )}
+        <LoginButton />
       </div>
     </header>
+  );
+}
+
+function LoginButton() {
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
+
+  return isLoggedIn ? (
+    <button onClick={logout} className="button">
+      Cerrar sesión
+    </button>
+  ) : (
+    <button onClick={login} className="button button-apply">
+      Iniciar sesión
+    </button>
   );
 }

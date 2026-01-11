@@ -121,11 +121,7 @@ h1 + p {
 }
 
 .button-apply {
-  padding: 0.6rem 1.1rem;
-  font-size: 0.875rem;
-  border-radius: 0.6rem;
   background: var(--primary-light);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.35),
     0 10px 35px rgba(9, 153, 255, 0.22);
   transition: all 0.25s ease;
