@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import { Link } from "./Link.jsx";
 
-export function Header() {
+export function Header({ isLoggedIn, onLogin, onLogout }) {
   return (
     <header>
       <h1 className={styles.logo}>
@@ -32,9 +32,15 @@ export function Header() {
         <Link href="#" variant="button" className="button">
           Publicar un empleo
         </Link>
-        <Link href="#" variant="button" className="button">
-          Iniciar sesión
-        </Link>
+        {isLoggedIn ? (
+          <button onClick={onLogout} className="button">
+            Cerrar sesión
+          </button>
+        ) : (
+          <button onClick={onLogin} className="button button-apply">
+            Iniciar sesión
+          </button>
+        )}
       </div>
     </header>
   );

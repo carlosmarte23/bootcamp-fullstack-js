@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Route, Routes } from "react-router";
 
 import { Footer } from "./components/Footer.jsx";
@@ -12,15 +12,27 @@ const JobDetail = lazy(() => import("./pages/JobDetail.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => setIsLoggedIn(true);
+  const handleLogout = () => setIsLoggedIn(false);
+
   return (
     <>
-      <Header />
+      <Header
+        isLoggedIn={isLoggedIn}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
+      />
       <Suspense fallback={<Spinner text="Cargando pagina..." />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/jobs/:jobId" element={<JobDetail />} />
+          <Route
+            path="/jobs/:jobId"
+            element={<JobDetail isLoggedIn={isLoggedIn} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

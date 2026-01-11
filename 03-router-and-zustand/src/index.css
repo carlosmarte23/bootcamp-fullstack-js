@@ -103,15 +103,20 @@ h1 + p {
   border: none;
   box-shadow: 0 4px 6px -3px var(--shadow);
 
-  &:hover,
-  &:focus {
+  &:not(:disabled):hover,
+  &:not(:disabled):focus {
     background-color: var(--primary-dark);
     color: var(--primary-light);
     cursor: pointer;
     outline: none;
   }
-  &:active {
+  &:not(:disabled):active {
     transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
@@ -126,8 +131,8 @@ h1 + p {
   transition: all 0.25s ease;
 }
 
-.button-apply:hover,
-.button-apply:focus {
+.button-apply:not(:disabled):hover,
+.button-apply:not(:disabled):focus {
   background: var(--primary-hover);
   color: var(--text-primary);
 }

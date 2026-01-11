@@ -33,7 +33,7 @@ function DetailBreadcrumb({ job }) {
   );
 }
 
-function DetailHeader({ job, onBack }) {
+function DetailHeader({ job, onBack, isLoggedIn }) {
   return (
     <header className={styles.jobHeader}>
       <div className={styles.headerTitle}>
@@ -45,6 +45,7 @@ function DetailHeader({ job, onBack }) {
 
       <div className={styles.headerActions}>
         <button
+          disabled={!isLoggedIn}
           type="button"
           className="button button-apply"
           onClick={(e) => {
@@ -52,7 +53,7 @@ function DetailHeader({ job, onBack }) {
             e.stopPropagation();
           }}
         >
-          Aplicar ahora
+          {isLoggedIn ? "Aplicar ahora" : "Iniciar sesión para aplicar"}
         </button>
         <button onClick={onBack} className={`button`}>
           Regresar
@@ -75,7 +76,7 @@ function DetailFooter() {
   );
 }
 
-export default function JobDetail() {
+export default function JobDetail({ isLoggedIn }) {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -165,7 +166,11 @@ export default function JobDetail() {
     <main className={styles.container}>
       <title>{pageTitle}</title>
       <DetailBreadcrumb job={job} />
-      <DetailHeader job={job} onBack={(e) => handleClick(e, false)} />
+      <DetailHeader
+        job={job}
+        onBack={(e) => handleClick(e, false)}
+        isLoggedIn={isLoggedIn}
+      />
       <JobSection
         title="Descripción del puesto"
         content={job.content.description}
