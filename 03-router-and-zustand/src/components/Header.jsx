@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/authContext";
+import { useAuth } from "../context/authContext.jsx";
 
 import styles from "./Header.module.css";
 import { Link } from "./Link.jsx";
@@ -42,7 +41,7 @@ export function Header() {
 }
 
 function LoginButton() {
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn, login, logout } = useAuth();
 
   return isLoggedIn ? (
     <button onClick={logout} className="button">
