@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+
 import styles from "./Header.module.css";
 import { Link } from "./Link.jsx";
 
-export function Header({ isLoggedIn, onLogin, onLogout }) {
+export function Header() {
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
   return (
     <header>
       <h1 className={styles.logo}>
@@ -33,11 +37,11 @@ export function Header({ isLoggedIn, onLogin, onLogout }) {
           Publicar un empleo
         </Link>
         {isLoggedIn ? (
-          <button onClick={onLogout} className="button">
+          <button onClick={logout} className="button">
             Cerrar sesión
           </button>
         ) : (
-          <button onClick={onLogin} className="button button-apply">
+          <button onClick={login} className="button button-apply">
             Iniciar sesión
           </button>
         )}

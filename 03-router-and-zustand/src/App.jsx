@@ -19,20 +19,13 @@ function App() {
 
   return (
     <>
-      <Header
-        isLoggedIn={isLoggedIn}
-        onLogin={handleLogin}
-        onLogout={handleLogout}
-      />
+      <Header />
       <Suspense fallback={<Spinner text="Cargando pagina..." />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/contact" element={<Contact />} />
-          <Route
-            path="/jobs/:jobId"
-            element={<JobDetail isLoggedIn={isLoggedIn} />}
-          />
+          <Route path="/jobs/:jobId" element={<JobDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

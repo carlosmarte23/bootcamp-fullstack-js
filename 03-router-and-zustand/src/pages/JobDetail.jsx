@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
+
+import { AuthContext } from "../context/authContext";
 
 import { ErrorState } from "../components/ErrorState";
 import { Link } from "../components/Link";
@@ -33,7 +35,8 @@ function DetailBreadcrumb({ job }) {
   );
 }
 
-function DetailHeader({ job, onBack, isLoggedIn }) {
+function DetailHeader({ job, onBack }) {
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <header className={styles.jobHeader}>
       <div className={styles.headerTitle}>
