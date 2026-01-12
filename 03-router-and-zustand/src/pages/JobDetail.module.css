@@ -37,10 +37,10 @@
 
 .jobHeader {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.75rem;
   padding: 0;
   border: none;
   margin: 0;
@@ -71,9 +71,40 @@
 
 .headerActions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.favoriteButton {
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  box-shadow: none;
+  color: var(--text-secondary);
+}
+
+.favoriteButton:not(:disabled):hover,
+.favoriteButton:not(:disabled):focus {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-primary);
+}
+
+.backButton {
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+}
+
+.backButton:not(:disabled):hover,
+.backButton:not(:disabled):focus {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-primary);
 }
 
 .jobApplyFooter {
@@ -82,22 +113,6 @@
   margin: 0 auto;
   position: relative;
   border: none;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 100vw;
-    transform: translate(-50%);
-    height: 1px;
-    background: var(--border);
-  }
-}
-
-.footerApplyButton {
-  padding: 1rem 1.75rem;
-  font-size: 1.1rem;
 }
 
 .jobSection {
@@ -242,14 +257,19 @@
 
   .headerActions {
     width: 100%;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-top: 0.75rem;
   }
 
-  .headerActions :global(.button) {
-    width: 100%;
+  .headerActions :global(.button-apply) {
+    flex: 1 1 12rem;
     text-align: center;
+  }
+
+  .favoriteButton,
+  .backButton {
+    flex: 0 0 auto;
   }
 
   .jobSection h2 {
@@ -266,22 +286,6 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-
-    &::before {
-      display: none;
-    }
-
-    .footerApplyButton {
-      width: 100%;
-      display: block;
-      padding: 0.85rem 1.25rem;
-      font-size: 0.98rem;
-    }
-  }
-
-  .footerApplyButton {
-    padding: 0.9rem 1.5rem;
-    font-size: 1.02rem;
   }
 }
 
@@ -299,15 +303,5 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    &::before {
-      display: none;
-    }
-
-    .footerApplyButton {
-      width: 100%;
-      display: block;
-      padding: 0.85rem 1.25rem;
-      font-size: 0.98rem;
-    }
   }
 }

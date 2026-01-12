@@ -120,3 +120,7 @@ After the routing migration, I refactored the UI layer to be fully responsive an
 ## Authentication
 
 Our next step is to implement authentication. Our long-term goal is to use a global state management library like **Zustand**, but we will start simple. First, since there isn't an API for authentication, we will use a simple in-memory authentication system simulating a login/logout button first using a state. Then, we will progress to the global state management using **React Context** with the hook useContext. Finally, we will prepare our app to use zustand by creating our custom hook useAuth.
+
+## Favorites
+
+Now that we have a way to login, we can implement a **favorite jobs feature**. We'll use a zustand store to manage the favorite jobs. We'll also add a favorite button to each job card that will add or remove the job from the store aswell as reflect if the job is favorited. And also add a new NavLink to the header, that navigates to a profile page and display the number of favorite jobs in the same header link.

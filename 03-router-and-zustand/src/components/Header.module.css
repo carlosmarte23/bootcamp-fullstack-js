@@ -56,6 +56,38 @@ nav {
   pointer-events: none;
 }
 
+.favoriteLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.favoriteLabel {
+  font-weight: 600;
+}
+
+.favoriteBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--primary-dark);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.heartIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--error);
+}
+
+.favoriteCount {
+  font-variant-numeric: tabular-nums;
+}
+
 @media (max-width: 768px) {
   header {
     flex-direction: column;

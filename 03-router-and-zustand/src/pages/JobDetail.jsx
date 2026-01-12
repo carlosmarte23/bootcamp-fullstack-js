@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { ErrorState } from "../components/ErrorState";
+import { JobFavoriteButton } from "../components/JobFavoriteButton";
 import { Link } from "../components/Link";
 import { Spinner } from "../components/Spinner";
 import { useAuthStore } from "../store/authStore";
@@ -59,13 +60,13 @@ function DetailHeader({ job, onBack }) {
         <p>
           <span>{job.empresa}</span> - <span>{job.ubicacion}</span>
         </p>
-      </div>
-
-      <div className={styles.headerActions}>
-        <DetailApplyButton />
-        <button onClick={onBack} className={`button`}>
-          Regresar
-        </button>
+        <div className={styles.headerActions}>
+          <DetailApplyButton />
+          <JobFavoriteButton jobId={job.id} className={styles.favoriteButton} />
+          <button onClick={onBack} className={`button ${styles.backButton}`}>
+            Regresar
+          </button>
+        </div>
       </div>
     </header>
   );
@@ -74,12 +75,7 @@ function DetailHeader({ job, onBack }) {
 function DetailFooter() {
   return (
     <footer className={styles.jobApplyFooter}>
-      <button
-        href="#"
-        className={`button button-apply ${styles.footerApplyButton}`}
-      >
-        Aplicar ahora
-      </button>
+      <DetailApplyButton />
     </footer>
   );
 }
