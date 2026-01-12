@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-
 import { ErrorState } from "../components/ErrorState";
 import { Link } from "../components/Link";
 import { Spinner } from "../components/Spinner";
+import { useAuthStore } from "../store/authStore";
 
 import { errorHelper } from "../utils/errorHelper";
 import styles from "./JobDetail.module.css";
@@ -33,6 +33,24 @@ function DetailBreadcrumb({ job }) {
   );
 }
 
+function DetailApplyButton() {
+  const { isLoggedIn } = useAuthStore();
+
+  return (
+    <button
+      disabled={!isLoggedIn}
+      type="button"
+      className="button button-apply"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+    >
+      {isLoggedIn ? "Aplicar ahora" : "Iniciar sesión para aplicar"}
+    </button>
+  );
+}
+
 function DetailHeader({ job, onBack }) {
   return (
     <header className={styles.jobHeader}>
@@ -44,16 +62,7 @@ function DetailHeader({ job, onBack }) {
       </div>
 
       <div className={styles.headerActions}>
-        <button
-          type="button"
-          className="button button-apply"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-        >
-          Aplicar ahora
-        </button>
+        <DetailApplyButton />
         <button onClick={onBack} className={`button`}>
           Regresar
         </button>
@@ -75,7 +84,7 @@ function DetailFooter() {
   );
 }
 
-export default function JobDetail() {
+export default function JobDetail({ isLoggedIn }) {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -165,7 +174,11 @@ export default function JobDetail() {
     <main className={styles.container}>
       <title>{pageTitle}</title>
       <DetailBreadcrumb job={job} />
-      <DetailHeader job={job} onBack={(e) => handleClick(e, false)} />
+      <DetailHeader
+        job={job}
+        onBack={(e) => handleClick(e, false)}
+        isLoggedIn={isLoggedIn}
+      />
       <JobSection
         title="Descripción del puesto"
         content={job.content.description}

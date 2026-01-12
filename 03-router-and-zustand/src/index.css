@@ -103,31 +103,32 @@ h1 + p {
   border: none;
   box-shadow: 0 4px 6px -3px var(--shadow);
 
-  &:hover,
-  &:focus {
+  &:not(:disabled):hover,
+  &:not(:disabled):focus {
     background-color: var(--primary-dark);
     color: var(--primary-light);
     cursor: pointer;
     outline: none;
   }
-  &:active {
+  &:not(:disabled):active {
     transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
 .button-apply {
-  padding: 0.6rem 1.1rem;
-  font-size: 0.875rem;
-  border-radius: 0.6rem;
   background: var(--primary-light);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.35),
     0 10px 35px rgba(9, 153, 255, 0.22);
   transition: all 0.25s ease;
 }
 
-.button-apply:hover,
-.button-apply:focus {
+.button-apply:not(:disabled):hover,
+.button-apply:not(:disabled):focus {
   background: var(--primary-hover);
   color: var(--text-primary);
 }

@@ -1,3 +1,5 @@
+import { useAuthStore } from "../store/authStore.js";
+
 import styles from "./Header.module.css";
 import { Link } from "./Link.jsx";
 
@@ -32,10 +34,22 @@ export function Header() {
         <Link href="#" variant="button" className="button">
           Publicar un empleo
         </Link>
-        <Link href="#" variant="button" className="button">
-          Iniciar sesión
-        </Link>
+        <LoginButton />
       </div>
     </header>
+  );
+}
+
+function LoginButton() {
+  const { isLoggedIn, login, logout } = useAuthStore();
+
+  return isLoggedIn ? (
+    <button onClick={logout} className="button">
+      Cerrar sesión
+    </button>
+  ) : (
+    <button onClick={login} className="button button-apply">
+      Iniciar sesión
+    </button>
   );
 }
