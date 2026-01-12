@@ -57,9 +57,6 @@ export function Header() {
       </nav>
 
       <div className={styles.actions}>
-        <Link href="#" variant="button" className="button">
-          Publicar un empleo
-        </Link>
         <LoginButton />
       </div>
     </header>
