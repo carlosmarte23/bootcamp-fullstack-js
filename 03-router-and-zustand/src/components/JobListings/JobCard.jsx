@@ -31,9 +31,11 @@ export function JobCard({ job }) {
 }
 
 function JobApplyButton() {
+  const { isLoggedIn } = useAuthStore();
   return (
     <button
       type="button"
+      disabled={!isLoggedIn}
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -46,9 +48,11 @@ function JobApplyButton() {
 }
 function JobFavoriteButton({ jobId }) {
   const { toggleFavorite, isFavorite } = useFavoritesStore();
+  const { isLoggedIn } = useAuthStore();
   return (
     <button
       type="button"
+      disabled={!isLoggedIn}
       onClick={(e) => {
         toggleFavorite(jobId);
       }}
