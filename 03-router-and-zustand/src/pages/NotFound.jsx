@@ -1,7 +1,7 @@
 import { Link } from "../components/Link.jsx";
 import styles from "./NotFound.module.css";
 
-export function NotFound() {
+export default function NotFound() {
   return (
     <main className={styles.container}>
       <div className={styles.glow} aria-hidden="true" />
