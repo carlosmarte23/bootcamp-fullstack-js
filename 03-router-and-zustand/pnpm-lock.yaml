@@ -9,47 +9,47 @@ importers:
   .:
     dependencies:
       react:
-        specifier: ^19.2.0
+        specifier: 19.2.0
         version: 19.2.0
       react-dom:
-        specifier: ^19.2.0
+        specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
       react-router:
-        specifier: ^7.11.0
+        specifier: 7.11.0
         version: 7.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       snarkdown:
-        specifier: ^2.0.0
+        specifier: 2.0.0
         version: 2.0.0
       zustand:
-        specifier: ^5.0.9
-        version: 5.0.9(@types/react@19.2.6)(react@19.2.0)
+        specifier: 5.0.9
+        version: 5.0.9(@types/react@19.2.5)(react@19.2.0)
     devDependencies:
       '@eslint/js':
-        specifier: ^9.39.1
+        specifier: 9.39.1
         version: 9.39.1
       '@types/react':
-        specifier: ^19.2.5
-        version: 19.2.6
+        specifier: 19.2.5
+        version: 19.2.5
       '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.6)
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.2.5)
       '@vitejs/plugin-react-swc':
-        specifier: ^4.2.2
+        specifier: 4.2.2
         version: 4.2.2(vite@7.2.4)
       eslint:
-        specifier: ^9.39.1
+        specifier: 9.39.1
         version: 9.39.1
       eslint-plugin-react-hooks:
-        specifier: ^7.0.1
+        specifier: 7.0.1
         version: 7.0.1(eslint@9.39.1)
       eslint-plugin-react-refresh:
-        specifier: ^0.4.24
+        specifier: 0.4.24
         version: 0.4.24(eslint@9.39.1)
       globals:
-        specifier: ^16.5.0
+        specifier: 16.5.0
         version: 16.5.0
       vite:
-        specifier: ^7.2.4
+        specifier: 7.2.4
         version: 7.2.4
 
 packages:
@@ -546,8 +546,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.6':
-    resolution: {integrity: sha512-p/jUvulfgU7oKtj6Xpk8cA2Y1xKTtICGpJYeJXz2YVO2UcvjQgeRMLDGfDeqeRW2Ta+0QNFwcc8X3GH8SxZz6w==}
+  '@types/react@19.2.5':
+    resolution: {integrity: sha512-keKxkZMqnDicuvFoJbzrhbtdLSPhj/rZThDlKWCDbgXmUg0rEUFtRssDXKYmtXluZlIqiC5VqkCgRwzuyLHKHw==}
 
   '@vitejs/plugin-react-swc@4.2.2':
     resolution: {integrity: sha512-x+rE6tsxq/gxrEJN3Nv3dIV60lFflPj94c90b+NNo6n1QV1QQUTLoL0MpaOVasUZ0zqVBn7ead1B5ecx1JAGfA==}
@@ -1437,11 +1437,11 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/react-dom@19.2.3(@types/react@19.2.6)':
+  '@types/react-dom@19.2.3(@types/react@19.2.5)':
     dependencies:
-      '@types/react': 19.2.6
+      '@types/react': 19.2.5
 
-  '@types/react@19.2.6':
+  '@types/react@19.2.5':
     dependencies:
       csstype: 3.2.3
 
@@ -1903,7 +1903,7 @@ snapshots:
 
   zod@4.1.12: {}
 
-  zustand@5.0.9(@types/react@19.2.6)(react@19.2.0):
+  zustand@5.0.9(@types/react@19.2.5)(react@19.2.0):
     optionalDependencies:
-      '@types/react': 19.2.6
+      '@types/react': 19.2.5
       react: 19.2.0
