@@ -24,27 +24,39 @@ let users = [
 ];
 
 const server = http.createServer(async (req, res) => {
-  const { method, url } = req;
+  const { method, url, headers } = req;
+  const { pathname, searchParams } = new URL(url, `http://${headers.host}`);
 
-  console.log(`Petición recibida:`, method, url);
+  console.log(`Petición recibida:`, method, pathname);
 
   if (method === "GET") {
     res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    if (url === "/") {
+    if (pathname === "/") {
       return res.end("Hola desde tu primer servidor de Node.js 🔥 👍🏾");
     }
 
-    if (url === "/users") {
-      return sendJson(res, 200, { users });
+    if (pathname === "/users") {
+      const limit = Number(searchParams.get("limit")) || users.length;
+      const offset = Number(searchParams.get("offset")) || 0;
+
+      if (isNaN(limit) || isNaN(offset)) {
+        return sendJson(res, 400, {
+          message: "Limit and offset must be numbers",
+        });
+      }
+
+      const paginatedUsers = users.slice(offset, offset + limit);
+
+      return sendJson(res, 200, { paginatedUsers });
     }
 
-    if (req.url === "/health") {
+    if (pathname === "/health") {
       return sendJson(res, 200, { status: "ok", uptime: uptime() });
     }
 
     return sendJson(res, 404, { message: "Not found" });
   } else if (method === "POST") {
-    if (req.url === "/users") {
+    if (pathname === "/users") {
       const body = await json(req);
 
       if (!body || !body.name) {
