@@ -1,4 +1,5 @@
 import http from "node:http";
+import { uptime } from "node:process";
 
 process.loadEnvFile();
 const port = process.env.PORT ?? 3000;
@@ -19,6 +20,10 @@ const server = http.createServer((req, res) => {
 
   if (req.url === "/users") {
     return sendJson(res, 200, { name: "John", lastName: "Doe", age: 30 });
+  }
+
+  if (req.url === "/health") {
+    return sendJson(res, 200, { status: "ok", uptime: uptime() });
   }
 
   return sendJson(res, 404, { message: "Not found" });
