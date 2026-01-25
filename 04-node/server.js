@@ -3,6 +3,12 @@ import http from "node:http";
 process.loadEnvFile();
 const port = process.env.PORT ?? 3000;
 
+function sendJson(res, status, data) {
+  res.statusCode = status;
+  res.setHeader("Content-Type", "application/json");
+  return res.end(JSON.stringify(data));
+}
+
 const server = http.createServer((req, res) => {
   console.log(`Petición recibida:`, req.method, req.url);
 
@@ -12,12 +18,10 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.url === "/users") {
-    res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify({ name: "John", lastName: "Doe", age: 30 }));
+    return sendJson(res, 200, { name: "John", lastName: "Doe", age: 30 });
   }
 
-  res.statusCode = 404;
-  return res.end("404 Not Found");
+  return sendJson(res, 404, { message: "Not found" });
 });
 
 server.listen(port, () => {
