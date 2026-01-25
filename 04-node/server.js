@@ -1,6 +1,7 @@
 import http from "node:http";
 
-const port = 3000;
+process.loadEnvFile();
+const port = process.env.PORT ?? 3000;
 
 const server = http.createServer((req, res) => {
   console.log(`Petición recibida:`, req.method, req.url);
