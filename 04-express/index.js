@@ -1,5 +1,6 @@
 import express from "express";
 
+process.loadEnvFile();
 const PORT = process.env.PORT || 1234;
 const app = express();
 
