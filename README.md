@@ -20,6 +20,22 @@ Inside each one I include exercises, small projects, and a `notes.md` file where
 
 ---
 
+## 🔐 Environment variables (.env)
+
+Some modules (especially backend ones) require environment variables.
+
+- `.env` files are **not committed** to Git (they may contain secrets).
+- Each module that needs env vars includes a **`.env.example`** file.
+- Setup: copy `.env.example` to `.env` inside that module and adjust values.
+
+Example (macOS/Linux):
+cp .env.example .env
+
+Example (Windows PowerShell):
+Copy-Item .env.example .env
+
+---
+
 ## 🧩 Module progress
 
 | Module | Topic                   | Status         | Last update         |
