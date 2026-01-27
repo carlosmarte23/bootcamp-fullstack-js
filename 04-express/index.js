@@ -1,7 +1,8 @@
 import express from "express";
+import { DEFAULTS } from "./config.js";
 
 process.loadEnvFile();
-const PORT = process.env.PORT || 1234;
+const PORT = process.env.PORT || DEFAULTS.PORT;
 const app = express();
 
 const jobs = [
@@ -23,7 +24,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/jobs", (req, res) => {
-  const { location } = req.query;
+  const {
+    location,
+    limit = DEFAULTS.LIMIT,
+    offset = DEFAULTS.OFFSET,
+  } = req.query;
 
   let filteredJobs = jobs;
 
@@ -32,6 +37,10 @@ app.get("/jobs", (req, res) => {
       (job) => job.location.toLowerCase() === location.toLocaleLowerCase(),
     );
   }
+
+  const limitNumber = Number(limit);
+  const offsetNumber = Number(offset);
+  filteredJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber);
 
   return res.json(filteredJobs);
 });
