@@ -4,6 +4,12 @@ process.loadEnvFile();
 const PORT = process.env.PORT || 1234;
 const app = express();
 
+const jobs = [
+  { id: 1, title: "Frontend Developer", location: "Remote" },
+  { id: 2, title: "Backend Developer", location: "Barcelona" },
+  { id: 3, title: "Fullstack Developer", location: "Remote" },
+];
+
 app.use((req, res, next) => {
   console.log("--- Nueva petición recibida ---");
   console.log("Fecha:", new Date().toLocaleString());
@@ -14,6 +20,10 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   res.send("Hola desde express!");
+});
+
+app.get("/jobs", (req, res) => {
+  res.json(jobs);
 });
 
 app.get("/health", (req, res) => {
