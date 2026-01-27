@@ -23,7 +23,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/jobs", (req, res) => {
-  res.json(jobs);
+  const { location } = req.query;
+
+  let filteredJobs = jobs;
+
+  if (location) {
+    filteredJobs = filteredJobs.filter(
+      (job) => job.location.toLowerCase() === location.toLocaleLowerCase(),
+    );
+  }
+
+  return res.json(filteredJobs);
 });
 
 app.get("/health", (req, res) => {
