@@ -68,6 +68,21 @@ app.get("/jobs", (req, res) => {
   return res.json(filteredJobs);
 });
 
+app.post("/jobs", (req, res) => {
+  const { title, company, location } = req.body;
+
+  const newJob = {
+    id: jobs.length + 1, //FIX
+    title,
+    company,
+    location,
+  };
+
+  jobs.push(newJob); // Later we'll implement an INSERT into a DB
+
+  return res.status(201).json(newJob);
+});
+
 app.get("/jobs/:id", (req, res) => {
   const { id } = req.params;
 
@@ -88,19 +103,33 @@ app.get("/jobs/:id", (req, res) => {
   return res.json(job);
 });
 
-app.post("/jobs", (req, res) => {
+app.patch("/jobs/:id", (req, res) => {
+  const { id } = req.params;
   const { title, company, location } = req.body;
 
-  const newJob = {
-    id: jobs.length + 1, //FIX
-    title,
-    company,
-    location,
-  };
+  if (!title && !company && !location) {
+    return res.status(400).json({ message: "Debes enviar al menos un campo." });
+  }
 
-  jobs.push(newJob); // Later we'll implement an INSERT into a DB
+  const jobId = Number(id);
 
-  return res.status(201).json(newJob);
+  if (!Number.isInteger(jobId) || jobId <= 0) {
+    return res
+      .status(400)
+      .json({ message: "La id debe ser un número entero positivo." });
+  }
+
+  const job = jobs.find((job) => job.id === jobId);
+
+  if (!job) {
+    return res.status(404).json({ message: "Empleo no encontrado" });
+  }
+
+  if (title !== undefined) job.title = title;
+  if (company !== undefined) job.company = company;
+  if (location !== undefined) job.location = location;
+
+  return res.json(job);
 });
 
 app.get("/health", (req, res) => {
