@@ -6,9 +6,30 @@ const PORT = process.env.PORT || DEFAULTS.PORT;
 const app = express();
 
 const jobs = [
-  { id: 1, title: "Frontend Developer", location: "Remote" },
-  { id: 2, title: "Backend Developer", location: "Barcelona" },
-  { id: 3, title: "Fullstack Developer", location: "Remote" },
+  {
+    id: 1,
+    title: "Frontend Developer",
+    company: "Data Driven Co",
+    location: "Ciudad de México",
+  },
+  {
+    id: 2,
+    title: "Backend Developer",
+    company: "Tech Solutions Inc",
+    location: "New York",
+  },
+  {
+    id: 3,
+    title: "Full Stack Developer",
+    company: "Remoto Ltd",
+    location: "Remote",
+  },
+  {
+    id: 4,
+    title: "DevOps Engineer",
+    company: "Innovate Solutions",
+    location: "Berlin",
+  },
 ];
 
 app.use((req, res, next) => {
@@ -43,6 +64,26 @@ app.get("/jobs", (req, res) => {
   filteredJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber);
 
   return res.json(filteredJobs);
+});
+
+app.get("/jobs/:id", (req, res) => {
+  const { id } = req.params;
+
+  const jobId = Number(id);
+
+  if (!Number.isInteger(jobId) || jobId <= 0) {
+    return res
+      .status(400)
+      .json({ message: "La id debe ser un número entero positivo." });
+  }
+
+  const job = jobs.find((job) => job.id === jobId);
+
+  if (!job) {
+    return res.status(404).json({ message: "Empleo no encontrado" });
+  }
+
+  return res.json(job);
 });
 
 app.get("/health", (req, res) => {
