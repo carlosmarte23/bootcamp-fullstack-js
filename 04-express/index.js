@@ -32,6 +32,8 @@ const jobs = [
   },
 ];
 
+app.use(express.json());
+
 app.use((req, res, next) => {
   console.log("--- Nueva petición recibida ---");
   console.log("Fecha:", new Date().toLocaleString());
@@ -84,6 +86,21 @@ app.get("/jobs/:id", (req, res) => {
   }
 
   return res.json(job);
+});
+
+app.post("/jobs", (req, res) => {
+  const { title, company, location } = req.body;
+
+  const newJob = {
+    id: jobs.length + 1, //FIX
+    title,
+    company,
+    location,
+  };
+
+  jobs.push(newJob); // Later we'll implement an INSERT into a DB
+
+  return res.status(201).json(newJob);
 });
 
 app.get("/health", (req, res) => {
