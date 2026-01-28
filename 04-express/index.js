@@ -58,12 +58,19 @@ app.get("/jobs", (req, res) => {
 
   if (location) {
     filteredJobs = filteredJobs.filter(
-      (job) => job.location.toLowerCase() === location.toLocaleLowerCase(),
+      (job) => job.location.toLowerCase() === location.toLowercase(),
     );
   }
 
   const limitNumber = Number(limit);
   const offsetNumber = Number(offset);
+
+  if (isNaN(limitNumber) || isNaN(offsetNumber)) {
+    return res
+      .status(400)
+      .json({ message: "Limit y offset deben ser números." });
+  }
+
   filteredJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber);
 
   return res.json(filteredJobs);
