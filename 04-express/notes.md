@@ -25,3 +25,17 @@ TL;DR: Express sits on top of the Node server but gives us a much friendlier API
 - Send responses without jumping through hoops.
 
 Now its time to slowly start building our API that we have been using for the frontend of the project. Previously it was made by MiduDev now we will do it by ourselves.
+
+## What we did:
+
+- Create a new Express app.
+- Defined PORT and constants on .env and .config files.
+- Defined a health endpoint and jobs REST API endpoint.
+- Added pagination with limit and offset query parameters.
+- Added a new route to get a job by its id.
+
+## Next steps:
+
+- Later we'll modify this backend to have a MVC architecture.
+- Modify the source to get jobs from a database, no its on memory.
+- Right now it doesn't reflect the same API that we used for the frontend, We'll fix that in another branch.

@@ -44,7 +44,7 @@ Copy-Item .env.example .env
 | 01     | JavaScript              | 🟢 Completed   | November 16th, 2025 |
 | 02     | Vite + React            | 🟢 Completed   | December 25th, 2025 |
 | 03     | React Router + Zustand  | 🟢 Completed   | January 24th, 2026  |
-| 04     | Node.js + Express       | 🟡 In progress | January 25th, 2026  |
+| 04     | Node.js + Express       | 🟡 In progress | January 28th, 2026  |
 
 ---
 
@@ -82,5 +82,5 @@ You’re welcome to review the content to learn or get inspired, but please avoi
 
 ---
 
-📅 **Last updated:** _January 25th, 2026_  
+📅 **Last updated:** _January 28th, 2026_  
 👨‍💻 **Author:** [Carlos Marte](https://github.com/carlosmarte23)
