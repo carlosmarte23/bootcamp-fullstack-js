@@ -58,7 +58,7 @@ app.get("/jobs", (req, res) => {
 
   if (location) {
     filteredJobs = filteredJobs.filter(
-      (job) => job.location.toLowerCase() === location.toLowercase(),
+      (job) => job.location.toLowerCase() === location.toLowerCase(),
     );
   }
 
