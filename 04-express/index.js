@@ -1,4 +1,5 @@
 import express from "express";
+import crypto from "node:crypto";
 import { DEFAULTS } from "./config.js";
 
 process.loadEnvFile();
@@ -7,25 +8,25 @@ const app = express();
 
 let jobs = [
   {
-    id: 1,
+    id: "f7a7a5a5-7f7b-4f7a-a5a5-7f7b4f7a5a5a",
     title: "Frontend Developer",
     company: "Data Driven Co",
     location: "Ciudad de México",
   },
   {
-    id: 2,
+    id: "f8a7a5a5-7f8b-4f8a-a5a5-7f8b4f8a5a5a",
     title: "Backend Developer",
     company: "Tech Solutions Inc",
     location: "New York",
   },
   {
-    id: 3,
+    id: "f9a7a5a5-7f9c-4f9a-a5a5-7f9c4f9a5a5a",
     title: "Full Stack Developer",
     company: "Remoto Ltd",
     location: "Remote",
   },
   {
-    id: 4,
+    id: "faa7a5a5-7fac-4faa-a5a5-7fac4faa5a5a",
     title: "DevOps Engineer",
     company: "Innovate Solutions",
     location: "Berlin",
@@ -72,7 +73,7 @@ app.post("/jobs", (req, res) => {
   const { title, company, location } = req.body;
 
   const newJob = {
-    id: jobs.length + 1, //FIX
+    id: crypto.randomUUID(),
     title,
     company,
     location,
@@ -86,15 +87,11 @@ app.post("/jobs", (req, res) => {
 app.get("/jobs/:id", (req, res) => {
   const { id } = req.params;
 
-  const jobId = Number(id);
-
-  if (!Number.isInteger(jobId) || jobId <= 0) {
-    return res
-      .status(400)
-      .json({ message: "La id debe ser un número entero positivo." });
+  if (!id) {
+    return res.status(400).json({ message: "Debes enviar un id." });
   }
 
-  const job = jobs.find((job) => job.id === jobId);
+  const job = jobs.find((job) => job.id === id);
 
   if (!job) {
     return res.status(404).json({ message: "Empleo no encontrado" });
@@ -107,19 +104,15 @@ app.patch("/jobs/:id", (req, res) => {
   const { id } = req.params;
   const { title, company, location } = req.body;
 
+  if (!id) {
+    return res.status(400).json({ message: "Debes enviar un id." });
+  }
+
   if (!title && !company && !location) {
     return res.status(400).json({ message: "Debes enviar al menos un campo." });
   }
 
-  const jobId = Number(id);
-
-  if (!Number.isInteger(jobId) || jobId <= 0) {
-    return res
-      .status(400)
-      .json({ message: "La id debe ser un número entero positivo." });
-  }
-
-  const job = jobs.find((job) => job.id === jobId);
+  const job = jobs.find((job) => job.id === id);
 
   if (!job) {
     return res.status(404).json({ message: "Empleo no encontrado" });
@@ -135,21 +128,17 @@ app.patch("/jobs/:id", (req, res) => {
 app.delete("/jobs/:id", (req, res) => {
   const { id } = req.params;
 
-  const jobId = Number(id);
-
-  if (!Number.isInteger(jobId) || jobId <= 0) {
-    return res
-      .status(400)
-      .json({ message: "La id debe ser un número entero positivo." });
+  if (!id) {
+    return res.status(400).json({ message: "Debes enviar un id." });
   }
 
-  const jobIndex = jobs.findIndex((job) => job.id === jobId);
+  const before = jobs.length;
 
-  if (jobIndex === -1) {
+  jobs = jobs.filter((job) => job.id !== id);
+
+  if (jobs.length === before) {
     return res.status(404).json({ message: "Empleo no encontrado" });
   }
-
-  jobs = jobs.filter((job) => job.id !== jobId);
 
   return res.sendStatus(204);
 });
