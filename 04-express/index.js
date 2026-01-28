@@ -108,7 +108,7 @@ app.patch("/jobs/:id", (req, res) => {
     return res.status(400).json({ message: "Debes enviar un id." });
   }
 
-  if (!title && !company && !location) {
+  if (title === undefined && company === undefined && location === undefined) {
     return res.status(400).json({ message: "Debes enviar al menos un campo." });
   }
 
