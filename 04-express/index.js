@@ -5,7 +5,7 @@ process.loadEnvFile();
 const PORT = process.env.PORT || DEFAULTS.PORT;
 const app = express();
 
-const jobs = [
+let jobs = [
   {
     id: 1,
     title: "Frontend Developer",
@@ -130,6 +130,28 @@ app.patch("/jobs/:id", (req, res) => {
   if (location !== undefined) job.location = location;
 
   return res.json(job);
+});
+
+app.delete("/jobs/:id", (req, res) => {
+  const { id } = req.params;
+
+  const jobId = Number(id);
+
+  if (!Number.isInteger(jobId) || jobId <= 0) {
+    return res
+      .status(400)
+      .json({ message: "La id debe ser un número entero positivo." });
+  }
+
+  const jobIndex = jobs.findIndex((job) => job.id === jobId);
+
+  if (jobIndex === -1) {
+    return res.status(404).json({ message: "Empleo no encontrado" });
+  }
+
+  jobs = jobs.filter((job) => job.id !== jobId);
+
+  return res.sendStatus(204);
 });
 
 app.get("/health", (req, res) => {
