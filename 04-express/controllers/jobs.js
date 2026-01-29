@@ -20,7 +20,7 @@ export const getJobs = (req, res) => {
       .json({ message: "Limit y offset deben ser números." });
   }
 
-  let filteredJobs = Jobs.findAll({
+  let response = Jobs.findAll({
     technology,
     type,
     level,
@@ -29,7 +29,7 @@ export const getJobs = (req, res) => {
     offset: offsetNumber,
   });
 
-  return res.json(filteredJobs);
+  return res.json(response);
 };
 
 export const getJobByID = (req, res) => {
