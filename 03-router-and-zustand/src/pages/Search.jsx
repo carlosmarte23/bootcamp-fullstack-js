@@ -49,7 +49,7 @@ export default function Search() {
       const queryParams = params.toString();
       try {
         const response = await fetch(
-          `https://jscamp-api.vercel.app/api/jobs?${queryParams}`
+          `http://localhost:8000/jobs?${queryParams}`,
         );
 
         if (!response.ok) {
@@ -93,8 +93,8 @@ export default function Search() {
   const searchPageTitle = loading
     ? `DevJobs - Buscando empleos...`
     : error
-    ? `DevJobs - Error al cargar`
-    : `DevJobs - Empleos: Mostrando ${total} Resultados. Pagina ${currentPage} de ${totalPages}`;
+      ? `DevJobs - Error al cargar`
+      : `DevJobs - Empleos: Mostrando ${total} Resultados. Pagina ${currentPage} de ${totalPages}`;
 
   return (
     <main className={styles.search}>
