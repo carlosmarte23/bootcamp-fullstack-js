@@ -3,7 +3,10 @@ import * as Jobs from "../models/jobs.js";
 
 export const getJobs = (req, res) => {
   const {
-    location,
+    technology,
+    type,
+    level,
+    text,
     limit = DEFAULTS.LIMIT,
     offset = DEFAULTS.OFFSET,
   } = req.query;
@@ -17,7 +20,14 @@ export const getJobs = (req, res) => {
       .json({ message: "Limit y offset deben ser números." });
   }
 
-  let filteredJobs = Jobs.findAll(limitNumber, offsetNumber, location);
+  let filteredJobs = Jobs.findAll({
+    technology,
+    type,
+    level,
+    text,
+    limit: limitNumber,
+    offsset: offsetNumber,
+  });
 
   return res.json(filteredJobs);
 };
@@ -35,32 +45,66 @@ export const getJobByID = (req, res) => {
 };
 
 export const addJob = (req, res) => {
-  const { title, company, location } = req.body;
+  const { titulo, empresa, ubicacion, descripcion, data, content } = req.body;
 
-  const data = {
-    title,
-    company,
-    location,
+  if (!titulo || !empresa || !ubicacion || !descripcion) {
+    return res.status(400).json({
+      message: "titulo, empresa, ubicacion y descripcion son requeridos.",
+    });
+  }
+
+  if (data !== undefined && (typeof data !== "object" || Array.isArray(data))) {
+    return res.status(400).json({ message: "data debe ser un objeto." });
+  }
+
+  if (data?.technology && !Array.isArray(data.technology)) {
+    return res
+      .status(400)
+      .json({ message: "data.technology debe ser un array." });
+  }
+
+  const jobData = {
+    titulo,
+    empresa,
+    ubicacion,
+    descripcion,
+    data: data ?? {},
+    content: content ?? {},
   };
 
-  const newJob = Jobs.create(data);
+  const newJob = Jobs.create(jobData);
 
   return res.status(201).json(newJob);
 };
 
 export const updateJob = (req, res) => {
   const { id } = req.params;
-  const { title, company, location } = req.body;
+  const { titulo, empresa, ubicacion, descripcion, data, content } = req.body;
 
   if (!id) {
     return res.status(400).json({ message: "Debes enviar un id." });
   }
 
-  if (title === undefined && company === undefined && location === undefined) {
+  const hasAnyField =
+    titulo !== undefined ||
+    empresa !== undefined ||
+    ubicacion !== undefined ||
+    descripcion !== undefined ||
+    data !== undefined ||
+    content !== undefined;
+
+  if (!hasAnyField) {
     return res.status(400).json({ message: "Debes enviar al menos un campo." });
   }
 
-  const updatedJob = Jobs.updateById(id, { title, company, location });
+  const updatedJob = Jobs.updateById(id, {
+    titulo,
+    empresa,
+    ubicacion,
+    descripcion,
+    data,
+    content,
+  });
 
   if (!updatedJob) {
     return res.status(404).json({ message: "Empleo no encontrado" });
