@@ -26,7 +26,7 @@ export const getJobs = (req, res) => {
     level,
     text,
     limit: limitNumber,
-    offsset: offsetNumber,
+    offset: offsetNumber,
   });
 
   return res.json(filteredJobs);
