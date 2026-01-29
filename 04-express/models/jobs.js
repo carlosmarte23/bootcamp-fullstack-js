@@ -11,11 +11,11 @@ export const findAll = ({
   limit = 10,
   offset = 0,
 } = {}) => {
-  let result = jobsData;
+  let filteredJobs = jobsData;
 
   if (technology) {
     const tech = String(technology).trim().toLowerCase();
-    result = result.filter(
+    filteredJobs = filteredJobs.filter(
       (job) =>
         Array.isArray(job?.data?.technology) &&
         job.data.technology.includes(tech),
@@ -25,7 +25,7 @@ export const findAll = ({
   if (type) {
     const normalizedType = String(type).trim().toLowerCase();
 
-    result = result.filter(
+    filteredJobs = filteredJobs.filter(
       (job) =>
         String(job?.data?.modalidad ?? "")
           .trim()
@@ -36,7 +36,7 @@ export const findAll = ({
   if (level) {
     const normalizedLevel = String(level).trim().toLowerCase();
 
-    result = result.filter(
+    filteredJobs = filteredJobs.filter(
       (job) =>
         String(job?.data?.nivel ?? "")
           .trim()
@@ -48,7 +48,7 @@ export const findAll = ({
     const query = String(text).trim().toLowerCase();
 
     if (query.length > 0) {
-      result = result.filter((job) => {
+      filteredJobs = filteredJobs.filter((job) => {
         const title = String(job?.titulo ?? "")
           .trim()
           .toLowerCase();
@@ -60,10 +60,19 @@ export const findAll = ({
       });
     }
   }
+  const total = filteredJobs.length;
 
-  result = result.slice(offset, offset + limit);
+  filteredJobs = filteredJobs.slice(offset, offset + limit);
 
-  return result;
+  const response = {
+    total,
+    limit,
+    offset,
+    results: filteredJobs.length,
+    data: filteredJobs,
+  };
+
+  return response;
 };
 
 export const findById = (id) => {
