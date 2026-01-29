@@ -1,6 +1,9 @@
 import express from "express";
-import process from "node:process";
+
 import { DEFAULTS } from "./config.js";
+
+import { logger } from "./middleware/logger.js";
+
 import healthRouter from "./routes/health.js";
 import jobsRouter from "./routes/jobs.js";
 
@@ -9,6 +12,7 @@ const PORT = process.env.PORT || DEFAULTS.PORT;
 const app = express();
 
 app.use(express.json());
+app.use(logger);
 
 app.use("/jobs", jobsRouter);
 app.use("/health", healthRouter);
